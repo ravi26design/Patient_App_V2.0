@@ -29,8 +29,8 @@ function openOv(id){
   if(typeof stopPageAudio==='function')stopPageAudio();
   var el=document.getElementById('ov-'+id);if(!el)return;
   /* desktop: counter the page zoom so the fixed overlay covers the viewport at native scale.
-     Home Page 2 is excluded — its gauge SVG under the extra (nested) zoom corrupts hit-testing of controls below it. */
-  if(document.body.classList.contains('is-desktop') && window.__deskF && id!=='homepage2'){ var _vw=window.innerWidth; var _t=Math.min(1.3,(_vw-24)/620); el.style.zoom=_t/window.__deskF; }
+ */
+  if(document.body.classList.contains('is-desktop') && window.__deskF){ var _vw=window.innerWidth; var _t=Math.min(1.3,(_vw-24)/620); el.style.zoom=_t/window.__deskF; }
   else { el.style.zoom=''; }
   el.classList.add('active');
   el.scrollTop=0; var b=el.querySelector('.ov-body'); if(b) b.scrollTop=0;
@@ -51,7 +51,6 @@ function openOv(id){
     if(typeof setRoom==='function' && typeof currentRoom==='function' && currentRoom()!=='all') setRoom('all');
   }
   if(id==='location-checkin' && typeof initLocSurvey==='function'){ initLocSurvey(); }  /* start the location questions fresh */
-  if(id==='homepage2'){ window.__hp2Ready=false; window.__hp2Act=false; if(typeof renderHp2==='function') renderHp2(); }   /* Home Page 2 always opens in the empty (no-data) state */
   try{localStorage.setItem('rh_ov',id);}catch(e){}
 }
 function closeOv(){if(typeof stopPageAudio==='function')stopPageAudio();if(typeof stopBreath==='function')stopBreath();if(typeof stopUrgeBreath==='function')stopUrgeBreath();if(call911Timer){clearInterval(call911Timer);call911Timer=null;}document.querySelectorAll('.overlay').forEach(function(o){o.classList.remove('active');o.style.zoom='';});try{localStorage.removeItem('rh_ov');}catch(e){}}
@@ -636,29 +635,32 @@ var REFLECT_Q=[
     'Yes, my full dose','Only part of my dose','No, I didn’t take it']},
   /* 2 — past 24 hours: craving / risk / stress / pleasant */
   {type:'sliders', q:'Thinking about the past 24 hours…', sliders:[
-    {key:'craving', icon:'flame', tint:'#E07A6B', loE:'😌', hiE:'😖', label:'How strong was your greatest craving to use opioids over the past 24 hours?', lo:'No craving', hi:'Extreme craving'},
-    {key:'risk', icon:'alert-triangle', tint:'#E0A94E', loE:'😌', hiE:'😰', label:'How risky was the riskiest situation (people, places, or things that interfere with your recovery) you experienced over the past 24 hours?', lo:'No risk', hi:'Extreme risk'},
-    {key:'stress', icon:'wind', tint:'#5B92CE', loE:'😌', hiE:'😩', label:'How stressful was the biggest hassle or stressful event you experienced over the past 24 hours?', lo:'No stress', hi:'Extreme stress'},
-    {key:'pleasant', icon:'sun', tint:'#E0B255', loE:'😕', hiE:'😄', label:'How pleasant was the most pleasant or positive event you experienced over the past 24 hours?', lo:'Not at all pleasant', hi:'Extremely pleasant'}
+    {key:'craving', icon:'flame', tint:'#E07A6B', loE:'😌', hiE:'😖', label:'Strongest opioid craving?', lo:'No craving', hi:'Extreme craving'},
+    {key:'risk', icon:'alert-triangle', tint:'#E0A94E', loE:'😌', hiE:'😰', label:'Riskiest moment? (people, places, or things that threaten your recovery)', lo:'No risk', hi:'Extreme risk'},
+    {key:'stress', icon:'wind', tint:'#5B92CE', loE:'😌', hiE:'😩', label:'Most stressful moment?', lo:'No stress', hi:'Extreme stress'},
+    {key:'pleasant', icon:'sun', tint:'#E0B255', loE:'😕', hiE:'😄', label:'Most pleasant moment?', lo:'Not at all pleasant', hi:'Extremely pleasant'}
   ]},
   /* 3 — emotion strength */
   {type:'sliders', q:'Rate the strength of each of these emotions', sliders:[
-    {key:'dep', icon:'cloud-rain', tint:'#7C93B0', loE:'🙂', hiE:'😢', label:'Depressed', lo:'Not at all', hi:'Extremely'},
-    {key:'ang', icon:'flame', tint:'#E07A6B', loE:'🙂', hiE:'😠', label:'Angry', lo:'Not at all', hi:'Extremely'},
-    {key:'anx', icon:'activity', tint:'#E0A94E', loE:'🙂', hiE:'😰', label:'Anxious', lo:'Not at all', hi:'Extremely'},
-    {key:'rel', icon:'leaf', tint:'#6FA88A', loE:'😐', hiE:'😌', label:'Relaxed', lo:'Not at all', hi:'Extremely'},
-    {key:'hap', icon:'smile', tint:'#E0B255', loE:'😐', hiE:'😄', label:'Happy', lo:'Not at all', hi:'Extremely'}
+    {key:'dep', icon:'cloud-rain', tint:'#7C93B0', loE:'🙂', hiE:'😢', label:'Depressed?', lo:'Not at all', hi:'Extremely'},
+    {key:'ang', icon:'flame', tint:'#E07A6B', loE:'🙂', hiE:'😠', label:'Angry?', lo:'Not at all', hi:'Extremely'},
+    {key:'anx', icon:'activity', tint:'#E0A94E', loE:'🙂', hiE:'😰', label:'Anxious?', lo:'Not at all', hi:'Extremely'},
+    {key:'rel', icon:'leaf', tint:'#6FA88A', loE:'😐', hiE:'😌', label:'Relaxed?', lo:'Not at all', hi:'Extremely'},
+    {key:'hap', icon:'smile', tint:'#E0B255', loE:'😐', hiE:'😄', label:'Happy?', lo:'Not at all', hi:'Extremely'}
   ]},
   /* 4 — body: sleep & pain */
   {type:'sliders', q:'Your body, the past 24 hours', sliders:[
-    {key:'sleep', icon:'moon', tint:'#7C93B0', loE:'😫', hiE:'😊', label:'How well did you sleep over the past 24 hours?', lo:'Very poor', hi:'Excellent'},
-    {key:'pain', icon:'zap', tint:'#E07A6B', loE:'🙂', hiE:'😣', label:'How painful was your most intense pain over the past 24 hours?', lo:'No pain', hi:'Worst pain'}
+    {key:'sleep', icon:'moon', tint:'#7C93B0', loE:'😫', hiE:'😊', label:'Sleep quality?', lo:'Very poor', hi:'Excellent'},
+    {key:'pain', icon:'zap', tint:'#E07A6B', loE:'🙂', hiE:'😣', label:'Worst pain?', lo:'No pain', hi:'Worst pain'}
   ]},
   /* next week: motivation & confidence — final page (Finish here) */
   {type:'sliders', q:'Thinking about the next week…', sliders:[
-    {key:'motivation', icon:'rocket', tint:'#6FA88A', loE:'😐', hiE:'🔥', label:'How motivated are you to avoid using opioids for non-medical reasons within the next week?', lo:'Not motivated', hi:'Extremely motivated'},
-    {key:'confidence', icon:'shield-check', tint:'#5B92CE', loE:'😟', hiE:'😎', label:'How confident are you in your ability to avoid using opioids for non-medical reasons within the next week?', lo:'Not confident', hi:'Extremely confident'}
+    {key:'motivation', icon:'rocket', tint:'#6FA88A', loE:'😐', hiE:'🔥', label:'Motivation to avoid non-medical opioid use?', lo:'Not motivated', hi:'Extremely motivated'},
+    {key:'confidence', icon:'shield-check', tint:'#5B92CE', loE:'😟', hiE:'😎', label:'Confidence you can?', lo:'Not confident', hi:'Extremely confident'}
   ]},
+  /* unreported opioid use — Yes/No; Yes reveals a multi-date calendar (checkmark on each picked day) */
+  {type:'unreported', q:'Have you used opioids that you didn’t report?', lucideIcons:true,
+    icons:['circle-check','circle-x'], options:['Yes','No']},
   /* drug use multi-select — now the LAST question. "Other" (index 6) reveals a free-text input. */
   {type:'multi', q:'Which of these drugs have you used in the past 24 hours?', lucideIcons:true, otherIndex:6, otherPlaceholder:'Which one? Enter the name',
     icons:['beer','leaf','zap','wind','pill','sparkles','circle-ellipsis','circle-check'], options:[
@@ -666,7 +668,7 @@ var REFLECT_Q=[
     'Inhalants (nitrous, glue, petrol, paint thinner, etc.)','Sedatives or sleeping pills (Valium, Serepax, Rohypnol, etc.)',
     'Hallucinogens (LSD, acid, mushrooms, PCP, special K, etc.)','Other','None — I did not use any substances']}
 ];
-var REFLECT_TOTAL=REFLECT_Q.length;   /* 7 */
+var REFLECT_TOTAL=REFLECT_Q.length;   /* 8 */
 var reflectStep=0, reflectAnswers={}, reflectVoiceMode=false;
 function openReflect(){ reflectStep=0; reflectAnswers={}; reflectVoiceMode=false;
   renderReflect(); openOv('reflect'); }
@@ -700,6 +702,50 @@ function reflectToggleOpt(btn,i){
     if(ow){ var show=sel.indexOf(item.otherIndex)>=0; ow.hidden=!show;
       if(show){ var inp=document.getElementById('rf-other-input'); if(inp) setTimeout(function(){ inp.focus(); },50); } }
   }
+}
+/* ── Unreported-use step: Yes/No + multi-date calendar ── */
+function reflectUValid(a){ return a.yn===1 || (a.yn===0 && a.dates && a.dates.length>0); }
+function reflectUSync(){
+  var a=reflectAns(), nb=document.getElementById('rf-next'); if(nb) nb.disabled=!reflectUValid(a);
+}
+function reflectUYN(btn,i){
+  var a=reflectAns(); a.yn=i;
+  btn.parentElement.querySelectorAll('.reflect-opt').forEach(function(b){ b.classList.remove('opt-sel'); });
+  btn.classList.add('opt-sel');
+  var w=document.getElementById('rf-ucal-wrap');
+  if(w){ w.hidden=(i!==0); if(i===0){ w.innerHTML=reflectUCalHTML(a); } }
+  reflectUSync();
+}
+function reflectUCalHTML(a){
+  if(a.cy==null){ a.cy=LOG_TODAY.y; a.cm=LOG_TODAY.m; }
+  a.dates=a.dates||[];
+  var atNow=(a.cy===LOG_TODAY.y && a.cm===LOG_TODAY.m);
+  var h='<div class="rf-ucal-note"><div class="rf-ucal-note-t">Select the day and time when you used. You can log past days too - whenever you feel ready. You can add multiple entries.</div></div>'+
+    '<div class="rf-ucal-card"><div class="rf-ucal-head">'+
+    '<button type="button" class="rf-ucal-nav" onclick="reflectUMonth(-1)" aria-label="Previous month">&#8249;</button>'+
+    '<div class="rf-ucal-month">'+LOG_MONTHS[a.cm]+' '+a.cy+'</div>'+
+    '<button type="button" class="rf-ucal-nav" onclick="reflectUMonth(1)" aria-label="Next month"'+(atNow?' disabled':'')+'>&#8250;</button></div>'+
+    '<div class="log-cal rf-ucal">';
+  LOG_DOW.forEach(function(d){ h+='<div class="dow">'+d+'</div>'; });
+  var first=new Date(a.cy,a.cm,1).getDay(), days=new Date(a.cy,a.cm+1,0).getDate();
+  for(var i=0;i<first;i++) h+='<div class="log-day empty"></div>';
+  for(var d=1;d<=days;d++){
+    var key=a.cy+'-'+(a.cm+1)+'-'+d, fut=logIsFuture(a.cy,a.cm,d), on=a.dates.indexOf(key)>=0;
+    h+='<button type="button" class="log-day'+(fut?' future':'')+(on?' sel rf-ucal-on':'')+'"'+(fut?'':' onclick="reflectUDay(\''+key+'\')"')+' aria-pressed="'+on+'">'+d+'</button>';
+  }
+  h+='</div>'+(a.dates.length?'<div class="rf-ucal-count">'+a.dates.length+' day'+(a.dates.length>1?'s':'')+' selected</div>':'')+'</div>';
+  return h;
+}
+function reflectUMonth(d){
+  var a=reflectAns(); a.cm+=d;
+  if(a.cm<0){ a.cm=11; a.cy--; } if(a.cm>11){ a.cm=0; a.cy++; }
+  var w=document.getElementById('rf-ucal-wrap'); if(w) w.innerHTML=reflectUCalHTML(a);
+}
+function reflectUDay(key){
+  var a=reflectAns(), i=a.dates.indexOf(key);
+  if(i>=0) a.dates.splice(i,1); else a.dates.push(key);
+  var w=document.getElementById('rf-ucal-wrap'); if(w) w.innerHTML=reflectUCalHTML(a);
+  reflectUSync();
 }
 function reflectOther(el){ reflectAns().otherText=el.value; }
 function reflectSlider(key,v,input){
@@ -781,6 +827,13 @@ function renderReflect(){
       }
       return out;
     }).join('')+'</div>';
+  } else if(item.type==='unreported'){
+    var yn=a.yn;
+    inner='<div class="reflect-opts rf-yn-row">'+item.options.map(function(o,i){
+      return '<button class="reflect-opt'+(yn===i?' opt-sel':'')+'" onclick="reflectUYN(this,'+i+')">'+
+        '<span class="ro-ic"><i data-lucide="'+item.icons[i]+'"></i></span><span class="ro-txt">'+esc(o)+'</span></button>';
+    }).join('')+'</div>'+
+    '<div class="rf-ucal-wrap" id="rf-ucal-wrap"'+(yn===0?'':' hidden')+'>'+(yn===0?reflectUCalHTML(a):'')+'</div>';
   } else if(item.type==='sliders'){
     var vals=a.sliders||{};
     inner='<div class="rf-sliders">'+item.sliders.map(function(s){
@@ -811,7 +864,8 @@ function renderReflect(){
     var msel=(item.type==='multi' && !(a.selected&&a.selected.length))?' disabled':'';
     foot.innerHTML='<button id="rf-finish" class="rf-btn rf-primary rf-full" onclick="reflectNext()"'+msel+'>Finish · +30 XP 🎉</button>';
   } else {
-    foot.innerHTML='<button class="rf-btn rf-primary rf-full" onclick="reflectNext()">'+(n===0?'Continue':'Next')+' →</button>';
+    var ndis=(item.type==='unreported' && !reflectUValid(a))?' disabled':'';
+    foot.innerHTML='<button id="rf-next" class="rf-btn rf-primary rf-full" onclick="reflectNext()"'+ndis+'>'+(n===0?'Continue':'Next')+' →</button>';
   }
   if(window.lucide && lucide.createIcons) lucide.createIcons();   /* render any data-lucide icons in the step */
   if(item && item.type==='text' && reflectVoiceMode) rfStartListening();   /* resume listening if voice mode is on */
@@ -823,14 +877,8 @@ function reflectDone(){
   if(time){ time.textContent='Today ✓'; time.style.color='var(--hb-teal)'; }
   updateTodayProgress();
   try{ localStorage.setItem('rh_reflect_done', _rhToday()); }catch(e){}   /* mark today's reflection done */
-  window.__hp2Ready=true;                                                 /* flip Home Page 2 to its ready state */
-  if(typeof renderHp2==='function') renderHp2();
-  if(window.__reflectFromHp2){   /* started from Home Page 2 → return there in the ready state */
-    window.__reflectFromHp2=false;
-    if(typeof openOv==='function') openOv('homepage2');   /* openOv resets the demo state… */
-    window.__hp2Ready=true;                               /* …so restore ready and re-render */
-    if(typeof renderHp2==='function') renderHp2();
-  }
+  window.__rhCiDone=true;
+  if(typeof rhGaugeRefresh==='function') rhGaugeRefresh();                /* home gauge: from empty to today's score */
   if(typeof showXPPopup==='function') showXPPopup(30, 'Reflect Complete!');
   /* nudge the location-details survey once the reward has shown */
   setTimeout(showLocPrompt, 1500);
@@ -1005,7 +1053,8 @@ function stopBreath(){ if(breathTimer){ clearTimeout(breathTimer); breathTimer=n
 function buildHealthGauge(){
   var el=document.getElementById('healthGauge'); if(!el) return;
   if(el.querySelector('.speedo')) return;        /* build once */
-  var val=74;
+  var done=rhGaugeDone();
+  var val=done?74:0;                              /* no check-in today → empty gauge (needle at Low, score 0) */
   var cx=150, cy=158, r=112, sw=22;
   function pt(deg){ var a=deg*Math.PI/180; return [(cx+r*Math.cos(a)).toFixed(1),(cy-r*Math.sin(a)).toFixed(1)]; }
   function arc(d1,d2,col){ var p1=pt(d1),p2=pt(d2);
@@ -1021,7 +1070,7 @@ function buildHealthGauge(){
   var b2x=(cx-sinT*bw).toFixed(1), b2y=(cy-cosT*bw).toFixed(1);
   var reduce=false; try{ reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
   var needle='<polygon points="'+b1x+','+b1y+' '+tx+','+ty+' '+b2x+','+b2y+'" fill="#2A2421"/>';
-  if(reduce){ s+=needle; }
+  if(reduce||!done){ s+=needle; }
   else {
     /* sweep the needle from 0 (leftmost) up to the value */
     var startA=(-(val/100)*180).toFixed(1);
@@ -1032,9 +1081,36 @@ function buildHealthGauge(){
   el.insertAdjacentHTML('afterbegin', s);
   var card=el.closest('.gauge-card')||document;
   var num=card.querySelector('.rh-num b');
-  if(num){ if(reduce){ num.textContent=val; } else { num.textContent='0'; rhCountUp(num, val, 1200); } }
-  var pill=card.querySelector('.rh-pill'); if(pill) pill.textContent = val>=85?'Excellent':val>=70?'Above Average':val>=55?'Good':'Needs Care';
+  if(num){ if(reduce||!done){ num.textContent=val; } else { num.textContent='0'; rhCountUp(num, val, 1200); } }
+  var pill=card.querySelector('.rh-pill'); if(pill) pill.textContent = !done?'Complete today\u2019s check-in':val>=85?'Excellent':val>=70?'Above Average':val>=55?'Good':'Needs Care';
+  var trend=card.querySelector('.rh-trend'); if(trend) trend.style.display=done?'':'none';
+  var wv=document.getElementById('rhWeeksVal'), ws=document.getElementById('rhWeeksSpark');   /* Past 2 weeks: dashed + "Not ready yet" until the check-in is done */
+  if(wv&&ws){
+    wv.textContent=done?'Steady':'Not ready yet'; wv.classList.toggle('hp2-muted',!done);
+    ws.classList.toggle('hp2-spark-empty',!done);
+    ws.innerHTML=done
+      ? '<svg viewBox="0 0 180 46" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="rhSparkFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6E9E80" stop-opacity=".24"/><stop offset="1" stop-color="#6E9E80" stop-opacity="0"/></linearGradient></defs><path d="M2,28 C18,25 30,23 46,24 C62,25 72,20 90,21 C108,22 118,17 138,18 C154,19 164,14 178,13 L178,46 L2,46 Z" fill="url(#rhSparkFill)"/><path d="M2,28 C18,25 30,23 46,24 C62,25 72,20 90,21 C108,22 118,17 138,18 C154,19 164,14 178,13" fill="none" stroke="#4E7B5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg><span class="hp2-spark-dot"></span>'
+      : '<svg viewBox="0 0 180 46" preserveAspectRatio="none" aria-hidden="true"><line x1="2" y1="23" x2="178" y2="23" stroke="#D7D1C7" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round"/></svg>';
+  }
+  rhFocusRender();
   applyRhTrend();
+}
+/* Home "Today's focus" card: before the check-in → Begin Daily Reflection · after → Craving · after the craving activity → done */
+function rhFocusRender(){
+  var ci=!!window.__rhCiDone, act=ci && !!window.__rhCraveDone;
+  var m={rhFocusEmpty:!ci, rhFocusReady:ci&&!act, rhFocusDone:act};
+  Object.keys(m).forEach(function(id){ var e=document.getElementById(id); if(e) e.style.display=m[id]?'':'none'; });
+  if(window.lucide&&lucide.createIcons) lucide.createIcons();
+}
+/* has today's daily check-in been completed? (flag set in reflectDone, resets each calendar day) */
+/* home gauge / focus fill in only after the check-in is completed in THIS app session (Maybe later → empty gauge) */
+function rhGaugeDone(){ return !!window.__rhCiDone; }
+function rhCheckinDone(){ try{ return localStorage.getItem('rh_reflect_done')===_rhToday(); }catch(e){ return false; } }
+/* rebuild the home gauge from scratch — called after the check-in finishes so it sweeps up to the score */
+function rhGaugeRefresh(){
+  var el=document.getElementById('healthGauge'); if(!el) return;
+  var old=el.querySelector('.speedo'); if(old) old.remove();
+  buildHealthGauge();
 }
 /* Recovery Health trend pill: green up-arrow when the score rose, red down-arrow when it fell */
 function applyRhTrend(){
@@ -1077,29 +1153,6 @@ function buildArcGauge(elId, val){
 /* daily completion flags — a task counts as "done" only for the current calendar
    day, so streak buttons reset each day and can't be farmed for repeat XP */
 function _rhToday(){ try{ var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }catch(e){ return 'na'; } }
-/* ═══ Home Page 2 — per-open demo state: always starts empty, then progresses ═══ */
-function hp2Done(){ return !!window.__hp2Ready; }
-function renderHp2(){
-  var ready=hp2Done();
-  var e=document.getElementById('hp2-empty'), r=document.getElementById('hp2-ready');
-  if(e) e.style.display=ready?'none':'block';
-  if(r) r.style.display=ready?'block':'none';
-  if(typeof buildArcGauge==='function'){ buildArcGauge(ready?'hp2Gauge':'hp2GaugeEmpty', ready?74:0); }
-  if(ready){   /* focus card: pending vs. activity-done */
-    var ad=!!window.__hp2Act;
-    var fp=document.getElementById('hp2-focus-pending'), fd=document.getElementById('hp2-focus-done');
-    if(fp) fp.style.display=ad?'none':'block';
-    if(fd) fd.style.display=ad?'block':'none';
-  }
-  if(window.lucide&&lucide.createIcons) lucide.createIcons();
-}
-function hp2BeginReflection(){
-  window.__reflectFromHp2=true;   /* remember to return to Home Page 2 after the survey */
-  /* use the same full-screen check-in intro style as the rest of the app, then into the survey */
-  var m=document.getElementById('checkinModal');
-  if(m){ m.classList.remove('hide'); m.classList.add('show'); if(window.lucide&&lucide.createIcons) lucide.createIcons(); }
-  else if(typeof openReflect==='function'){ openReflect(); }
-}
 function rhDayDone(key){ try{ return localStorage.getItem(key)===_rhToday(); }catch(e){ return false; } }
 function rhSetDayDone(key){ try{ localStorage.setItem(key,_rhToday()); }catch(e){} }
 /* Insights: reflect the "reviewed" state on the bottom button */
@@ -1361,10 +1414,9 @@ function activityComplete(){
   var a=ACTS[id]; if(!a) return;
   var first=!actDone(id);
   try{ localStorage.setItem('rh_act_'+id,'1'); }catch(e){}
+  if(id==='crave'){ window.__rhCraveDone=true; if(typeof rhFocusRender==='function') rhFocusRender(); }   /* Home focus card → "activity done" */
   actzPaintTiles();
   applyTodayActState();
-  if(id==='crave') window.__hp2Act=true;            /* flip Home Page 2 focus card to its activity-done state */
-  if(typeof renderHp2==='function') renderHp2();
   closeDetail('activity');
   if(first && typeof showXPPopup==='function') showXPPopup(a.pts, 'Activity Complete!');
 }
@@ -1817,11 +1869,13 @@ function scheduleCheckin(){ if(window.__checkinTimer) clearTimeout(window.__chec
 /* right after login: land on the check-in intro immediately (home sits behind it) */
 function loginShowCheckin(){ if(window.__checkinTimer){ clearTimeout(window.__checkinTimer); window.__checkinTimer=null; }
   setTimeout(showCheckinModal, 120); }
-function showCheckinModal(){ var m=document.getElementById('checkinModal'); if(!m) return;
+function showCheckinModal(force){ var m=document.getElementById('checkinModal'); if(!m) return;
   if((document.body.getAttribute('data-screen')||'home')!=='home') return;   /* daily check-in prompt only on the home page */
   if(window.__tourActive) return;                                            /* don't interrupt the first-run tour */
   if(typeof maybeStartTour==='function' && maybeStartTour()) return;         /* first run: show the feature tour instead */
-  m.classList.remove('hide'); m.classList.add('show'); if(window.lucide&&lucide.createIcons) lucide.createIcons(); }
+  if(!force && (rhDayDone('rh_checkin_prompt') || rhCheckinDone())) return;   /* in-session: once a day, until the check-in is done · on app open / refresh (force): every time */
+  rhSetDayDone('rh_checkin_prompt');
+  m.style.display=''; m.classList.remove('hide'); m.classList.add('show'); if(window.lucide&&lucide.createIcons) lucide.createIcons(); }
 /* ═══ FIRST-RUN FEATURE TOUR (coach marks; shown once, then never again) ═══ */
 /* ═══ Listen-to-page audio narration (Web Speech API, no backend) ═══ */
 var PAGE_NARRATION={
@@ -1989,6 +2043,8 @@ function speakReflect(btn){
   if(item.type==='multi' && item.options){
     parts.push('Your options are:');
     item.options.forEach(function(o){ parts.push(o.replace(/\s*\([^)]*\)/g,'')+'.'); });
+  } else if(item.type==='unreported'){
+    parts.push('Your options are: Yes, or No. If yes, select the days you used.');
   } else if(item.type==='sliders' && item.sliders){
     item.sliders.forEach(function(s){ parts.push(s.label+' Rate from '+s.lo+' to '+s.hi+'.'); });
   } else if(item.type==='text'){
@@ -2014,7 +2070,6 @@ function speakPage(){
 }
 var TOUR_STEPS=[
   {sel:'.rh-card', icon:'activity', color:'#5E8B6E', title:'Recovery Health', text:'Your daily score of how recovery is going. Tap it any time for a deeper look at your progress.'},
-  {sel:'#screen-home .rt-section', icon:'list-checks', color:'#C9973B', title:'Your daily plan', text:'Schedule, a quick reflection, insights, and activities — and each one earns you XP'},
   {sel:'.bottom-nav [onclick*="\'home\'"]', icon:'home', color:'#5E8B6E', title:'Home', text:'Your daily dashboard — recovery score, plan and quick actions, all in one place.'},
   {sel:'.bottom-nav [onclick*="rooms"]', icon:'users-round', color:'#4E7FA8', title:'Community', text:'Connect with people who get it. Share and get support'},
   {sel:'.nav-sos', icon:'life-buoy', color:'#C56A5E', title:'Help, anytime', text:'Struggling right now? Tap HELP to reach real, caring support — fast.'},
@@ -2185,7 +2240,13 @@ function finishOnbFlow(){ setTimeout(function(){ showDoneModal(); if(window.__do
     var last=null; try{ last=localStorage.getItem('rh_screen'); }catch(e){}
     /* read the last overlay BEFORE goScreen — goScreen now closes overlays and clears rh_ov */
     var lastOv=null; try{ lastOv=localStorage.getItem('rh_ov'); }catch(e){}
+    /* first open of the day → always land on Home with the daily check-in screen on top (it then drops to Home) */
+    var forceCi=/[?&]checkin=1\b/.test(location.search);   /* testing: open index.html?checkin=1 to see the screen again today */
+    if(forceCi){ try{ localStorage.removeItem('rh_checkin_prompt'); localStorage.removeItem('rh_reflect_done'); }catch(e){} }
+    var firstToday=true;   /* every app open / refresh shows the check-in screen first, then Home */
+    if(firstToday){ last='home'; lastOv=null; try{ localStorage.removeItem('rh_ov'); }catch(e){} }
     if(last && document.getElementById('screen-'+last)) goScreen(last); else goScreen('home');
+    if(firstToday){ if(window.__checkinTimer){ clearTimeout(window.__checkinTimer); window.__checkinTimer=null; } showCheckinModal(true); }   /* immediately — no Home flash first */
     /* reopen the overlay/detail page the user was viewing before the refresh */
     if(lastOv && document.getElementById('ov-'+lastOv) && typeof openOv==='function'){
       if(lastOv==='relief-detail' || lastOv==='ifthen-detail' || lastOv==='community-detail' || lastOv==='threegood-detail' || lastOv==='insights-yesterday') openOv('insights');   /* keep the parent Insights screen beneath the detail */
@@ -2420,7 +2481,8 @@ function openSOS(){
 function sosBack(){ goScreen(window.__sosBackTo||'home'); }
 function logout(){
   try{ localStorage.removeItem('rh_onboarded'); localStorage.removeItem('rh_profile');
-       localStorage.removeItem('rh_screen'); localStorage.removeItem('rh_ov'); }catch(e){}
+       localStorage.removeItem('rh_screen'); localStorage.removeItem('rh_ov');
+       localStorage.removeItem('rh_checkin_prompt'); localStorage.removeItem('rh_reflect_done'); }catch(e){}   /* next login = a fresh day: daily check-in screen shows first */
   location.reload();   /* restart onboarding */
 }
 

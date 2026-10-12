@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<link rel="stylesheet" href="css/styles.css?v=20261012e">
+<link rel="stylesheet" href="css/styles.css?v=20261012m">
 </head>
 <body>
 
@@ -197,15 +197,15 @@
   <div class="onb-top"><button class="onb-back" type="button" onclick="onbBack('medsScreen')" aria-label="Back"><i data-lucide="arrow-left"></i></button><div class="onb-steps"><div class="onb-steps-fill" style="width:33%"></div></div><div class="onb-count">1<span>/3</span></div></div>
   <div class="onb-inner">
     <h1 class="ph-title">Which <em>medications</em> are you currently taking?</h1>
-    <p class="ph-sub">This helps us tailor your dose reminders and insights. You can change this anytime.</p>
+    <p class="ph-sub">Select all that apply, or add your own.</p>
     <div class="onb-addrow">
       <input id="medsInput" class="onb-input" type="text" placeholder="Type a medication…" onkeydown="if(event.key==='Enter'){event.preventDefault();onbAdd('medsChips','medsInput')}">
       <button class="onb-add" type="button" onclick="onbAdd('medsChips','medsInput')">Add</button>
     </div>
     <div class="onb-chips" id="medsChips">
-      <button class="onb-chip" type="button" onclick="onbToggle(this)"><i data-lucide="pill"></i>Suboxone</button>
+      <button class="onb-chip" type="button" onclick="onbToggle(this)"><i data-lucide="pill"></i>Buprenorphine</button>
       <button class="onb-chip" type="button" onclick="onbToggle(this)"><i data-lucide="pill"></i>Methadone</button>
-      <button class="onb-chip" type="button" onclick="onbToggle(this)"><i data-lucide="circle-ellipsis"></i>Other</button>
+      <button class="onb-chip" type="button" onclick="onbToggle(this)"><i data-lucide="pill"></i>Naltrexone</button>
     </div>
     <div class="onb-foot">
       <button class="wc-begin onb-continue" type="button" onclick="onbNext('meds')">Continue <span aria-hidden="true">&rarr;</span></button>
@@ -288,9 +288,7 @@
   <div class="ci-screen">
     <div class="ci-head">
       <div class="ci-hero-ic"><i data-lucide="clipboard-check"></i><span class="ci-hero-spark"><i data-lucide="sparkles"></i></span></div>
-      <span class="ci-eyebrow"><span class="ci-eyebrow-ic"><i data-lucide="flame"></i></span><span class="ci-eyebrow-tx"><b>47</b> day streak</span><span class="ci-eyebrow-sub">keep it alive</span></span>
       <h2 class="ci-title">Great to see you. Ready for today's check-in?</h2>
-      <p class="ci-sub">It takes about a minute - and it's the single best thing you can do today to stay on track. You've got this.</p>
       <div class="ci-week" aria-label="6 of the last 7 days checked in">
         <span class="cw-dot done"><i data-lucide="check"></i></span>
         <span class="cw-dot done"><i data-lucide="check"></i></span>
@@ -526,13 +524,6 @@
             <div class="rh-trend" data-delta="2"><span class="rh-trend-arrow"></span><span class="rh-trend-delta">2</span><span class="rh-trend-lbl">Stable</span></div>
           </div>
           <div class="rh-risk">
-            <div class="rh-focus rh-chip">
-              <span class="rh-chip-ic rh-focus-ic"><i data-lucide="zap"></i></span>
-              <span class="rh-chip-main">
-                <span class="rh-chip-eyebrow">Today's Focus</span>
-                <span class="rh-chip-val">Craving</span>
-              </span>
-            </div>
             <button class="rh-insights rh-chip" type="button" onclick="event.stopPropagation();openOv('insights')">
               <span class="rh-chip-ic rh-insights-ic"><i data-lucide="lightbulb"></i></span>
               <span class="rh-chip-main">
@@ -542,48 +533,58 @@
               <span class="rh-insights-xp">+20 XP</span>
             </button>
           </div>
+          <!-- Past 2 weeks trend — empty until today's check-in is completed -->
+          <div class="hp2-trend rh-weeks" id="rhWeeks">
+            <div class="hp2-trend-l">
+              <div class="hp2-trend-lbl">Past 2 weeks</div>
+              <div class="hp2-trend-val hp2-muted" id="rhWeeksVal">Not ready yet</div>
+            </div>
+            <div class="hp2-spark hp2-spark-empty" id="rhWeeksSpark">
+              <svg viewBox="0 0 180 46" preserveAspectRatio="none" aria-hidden="true"><line x1="2" y1="23" x2="178" y2="23" stroke="#D7D1C7" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round"/></svg>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Recovery Today -->
-      <div class="home-sec rt-section">
-        <div>
-          <div class="rt-head">
-            <div class="home-title">Recovery Today</div>
-            <div class="rt-head-r">
-              <div class="rt-prog"><span id="rt-done">0</span><span class="rt-prog-total">/3 done</span></div>
-              <button class="help-i" type="button" aria-label="About Recovery Today" onclick="showHelp('recovery-today')"><i data-lucide="info"></i></button>
+      <!-- Today's focus — shown until today's daily reflection is done -->
+      <div class="hp2-focus hp2-focus-empty" id="rhFocusCard" style="margin-bottom:16px">
+        <!-- before the daily reflection -->
+        <div id="rhFocusEmpty">
+          <div class="hp2-focus-head">
+            <span class="hp2-focus-ic"><i data-lucide="zap"></i></span>
+            <div class="hp2-focus-main">
+              <div class="hp2-focus-eyebrow">Today's focus</div>
+              <div class="hp2-focus-val hp2-muted">Not ready yet</div>
             </div>
           </div>
-          <div class="task-grid">
-            <div class="task" id="checkin-card" onclick="openReflect()">
-              <span class="xp-chip xp-corner">+30 XP</span>
-              <div class="task-ic-wrap">
-                <div class="ic-tile t-lilac" id="checkin-icon"><i data-lucide="pen-line"></i></div>
-                <div class="task-check" style="display:none" id="checkin-check">&#10003;</div>
-              </div>
-              <div class="task-name" id="checkin-label">Reflect</div>
-              <div class="task-time" id="checkin-time">5:00 PM</div>
-            </div>
-            <div class="task" id="schedule-card" onclick="confirmSchedule(this)">
-              <span class="xp-chip xp-corner">+60 XP</span>
-              <div class="task-ic-wrap">
-                <div class="ic-tile" style="background:#9A7C28" id="schedule-icon"><i data-lucide="calendar-clock"></i></div>
-                <div class="task-check" style="display:none" id="schedule-check">&#10003;</div>
-              </div>
-              <div class="task-name" id="schedule-label">Tx Schedule</div>
-              <div class="task-time" id="schedule-time">Today</div>
-            </div>
-            <div class="task" id="activities-card" onclick="confirmActivities(this)">
-              <span class="xp-chip xp-corner">+10 XP</span>
-              <div class="task-ic-wrap">
-                <div class="ic-tile" style="background:#5B92CE" id="activities-icon"><i data-lucide="layout-grid"></i></div>
-                <div class="task-check" style="display:none" id="activities-check">&#10003;</div>
-              </div>
-              <div class="task-name" id="activities-label">Activities</div>
-              <div class="task-time" id="activities-time">Anytime</div>
+          <p class="hp2-focus-d">Your focus and recovery activity for today show here after your daily reflection.</p>
+          <button class="hp2-focus-btn" type="button" onclick="openReflect()">Begin Daily Reflection</button>
+          <div class="hp2-focus-time">About 1 minute · unlocks today's score</div>
+        </div>
+        <!-- after the daily reflection -->
+        <div id="rhFocusReady" style="display:none">
+          <div class="hp2-focus-head">
+            <span class="hp2-focus-ic"><i data-lucide="zap"></i></span>
+            <div class="hp2-focus-main">
+              <div class="hp2-focus-eyebrow">Today's focus</div>
+              <div class="hp2-focus-val">Craving</div>
             </div>
           </div>
+          <p class="hp2-focus-d">Cravings look like the biggest challenge today.</p>
+          <button class="hp2-focus-btn" type="button" onclick="openActivity('crave', false, true)">Start Managing Cravings</button>
+          <div class="hp2-focus-time">About 4 minutes</div>
+        </div>
+        <!-- after the craving activity is completed -->
+        <div id="rhFocusDone" style="display:none">
+          <div class="hp2-focus-head">
+            <span class="hp2-focus-ic hp2-focus-ic-done"><i data-lucide="check"></i></span>
+            <div class="hp2-focus-main">
+              <div class="hp2-focus-eyebrow">Today's activity is done</div>
+              <div class="hp2-focus-val">Managing Cravings</div>
+            </div>
+          </div>
+          <p class="hp2-focus-d">You worked on today's focus, craving. <b>+20 XP</b> earned.</p>
+          <button class="hp2-focus-btn hp2-focus-btn-outline" type="button" onclick="goScreen('tools')">See past activities</button>
         </div>
       </div>
 
@@ -638,16 +639,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Log Use — bottom CTA -->
-      <button class="log-cta" type="button" onclick="openLogUse()">
-        <span class="log-cta-ic"><i data-lucide="clipboard-list"></i></span>
-        <span class="log-cta-main">
-          <span class="log-cta-t">Log Use</span>
-          <span class="log-cta-d">Track any substance use — private &amp; judgment-free</span>
-        </span>
-        <i data-lucide="chevron-right" class="log-cta-arrow"></i>
-      </button>
 
       <!-- Narcan Status -->
 
@@ -1209,11 +1200,6 @@
           <div class="pf-menu-t">App Help Guide</div>
           <i data-lucide="chevron-right" class="pf-menu-arrow"></i>
         </button>
-        <button class="pf-menu-row" type="button" onclick="openOv('homepage2')">
-          <div class="pf-menu-ic" style="background:#8A6DAF;color:#fff"><i data-lucide="layout-dashboard"></i></div>
-          <div class="pf-menu-t">Home Page 2</div>
-          <i data-lucide="chevron-right" class="pf-menu-arrow"></i>
-        </button>
         <button class="pf-menu-row pf-menu-logout" type="button" onclick="logout()">
           <div class="pf-menu-ic" style="background:#C4453A;color:#fff"><i data-lucide="log-out"></i></div>
           <div class="pf-menu-t">Log out</div>
@@ -1582,121 +1568,6 @@
   </div>
 
   <!-- ═══ PRIVACY & DATA SHARING ═══ -->
-  <!-- ═══ HOME PAGE 2 (new blank screen) ═══ -->
-  <div class="overlay" id="ov-homepage2" style="background:var(--app-bg)">
-    <div class="ov-header" style="background:#fff;border-bottom:1px solid rgba(54,59,59,.06)">
-      <button class="ov-back" style="background:#EEF0F0;color:var(--ink)" onclick="closeOv()">&larr;</button>
-      <div>
-        <div style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--ink)">Home Page 2</div>
-      </div>
-    </div>
-    <div class="ov-body" style="padding-top:16px">
-      <!-- ═══ EMPTY STATE — before today's Daily Reflection ═══ -->
-      <div id="hp2-empty">
-        <div class="hp2-card">
-          <div class="hp2-rh-head">
-            <div>
-              <div class="hp2-rh-title">Recovery Health</div>
-              <div class="hp2-rh-sub">Not updated yet today</div>
-            </div>
-            <button class="help-i" type="button" aria-label="About Recovery Health" onclick="showHelp('recovery-health')"><i data-lucide="info"></i></button>
-          </div>
-          <div class="hp2-gauge" id="hp2GaugeEmpty"></div>
-          <div class="hp2-score">0</div>
-          <div class="hp2-score-sub">out of 100 · updates after your daily reflection</div>
-          <div class="hp2-divider"></div>
-          <div class="hp2-trend">
-            <div class="hp2-trend-l">
-              <div class="hp2-trend-lbl">Past 2 weeks</div>
-              <div class="hp2-trend-val hp2-muted">Not ready yet</div>
-            </div>
-            <div class="hp2-spark hp2-spark-empty">
-              <svg viewBox="0 0 180 46" preserveAspectRatio="none" aria-hidden="true"><line x1="2" y1="23" x2="178" y2="23" stroke="#D7D1C7" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="hp2-focus hp2-focus-empty">
-          <div class="hp2-focus-head">
-            <span class="hp2-focus-ic hp2-focus-ic-empty"></span>
-            <div class="hp2-focus-main">
-              <div class="hp2-focus-eyebrow">Today's focus</div>
-              <div class="hp2-focus-val hp2-muted">Not ready yet</div>
-            </div>
-          </div>
-          <p class="hp2-focus-d">Your focus and recovery activity for today show here after your daily reflection.</p>
-          <button class="hp2-focus-btn" type="button" onclick="hp2BeginReflection()">Begin Daily Reflection</button>
-          <div class="hp2-focus-time">About 1 minute · unlocks today's score</div>
-        </div>
-      </div>
-
-      <!-- ═══ READY STATE — after today's Daily Reflection ═══ -->
-      <div id="hp2-ready" style="display:none">
-        <!-- Recovery Health card -->
-        <div class="hp2-card">
-          <div class="hp2-rh-head">
-            <div>
-              <div class="hp2-rh-title">Recovery Health</div>
-              <div class="hp2-rh-sub">Updated with today's reflection</div>
-            </div>
-            <button class="help-i" type="button" aria-label="About Recovery Health" onclick="showHelp('recovery-health')"><i data-lucide="info"></i></button>
-          </div>
-          <div class="hp2-gauge" id="hp2Gauge"></div>
-          <div class="hp2-score">74</div>
-          <div class="hp2-score-sub">today, out of 100</div>
-          <div class="hp2-pill">Above Average</div>
-          <div class="hp2-divider"></div>
-          <!-- Past 2 weeks trend sparkline -->
-          <div class="hp2-trend">
-            <div class="hp2-trend-l">
-              <div class="hp2-trend-lbl">Past 2 weeks</div>
-              <div class="hp2-trend-val">Steady</div>
-            </div>
-            <div class="hp2-spark">
-              <svg viewBox="0 0 180 46" preserveAspectRatio="none" aria-hidden="true">
-                <defs>
-                  <linearGradient id="hp2SparkFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#6E9E80" stop-opacity=".24"/>
-                    <stop offset="1" stop-color="#6E9E80" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <path class="hp2-spark-area" d="M2,28 C18,25 30,23 46,24 C62,25 72,20 90,21 C108,22 118,17 138,18 C154,19 164,14 178,13 L178,46 L2,46 Z" fill="url(#hp2SparkFill)"/>
-                <path class="hp2-spark-line" d="M2,28 C18,25 30,23 46,24 C62,25 72,20 90,21 C108,22 118,17 138,18 C154,19 164,14 178,13" fill="none" stroke="#4E7B5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
-              </svg>
-              <span class="hp2-spark-dot"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Today's focus — activity pending -->
-        <div class="hp2-focus" id="hp2-focus-pending">
-          <div class="hp2-focus-head">
-            <span class="hp2-focus-ic"><i data-lucide="zap"></i></span>
-            <div class="hp2-focus-main">
-              <div class="hp2-focus-eyebrow">Today's focus</div>
-              <div class="hp2-focus-val">Craving</div>
-            </div>
-          </div>
-          <p class="hp2-focus-d">Cravings look like the biggest challenge today.</p>
-          <button class="hp2-focus-btn" type="button" onclick="openActivity('crave', false, true)">Start Managing Cravings</button>
-          <div class="hp2-focus-time">About 4 minutes</div>
-        </div>
-
-        <!-- Today's focus — activity done -->
-        <div class="hp2-focus" id="hp2-focus-done" style="display:none">
-          <div class="hp2-focus-head">
-            <span class="hp2-focus-ic hp2-focus-ic-done"><i data-lucide="check"></i></span>
-            <div class="hp2-focus-main">
-              <div class="hp2-focus-eyebrow">Today's activity is done</div>
-              <div class="hp2-focus-val">Managing Cravings</div>
-            </div>
-          </div>
-          <p class="hp2-focus-d">You worked on today's focus, craving. <b>+20 XP</b> earned.</p>
-          <button class="hp2-focus-btn hp2-focus-btn-outline" type="button" onclick="closeOv();if(typeof goScreen==='function')goScreen('tools')">See past activities</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="overlay" id="ov-privacy" style="background:var(--app-bg)">
     <div class="ov-header" style="background:#fff;border-bottom:1px solid rgba(54,59,59,.06)">
       <button class="ov-back" style="background:#EEF0F0;color:var(--ink)" onclick="closeOv()">&larr;</button>
@@ -4051,6 +3922,6 @@
     <button class="tour-skip" type="button" onclick="tourSkip()">Skip</button>
   </div>
 </div>
-<script src="js/app.js?v=20261012e"></script>
+<script src="js/app.js?v=20261012s"></script>
 </body>
 </html>

@@ -4863,3 +4863,29 @@ body.is-desktop #ov-homepage2 > .ov-body{padding-left:calc((100% - 664px) / 2 + 
 .hp2-spark-empty svg{height:100%}
 .hp2-focus-empty{background:#fff !important}
 .hp2-focus-ic-empty{display:none !important}
+
+/* Check-in · unreported use: multi-date calendar */
+.rf-ucal-wrap{margin-top:16px}
+.rf-ucal-card{background:#fff;border-radius:18px;box-shadow:var(--card-shadow);padding:14px 12px 12px}
+.rf-ucal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.rf-ucal-month{font-size:15px;font-weight:700;color:var(--ink)}
+.rf-ucal-nav{border:none;background:none;cursor:pointer;font-size:20px;color:var(--ink-soft);padding:4px 10px}
+.rf-ucal-nav:disabled{opacity:.3;cursor:default}
+.rf-ucal .log-day{position:relative}
+.rf-ucal .log-day.rf-ucal-on::after{content:"✓";position:absolute;top:2px;right:4px;font-size:9px;font-weight:800;line-height:1}
+.rf-ucal-count{text-align:center;font-size:12px;font-weight:600;color:#9A6B16;margin-top:10px}
+/* Yes / No on one row */
+.rf-yn-row{flex-direction:row;gap:12px}
+.rf-yn-row .reflect-opt{flex:1;width:auto;min-width:0;justify-content:center;gap:10px;padding:16px 12px}
+.rf-yn-row .reflect-opt .ro-txt{flex:0 0 auto;font-size:14px}
+/* Check-in · unreported use: confidentiality note above the calendar */
+.rf-ucal-note{background:#fff;border-radius:18px;box-shadow:var(--card-shadow);padding:16px 18px;margin-bottom:14px}
+.rf-ucal-note-k{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#B5832B;margin-bottom:5px}
+.rf-ucal-note-t{font-size:12px;color:#5A5450;line-height:1.6}
+/* note: plain text, no card */
+.rf-ucal-note{background:none;box-shadow:none;padding:0 4px;margin-bottom:12px}
+/* Home · Recovery Health: Past 2 weeks row */
+.rh-weeks{width:100%;box-sizing:border-box;margin-top:16px;padding-top:16px;border-top:1px solid rgba(54,59,59,.08);text-align:left}
+/* Onboarding steps: wider heading + sub-text on desktop (no 3-line wrap) */
+body.is-desktop .onb-inner .ph-title,body.is-desktop .onb-inner .ph-sub{max-width:660px}
+@media (min-width:900px){ .onb-inner .ph-title,.onb-inner .ph-sub{max-width:660px} }
