@@ -900,10 +900,10 @@ body.is-mobile .task-grid > .task{flex:initial}
 /* Desktop — overlays become viewport-fixed modals (visible regardless of page scroll) */
 body.is-desktop .overlay.active{position:fixed;inset:0;z-index:9000}
 /* full-width scroll area (scroll works anywhere on screen), content still centered to 620px */
-body.is-desktop .overlay.active > .ov-body{max-width:none;width:100%;padding-left:calc((100% - 620px) / 2 + 16px);padding-right:calc((100% - 620px) / 2 + 16px)}
+body.is-desktop .overlay.active > .ov-body{max-width:none;width:100%;padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2));padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 /* align the overlay back+title header with the centered 620px body on desktop */
 /* full-width header bar, but back+title aligned to the centered 620px body */
-body.is-desktop .overlay.active > .ov-header{width:100%;max-width:none;padding-left:calc((100% - 620px) / 2 + 16px);padding-right:calc((100% - 620px) / 2 + 16px)}
+body.is-desktop .overlay.active > .ov-header{width:100%;max-width:none;padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2));padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 /* the transparent-header detail pages get a solid white top bar on desktop (like Daily Insight) */
 body.is-desktop #ov-relief-detail > .ov-header,
 body.is-desktop #ov-ifthen-detail > .ov-header,
@@ -919,8 +919,8 @@ body.is-desktop #ov-relief-detail > .ov-header{background:#fff !important;border
 #ov-reflect .ov-body{padding-bottom:18px}
 /* desktop: full-width top bar + footer, but center the question content to a 760px column (aligned with the sticky header) */
 body.is-desktop #ov-reflect > #reflect-body{padding-left:0;padding-right:0}
-body.is-desktop #ov-reflect .rf-content{max-width:760px;margin:0 auto;padding:0 16px;box-sizing:border-box}
-body.is-desktop #ov-reflect > .reflect-footer{box-sizing:border-box;max-width:none;width:100%;padding-left:calc((100% - 760px) / 2 + 16px);padding-right:calc((100% - 760px) / 2 + 16px)}
+body.is-desktop #ov-reflect .rf-content{max-width:calc(var(--pg-ov,621px) + 32px);margin:0 auto;padding:0 16px;box-sizing:border-box}
+body.is-desktop #ov-reflect > .reflect-footer{box-sizing:border-box;max-width:none;width:100%;padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2));padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 .reflect-footer{flex-shrink:0;display:flex;gap:12px;padding:14px 16px;background:var(--app-bg);border-top:1px solid rgba(54,59,59,.08)}
 .reflect-footer:empty{display:none}
 .rf-btn{padding:17px 18px;border-radius:18px;border:none;font-size:16px;font-weight:700;letter-spacing:.3px;cursor:pointer;font-family:var(--font-ui);white-space:nowrap}
@@ -982,15 +982,15 @@ body.is-desktop #ov-reflect > .reflect-footer{box-sizing:border-box;max-width:no
 body.is-mobile .reflect-footer{padding-bottom:max(14px,env(safe-area-inset-bottom))}
 /* Reflect on desktop: white backdrop + full-width footer bar (Continue button aligned to the 620px column) */
 body.is-desktop #ov-reflect:not(.rf-modal){background:var(--app-bg)!important}
-body.is-desktop .overlay.active > .reflect-footer{max-width:none;width:100%;background:#fff;border-top:1px solid rgba(54,59,59,.06);padding-left:calc((100% - 760px) / 2 + 16px);padding-right:calc((100% - 760px) / 2 + 16px)}
+body.is-desktop .overlay.active > .reflect-footer{max-width:none;width:100%;background:#fff;border-top:1px solid rgba(54,59,59,.06);padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2));padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 /* full-bleed white progress bar (like the other page headers) + centered question content */
 body.is-desktop #ov-reflect > .ov-body{padding-left:0;padding-right:0;padding-top:0!important}
-body.is-desktop #ov-reflect .onb-top{position:sticky;top:0;z-index:5;max-width:none;margin:0 0 22px;background:#fff;border-bottom:1px solid rgba(54,59,59,.06);border-radius:0;box-shadow:0 2px 10px -6px rgba(60,50,45,.25);padding:16px calc((100% - 760px) / 2 + 16px)}
+body.is-desktop #ov-reflect .onb-top{position:sticky;top:0;z-index:5;max-width:none;margin:0 0 22px;background:#fff;border-bottom:1px solid rgba(54,59,59,.06);border-radius:0;box-shadow:0 2px 10px -6px rgba(60,50,45,.25);padding:16px max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 body.is-desktop #ov-reflect .reflect-q,
 body.is-desktop #ov-reflect .reflect-qsub,
 body.is-desktop #ov-reflect .reflect-opts,
 body.is-desktop #ov-reflect .rf-sliders,
-body.is-desktop #ov-reflect > .ov-body > .rf-card{max-width:760px;margin-left:auto;margin-right:auto;padding-left:16px;padding-right:16px}
+body.is-desktop #ov-reflect > .ov-body > .rf-card{max-width:calc(var(--pg-ov,621px) + 32px);margin-left:auto;margin-right:auto;padding-left:16px;padding-right:16px}
 /* slider cards fill the centered container so every card is the same width */
 body.is-desktop #ov-reflect .rf-sliders > .rf-card{max-width:none;width:100%;margin:0}
 /* completion celebration: keep it a centered modal card (not full-width) */
@@ -1413,7 +1413,7 @@ body.is-mobile .thread-reply{padding-bottom:max(12px,env(safe-area-inset-bottom)
 .thread-reply-post svg{width:19px;height:19px;stroke-width:2}
 .thread-reply-post:active{transform:scale(.92)}
 /* Desktop: constrain the bar to the content column (not full screen) */
-body.is-desktop .overlay.active > .thread-reply{max-width:620px;margin-left:auto;margin-right:auto;width:100%;
+body.is-desktop .overlay.active > .thread-reply{max-width:var(--pg-ov,621px);margin-left:auto;margin-right:auto;width:100%;
   border:1px solid var(--border);border-radius:16px;margin-bottom:16px;
   box-shadow:0 4px 16px rgba(58,65,64,.08)}
 body.is-desktop .thread-reply-input{font-size:13px;padding:12px 18px}
@@ -2049,12 +2049,12 @@ body.is-desktop .tx-meta{position:absolute;right:6px;top:50%;transform:translate
 .step-screen.hide{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease, visibility .4s ease}
 /* Desktop: match the check-in flow — white full-width header bar + wide centred content */
 body.is-desktop .step-screen{background:var(--app-bg);padding:0 0 calc(34px + env(safe-area-inset-bottom))}
-body.is-desktop .onb-top{max-width:none;width:100%;margin:0;background:#fff;border-bottom:1px solid rgba(54,59,59,.06);box-shadow:0 2px 10px -6px rgba(60,50,45,.25);padding:16px calc((100% - 760px) / 2 + 16px)}
-body.is-desktop .onb-inner{max-width:760px;justify-content:flex-start;padding:28px 16px 128px}
-body.is-desktop .onb-addrow{max-width:760px}
+body.is-desktop .onb-top{max-width:none;width:100%;margin:0;background:#fff;border-bottom:1px solid rgba(54,59,59,.06);box-shadow:0 2px 10px -6px rgba(60,50,45,.25);padding:16px max(16px,calc((100% - var(--pg-real,808px)) / 2))}
+body.is-desktop .onb-inner{max-width:calc(var(--pg-real,808px) + 32px);justify-content:flex-start;padding:28px 16px 128px}
+body.is-desktop .onb-addrow{max-width:var(--pg-real,808px)}
 /* CTA pinned to the bottom of the viewport (fixed footer); content scrolls above it */
-body.is-desktop .onb-inner > .onb-continue{position:absolute;left:16px;right:16px;bottom:30px;margin:0 auto;width:auto;max-width:760px;z-index:10}
-body.is-desktop .onb-foot{position:absolute;left:16px;right:16px;bottom:22px;margin:0 auto;width:auto;max-width:760px;z-index:10}
+body.is-desktop .onb-inner > .onb-continue{position:absolute;left:16px;right:16px;bottom:30px;margin:0 auto;width:auto;max-width:var(--pg-real,808px);z-index:10}
+body.is-desktop .onb-foot{position:absolute;left:16px;right:16px;bottom:22px;margin:0 auto;width:auto;max-width:var(--pg-real,808px);z-index:10}
 .onb-top{display:flex;align-items:center;gap:12px;width:100%;max-width:380px;margin:0 auto;flex-shrink:0}
 .onb-back{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;
   background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;color:var(--ink);
@@ -2681,7 +2681,7 @@ body.is-desktop #ov-tut-alert > .ov-body, body.is-desktop #ov-tut-alert > .ov-he
 body.is-desktop #ov-tut-score > .ov-body, body.is-desktop #ov-tut-score > .ov-header,
 body.is-desktop #ov-tut-rewards > .ov-body, body.is-desktop #ov-tut-rewards > .ov-header,
 body.is-desktop #ov-settings > .ov-body, body.is-desktop #ov-settings > .ov-header,
-body.is-desktop #ov-privacy > .ov-body, body.is-desktop #ov-privacy > .ov-header{padding-left:calc((100% - 760px) / 2);padding-right:calc((100% - 760px) / 2)}
+body.is-desktop #ov-privacy > .ov-body, body.is-desktop #ov-privacy > .ov-header{padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2));padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 .pf-menu-arrow{flex-shrink:0;width:18px;height:18px;color:var(--muted)}
 
 /* Patterns chart: fixed y-axis strip while the plot scrolls horizontally */
@@ -2854,11 +2854,11 @@ body.is-desktop #screen-profile.active{padding-left:0;padding-right:0}
 /* Full-width white header bar flush to the top; its content aligns with the centered card column */
 body.is-desktop #screen-profile .pf-fullhead{
   position:sticky;top:0;z-index:6;margin:0 0 22px;
-  padding:16px calc((100% - 760px) / 2);
+  padding:16px calc((100% - 632px) / 2);
   background:#fff;border-bottom:1px solid rgba(54,59,59,.06);
 }
 /* Cards sit in a comfortable centered column */
-body.is-desktop #screen-profile.active > *:not(.pf-fullhead){max-width:760px;margin-left:auto;margin-right:auto}
+body.is-desktop #screen-profile.active > *:not(.pf-fullhead){max-width:632px;margin-left:auto;margin-right:auto}
 body.is-desktop #screen-profile .pf-back{width:36px;height:36px;background:#EEF0F0;color:var(--ink);box-shadow:none}
 body.is-desktop #screen-profile .pf-back:hover{background:#E4E7E7}
 
@@ -3317,7 +3317,7 @@ body.is-mobile .cm-act-lbl{display:none}
 .cm-cmt-txt{font-size:13px;color:#3A4443;line-height:1.5;word-wrap:break-word;overflow-wrap:anywhere}
 .cm-detail-foot{display:flex;gap:8px;padding:12px 16px;background:#fff;border-top:1px solid var(--border);flex-shrink:0}
 /* desktop: align the comment composer to the centered 620px content column */
-body.is-desktop .overlay.active > .cm-detail-foot{padding-left:calc((100% - 620px) / 2 + 16px);padding-right:calc((100% - 620px) / 2 + 16px)}
+body.is-desktop .overlay.active > .cm-detail-foot{padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2));padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 .cm-detail-foot .cm-addinput{flex:1}
 
 /* ---- Community UX polish ---- */
@@ -3406,11 +3406,11 @@ body.is-mobile #act-rec-relief .ins-rec-t{line-height:1.3}
 /* desktop: single full-width column (Today's card + date-grouped list, not the 2-col grid) */
 body.is-desktop #screen-tools.active{display:block;column-count:1;grid-template-columns:none}
 body.is-desktop #screen-tools .ins-rec-grid,
-body.is-desktop #screen-tools .prev-act{max-width:760px;margin-left:auto;margin-right:auto}
+body.is-desktop #screen-tools .prev-act{max-width:632px;margin-left:auto;margin-right:auto}
 body.is-desktop #screen-tools .prev-act{margin-bottom:8px}
 body.is-desktop #screen-tools .scr-head,
 body.is-desktop #screen-tools .scr-eyebrow,
-body.is-desktop #screen-tools .prev-day{max-width:760px;margin-left:auto;margin-right:auto}
+body.is-desktop #screen-tools .prev-day{max-width:632px;margin-left:auto;margin-right:auto}
 
 /* ============ RESPONSIVE SAFETY NETS ============ */
 /* Overlays clip stray horizontal overflow (the phone shell clips → cutoff otherwise) */
@@ -4583,7 +4583,7 @@ body.in-room #s-community #composeBar{display:flex}
 body.is-desktop #ov-request-room > .ov-body,
 body.is-desktop #ov-find-coach > .ov-body,
 body.is-desktop #ov-na-meetings > .ov-body,
-body.is-desktop #ov-na-meeting-detail > .ov-body{max-width:none !important;width:100% !important;padding-left:calc((100% - 620px) / 2 + 16px) !important;padding-right:calc((100% - 620px) / 2 + 16px) !important}
+body.is-desktop #ov-na-meeting-detail > .ov-body{max-width:none !important;width:100% !important;padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2)) !important;padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2)) !important}
 /* Desktop: Community sub-pages keep their back-arrow + title header, same as mobile */
 body.is-desktop #ov-request-room > .ov-header,
 body.is-desktop #ov-find-coach > .ov-header,
@@ -4970,15 +4970,15 @@ body.is-desktop #rhFocusCard,body.is-tablet #rhFocusCard{margin-bottom:0 !import
 .loc-map-fixed{height:30%;min-height:180px}
 .loc-sheet{display:flex;flex-direction:column;padding:16px 16px 0}
 .loc-top{margin-bottom:16px}
-.loc-content{width:100%;max-width:560px;margin:0 auto;flex:1}
+.loc-content{width:100%;max-width:var(--pg-ov,621px);margin:0 auto;flex:1}
 .loc-content .loc-intro{margin:0 0 10px;font-size:12.5px;line-height:1.5}
 .loc-content .reflect-q{margin-top:6px}
 .loc-content .reflect-opts{margin-top:16px;gap:12px}
-.loc-foot{position:sticky;bottom:0;z-index:4;width:100%;max-width:560px;margin:18px auto 0;padding:12px 0 max(14px,env(safe-area-inset-bottom));background:var(--app-bg)}
+.loc-foot{position:sticky;bottom:0;z-index:4;width:100%;max-width:var(--pg-ov,621px);margin:18px auto 0;padding:12px 0 max(14px,env(safe-area-inset-bottom));background:var(--app-bg)}
 .loc-foot .loc-submit{width:100%;margin:0;padding:17px 18px;border-radius:18px;font-size:16px;letter-spacing:.3px;text-transform:none;opacity:1;pointer-events:auto;box-shadow:0 12px 28px rgba(87,124,174,.34)}
 .loc-foot .loc-submit:disabled{opacity:.45;box-shadow:none;pointer-events:none}
 /* location sheet: progress bar band runs edge-to-edge (no side gutters), content stays centred */
-.loc-sheet .loc-top.onb-top{width:calc(100% + 32px);box-sizing:border-box;max-width:none;margin:-16px -16px 16px;border-radius:22px 22px 0 0;padding:16px max(16px,calc((100% - 560px) / 2 + 16px))}
+.loc-sheet .loc-top.onb-top{width:calc(100% + 32px);box-sizing:border-box;max-width:none;margin:-16px -16px 16px;border-radius:22px 22px 0 0;padding:16px max(16px,calc((100% - var(--pg-ov,621px)) / 2 + 16px))}
 body.is-desktop #ov-location-checkin .loc-sheet{padding-left:16px;padding-right:16px}
 @media (max-width:600px){ .loc-sheet .loc-top.onb-top{padding:16px} }
 
@@ -4992,7 +4992,7 @@ body.is-desktop #ov-location-checkin .loc-sheet{padding-left:16px;padding-right:
 body.is-desktop #ov-edit-activities.active > .ov-body,
 body.is-desktop #ov-edit-triggers.active > .ov-body,
 body.is-desktop #ov-edit-activities.active > .ov-header,
-body.is-desktop #ov-edit-triggers.active > .ov-header{padding-left:max(16px,calc((100% - 621px) / 2));padding-right:max(16px,calc((100% - 621px) / 2))}
+body.is-desktop #ov-edit-triggers.active > .ov-header{padding-left:max(16px,calc((100% - var(--pg-ov,621px)) / 2));padding-right:max(16px,calc((100% - var(--pg-ov,621px)) / 2))}
 
 /* Welcome illustrations (all 4 slides): present each as a proper framed card —
    larger, rounder, soft shadow + hairline border, with a gentle brand-colour glow behind it */
@@ -5002,7 +5002,7 @@ body.is-desktop #ov-edit-triggers.active > .ov-header{padding-left:max(16px,calc
 
 /* Welcome carousel (desktop): content column = same width as the Home cards (632px) so the framed illustration isn't clipped */
 /* Home cards are 632px × the desktop zoom (min(1.3,(vw-24)/620)); welcome sits outside that zoom, so apply it here */
-body.is-desktop .wc-inner{max-width:min(808px,calc((100vw - 24px) * 1.0))}
+body.is-desktop .wc-inner{max-width:min(var(--pg-real,808px),calc(100vw - 24px))}
 body.is-desktop .wc-hero-img{width:78%;max-width:640px}
 body.is-desktop .wc-slide .wc-body{max-width:520px}
 /* Welcome CTAs (desktop): same width as the illustration above them */
@@ -5011,17 +5011,29 @@ body.is-desktop #welcome .wc-guest-top{width:78%;max-width:640px}
 body.is-desktop #welcome .wc-guest-top .wc-guest{width:100%;max-width:none}
 
 /* Registration "A little about you" (desktop): content column = same width as the Home cards */
-body.is-desktop #detailsScreen .phone-inner{max-width:min(808px,calc((100vw - 24px) * 1.0))}
+body.is-desktop #detailsScreen .phone-inner{max-width:min(var(--pg-real,808px),calc(100vw - 24px))}
 body.is-desktop #detailsScreen .dt-fields{max-width:100%}
 body.is-desktop #detailsScreen .ph-send{width:100%;max-width:100%}
 body.is-desktop #detailsScreen .ph-row{max-width:100%}
 
 /* All onboarding / registration screens (desktop): one shared content width = Home cards (808px) */
-body.is-desktop #loginScreen .phone-inner{max-width:min(808px,calc((100vw - 24px) * 1.0))}
+body.is-desktop #loginScreen .phone-inner{max-width:min(var(--pg-real,808px),calc(100vw - 24px))}
 body.is-desktop #loginScreen .dt-fields{max-width:100%}
 body.is-desktop #loginScreen .ph-send{width:100%;max-width:100%}
-body.is-desktop .step-screen .onb-inner{max-width:840px}
+body.is-desktop .step-screen .onb-inner{max-width:calc(var(--pg-real,808px) + 32px)}
 body.is-desktop .step-screen .onb-addrow{max-width:100%}
-body.is-desktop .step-screen .onb-top{padding-left:max(16px,calc((100% - 808px) / 2 + 16px));padding-right:max(16px,calc((100% - 808px) / 2 + 16px))}
+body.is-desktop .step-screen .onb-top{padding-left:max(16px,calc((100% - var(--pg-real,808px)) / 2 + 16px));padding-right:max(16px,calc((100% - var(--pg-real,808px)) / 2 + 16px))}
 body.is-desktop .step-screen .onb-inner > .onb-continue,
-body.is-desktop .step-screen .onb-foot{max-width:808px}
+body.is-desktop .step-screen .onb-foot{max-width:var(--pg-real,808px)}
+
+/* Bottom sheets — Date of birth + OTP share one style: centred sheet, same width / background / radius / padding / header (badge icon + centred title) / animation */
+.otp-sheet,.dob-sheet{max-width:520px}
+#dobPicker.show{display:flex;align-items:flex-end;justify-content:center;text-align:center}
+.dob-sheet{position:relative;left:auto;right:auto;bottom:auto;z-index:1;width:100%;align-items:center;background:var(--app-bg);
+  padding:12px 28px calc(26px + env(safe-area-inset-bottom));animation:sheetUp .44s cubic-bezier(.2,.85,.25,1) both}
+.dob-sheet .ph-badge{width:58px;height:58px;margin-bottom:14px}
+.dob-sheet .ph-badge-ic i,.dob-sheet .ph-badge-ic svg{width:28px;height:28px}
+.dob-sheet .dob-head{justify-content:center;margin-bottom:8px;width:100%}
+.dob-sheet .dob-title{font-size:24px;margin:0}
+.dob-sheet .dob-wheels{width:100%;margin:10px 0 18px}
+.dob-sheet .dob-done{margin-top:6px}

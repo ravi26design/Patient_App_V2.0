@@ -475,7 +475,7 @@ function showMysteryXP(){
     if(vw<=MOBILE){
       /* phones — fill the viewport edge to edge */
       b.classList.add('is-mobile'); b.classList.remove('is-framed'); b.classList.remove('is-desktop'); b.classList.remove('is-tablet');
-      window.__deskF=null;
+      window.__deskF=null; document.documentElement.style.removeProperty('--pg-real'); document.documentElement.style.removeProperty('--pg-ov');
       var F=clamp(vw/DESIGN_W,1.22,1.62);
       p.style.width=(vw/F)+'px';
       p.style.height=(H/F)+'px';
@@ -487,7 +487,7 @@ function showMysteryXP(){
       /* tablet (and large-phone landscape) — bigger-mobile: edge-to-edge,
          2-column cards, floating bottom nav */
       b.classList.add('is-tablet'); b.classList.remove('is-mobile'); b.classList.remove('is-framed'); b.classList.remove('is-desktop');
-      window.__deskF=null;
+      window.__deskF=null; document.documentElement.style.removeProperty('--pg-real'); document.documentElement.style.removeProperty('--pg-ov');
       var WT=680, FT=clamp(vw/WT,0.85,1.5);
       p.style.width=WT+'px';
       p.style.height=(H/FT)+'px';
@@ -502,6 +502,9 @@ function showMysteryXP(){
       b.classList.add('is-framed'); b.classList.add('is-desktop'); b.classList.remove('is-mobile'); b.classList.remove('is-tablet');
       var DW=680, F=clamp(Math.min((vw-72)/DW, H/700), 1.0, 1.55);
       window.__deskF=F;
+      /* shared content width on desktop = Home card width (632 css px × page zoom F). --pg-real is in real px (screens outside the zoom: welcome/onboarding); --pg-ov is the same width in the overlays' own zoom space (their effective scale is min(1.3,(vw-24)/620)) */
+      document.documentElement.style.setProperty('--pg-real',(632*F).toFixed(2)+'px');
+      document.documentElement.style.setProperty('--pg-ov',(632*F/Math.min(1.3,(vw-24)/620)).toFixed(2)+'px');
       p.style.transform='none';
       p.style.transformOrigin='';
       p.style.margin='0 auto';
