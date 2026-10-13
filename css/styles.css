@@ -4987,3 +4987,9 @@ body.is-desktop #ov-location-checkin .loc-sheet{padding-left:16px;padding-right:
 #rhFocusEmpty .hp2-focus-d{font-size:13px;line-height:1.5;color:var(--ink-soft);margin:12px 0 14px}
 #rhFocusEmpty .hp2-focus-btn{padding:14px;font-size:14.5px}
 #rhFocusEmpty .hp2-focus-time{font-size:12px;margin-top:10px}
+
+/* What Helps Me / What Triggers Me edit screens (desktop): content column = same width as the Home cards (matches Home cards) */
+body.is-desktop #ov-edit-activities.active > .ov-body,
+body.is-desktop #ov-edit-triggers.active > .ov-body,
+body.is-desktop #ov-edit-activities.active > .ov-header,
+body.is-desktop #ov-edit-triggers.active > .ov-header{padding-left:max(16px,calc((100% - 621px) / 2));padding-right:max(16px,calc((100% - 621px) / 2))}
