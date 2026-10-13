@@ -4892,3 +4892,15 @@ body.is-desktop .onb-inner .ph-title,body.is-desktop .onb-inner .ph-sub{max-widt
 
 /* Home: Today's focus card — desktop/tablet cards are spaced by the parent's gap, so drop the extra inline margin (was a double gap below the card) */
 body.is-desktop #rhFocusCard,body.is-tablet #rhFocusCard{margin-bottom:0 !important}
+
+/* Edit activities: App-Store-style category tiles — soft top-to-bottom gradient, bold white label bottom-left, big glossy icon top-right */
+#ea-sugg .helps-grid{gap:12px}
+#ea-sugg .helps-card{min-height:116px;padding:12px 14px;border-radius:20px;justify-content:flex-end;gap:0;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
+#ea-sugg .helps-card{background:linear-gradient(165deg,color-mix(in srgb,currentColor 32%,#fff) 0%,color-mix(in srgb,currentColor 72%,#fff) 100%) !important}
+#ea-sugg .helps-card::before{right:-14px;bottom:auto;top:-18px;width:96px;height:96px;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+#ea-sugg .helps-card-t{font-size:14px;font-weight:700;color:#fff;line-height:1.2;max-width:100%;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+#ea-sugg .helps-card-ic{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65));box-shadow:0 6px 12px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff}
+#ea-sugg .helps-card-ic i,#ea-sugg .helps-card-ic svg{width:21px;height:21px}
+#ea-sugg .helps-card-plus{top:11px;left:11px;right:auto;width:22px;height:22px;padding:4px;border-radius:50%;background:rgba(255,255,255,.28);color:#fff;opacity:1}
+#ea-sugg .helps-card.is-sel{box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45)}
+#ea-sugg .helps-card.is-sel .helps-card-plus{top:11px;right:auto;background:#fff;color:currentColor}
