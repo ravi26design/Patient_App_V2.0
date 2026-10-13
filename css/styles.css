@@ -4999,3 +4999,9 @@ body.is-desktop #ov-edit-triggers.active > .ov-header{padding-left:max(16px,calc
 .wc-hero-img{position:relative;width:440px;max-width:94%}
 .wc-hero-img::before{content:"";position:absolute;inset:-14px -18px -6px;border-radius:44px;background:radial-gradient(60% 60% at 30% 20%,rgba(150,196,160,.30),transparent 70%),radial-gradient(60% 60% at 80% 85%,rgba(125,160,214,.26),transparent 70%);filter:blur(14px);z-index:0}
 .wc-hero-img img{position:relative;z-index:1;border-radius:28px;box-shadow:0 0 0 1px rgba(255,255,255,.9),0 18px 40px -16px rgba(60,75,100,.38),0 4px 12px -6px rgba(60,75,100,.18)}
+
+/* Welcome carousel (desktop): content column = same width as the Home cards (632px) so the framed illustration isn't clipped */
+/* Home cards are 632px × the desktop zoom (min(1.3,(vw-24)/620)); welcome sits outside that zoom, so apply it here */
+body.is-desktop .wc-inner{max-width:min(808px,calc((100vw - 24px) * 1.0))}
+body.is-desktop .wc-hero-img{width:78%;max-width:640px}
+body.is-desktop .wc-slide .wc-body{max-width:520px}
