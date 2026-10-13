@@ -5037,3 +5037,9 @@ body.is-desktop .step-screen .onb-foot{max-width:var(--pg-real,808px)}
 .dob-sheet .dob-title{font-size:24px;margin:0}
 .dob-sheet .dob-wheels{width:100%;margin:10px 0 18px}
 .dob-sheet .dob-done{margin-top:6px}
+
+/* Onboarding form pieces (desktop): span the full shared content width (clinic name/code, divider, note, consent rows) */
+body.is-desktop .step-screen .cc-field,
+body.is-desktop .step-screen .cc-or,
+body.is-desktop .step-screen .cc-help,
+body.is-desktop .step-screen .pv-check{max-width:100%}
