@@ -2854,11 +2854,11 @@ body.is-desktop #screen-profile.active{padding-left:0;padding-right:0}
 /* Full-width white header bar flush to the top; its content aligns with the centered card column */
 body.is-desktop #screen-profile .pf-fullhead{
   position:sticky;top:0;z-index:6;margin:0 0 22px;
-  padding:16px calc((100% - 632px) / 2);
+  padding:16px max(16px,calc((100% - var(--pg-real,808px)) / 2));
   background:#fff;border-bottom:1px solid rgba(54,59,59,.06);
 }
 /* Cards sit in a comfortable centered column */
-body.is-desktop #screen-profile.active > *:not(.pf-fullhead){max-width:632px;margin-left:auto;margin-right:auto}
+body.is-desktop #screen-profile.active > *:not(.pf-fullhead){width:calc(100% - 32px);max-width:var(--pg-real,808px);margin-left:auto;margin-right:auto}  /* profile renders at native scale (zoom 1) → real-px width = Home card width */
 body.is-desktop #screen-profile .pf-back{width:36px;height:36px;background:#EEF0F0;color:var(--ink);box-shadow:none}
 body.is-desktop #screen-profile .pf-back:hover{background:#E4E7E7}
 
