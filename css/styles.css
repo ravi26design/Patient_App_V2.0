@@ -5141,3 +5141,16 @@ body.is-desktop .step-screen .cc-row .cc-or span{padding:0}
 .wish-chosen:empty{display:none}
 .wish-item{flex:0 0 auto;width:150px;border:none;text-align:left;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
 .wish-item:active{transform:scale(.97)}
+
+/* Layout fix: horizontally-scrolling rows (prize tiles, etc.) must never widen the page grid.
+   The grid column is minmax(0,1fr) and scrolling rows are allowed to shrink (min-width:0), so adding many prizes can't push the cards off-screen. */
+body.is-desktop .screen.active{grid-template-columns:minmax(0,1fr)}
+.wish-chosen{min-width:0;max-width:100%;contain:inline-size}
+.scr-card{min-width:0}
+
+/* Rewards page polish */
+.lrow-note{color:#3F6E99}
+.grat-btn.grat-done{background:#E3EEFA;color:#3F6E99}
+.lr-st-done{background:#E3EEFA;color:#3F6E99}
+#screen-rewards .scr-eyebrow,#screen-rewards .rw-lbhead{margin-left:0;margin-right:0}   /* section titles line up with the cards */
+body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}   /* no hard cut at the right edge */
