@@ -60,22 +60,24 @@
     <circle cx="138.6" cy="166.4" r="1.4" fill="#fff"/><circle cx="164.6" cy="166.4" r="1.4" fill="#fff"/>
     <path d="M142 180 C148 187 156 187 162 180" fill="none" stroke="#B5584C" stroke-width="3.2" stroke-linecap="round"/>
     <circle cx="127" cy="178" r="6" fill="#F2A79D" opacity=".55"/><circle cx="173" cy="178" r="6" fill="#F2A79D" opacity=".55"/>
-  </g><g filter="url(#ssSh)"><rect x="246" y="60" width="212" height="158" rx="20" fill="url(#ssCard)"/></g>
-  <text x="268" y="90" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="800" fill="#2E3238">Today's plan</text>
-  <text x="268" y="106" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#868C92">3 of 4 done</text>
+  </g><g filter="url(#ssSh)"><rect x="246" y="52" width="214" height="178" rx="20" fill="url(#ssCard)"/></g>
+  <text x="268" y="82" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="800" fill="#2E3238" textLength="86" lengthAdjust="spacingAndGlyphs">Today's plan</text>
+  <text x="268" y="98" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#868C92" textLength="54" lengthAdjust="spacingAndGlyphs">3 of 4 done</text>
   <!-- progress ring -->
-  <g transform="translate(424 88)"><circle r="17" fill="none" stroke="#EDF1EC" stroke-width="6"/><circle r="17" fill="none" stroke="#E2B458" stroke-width="6" stroke-linecap="round" stroke-dasharray="80 107" transform="rotate(-90)"/>
+  <g transform="translate(426 80)"><circle r="17" fill="none" stroke="#EDF1EC" stroke-width="6"/><circle r="17" fill="none" stroke="#E2B458" stroke-width="6" stroke-linecap="round" stroke-dasharray="80 107" transform="rotate(-90)"/>
   <path d="M0 -8 L2.3 -2.5 8 -2.5 3.4 1.2 5.1 6.8 0 3.4 -5.1 6.8 -3.4 1.2 -8 -2.5 -2.3 -2.5 Z" fill="#E2B458"/></g>
   <g>
-    <circle cx="276" cy="132" r="10" fill="#5FA27C"/><path d="M271 132 l3.5 3.5 6 -7" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="294" y="127" width="130" height="10" rx="5" fill="#E8F2EA"/>
-    <circle cx="276" cy="158" r="10" fill="#5FA27C"/><path d="M271 158 l3.5 3.5 6 -7" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="294" y="153" width="104" height="10" rx="5" fill="#E8F2EA"/>
-    <circle cx="276" cy="184" r="10" fill="#5FA27C"/><path d="M271 184 l3.5 3.5 6 -7" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="294" y="179" width="116" height="10" rx="5" fill="#E8F2EA"/>
-    <circle cx="276" cy="208" r="0" fill="none"/>
+    <circle cx="276" cy="126" r="10" fill="#5FA27C"/><path d="M271 126 l3.5 3.5 6 -7" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="294" y="121" width="132" height="10" rx="5" fill="#E8F2EA"/>
+    <circle cx="276" cy="152" r="10" fill="#5FA27C"/><path d="M271 152 l3.5 3.5 6 -7" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="294" y="147" width="106" height="10" rx="5" fill="#E8F2EA"/>
+    <circle cx="276" cy="178" r="10" fill="#5FA27C"/><path d="M271 178 l3.5 3.5 6 -7" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="294" y="173" width="118" height="10" rx="5" fill="#E8F2EA"/>
+    <circle cx="276" cy="204" r="9" fill="#fff" stroke="#D5DBD6" stroke-width="2.4" stroke-dasharray="4 3"/>
+    <rect x="294" y="199" width="92" height="10" rx="5" fill="#F0F3EF"/>
   </g>
-  <g filter="url(#ssSh)"><rect x="236" y="206" width="118" height="36" rx="18" fill="#fff"/></g>
-  <path d="M256 214 c6 4 7 10 3 14 c6 0 10 -4 9 -11 c4 3 6 9 3 14 c-2 6 -8 8 -14 8 c-7 0 -12 -5 -12 -11 c0 -6 5 -9 8 -13 c-1 4 1 6 3 6 c1 -3 0 -6 0 -7 z" fill="#E98A57"/>
-  <text x="280" y="229" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="12.5" font-weight="800" fill="#2E3238">47-day streak</text>
+  <!-- streak badge: sits fully inside the canvas, wide enough for its label -->
+  <g filter="url(#ssSh)"><rect x="262" y="236" width="170" height="38" rx="19" fill="#fff"/></g>
+  <path d="M284 244 c6 4 7 10 3 14 c6 0 10 -4 9 -11 c4 3 6 9 3 14 c-2 6 -8 8 -14 8 c-7 0 -12 -5 -12 -11 c0 -6 5 -9 8 -13 c-1 4 1 6 3 6 c1 -3 0 -6 0 -7 z" fill="#E98A57"/>
+  <text x="312" y="260" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="12.5" font-weight="800" fill="#2E3238" textLength="104" lengthAdjust="spacingAndGlyphs">47-day streak</text>
 </svg>

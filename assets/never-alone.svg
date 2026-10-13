@@ -63,8 +63,8 @@
   </g><g filter="url(#naSoft)">
     <path d="M62 38 h74 a15 15 0 0 1 15 15 v26 a15 15 0 0 1 -15 15 h-22 l-12 14 -6 -14 h-35 a15 15 0 0 1 -15 -15 v-26 a15 15 0 0 1 15 -15 z" fill="#fff"/>
   </g><path d="M99 90 c-8 -6 -20 -1 -20 9 c0 10 20 19 20 19 c0 0 20 -9 20 -19 c0 -10 -12 -15 -20 -9 z" fill="#E9776F" transform="translate(0 -22) scale(1)"/><g filter="url(#naSh)"><rect x="248" y="70" width="210" height="150" rx="20" fill="url(#naCard)"/></g>
-  <text x="270" y="100" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="800" fill="#2E3238">Your people</text>
-  <text x="270" y="116" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#868C92">always one tap away</text>
+  <text x="270" y="100" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="800" fill="#2E3238" textLength="80" lengthAdjust="spacingAndGlyphs">Your people</text>
+  <text x="270" y="116" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#868C92" textLength="94" lengthAdjust="spacingAndGlyphs">always one tap away</text>
   <g font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">
     <circle cx="288" cy="146" r="17" fill="#fff"/><circle cx="288" cy="146" r="15" fill="#6FA982"/><text x="288" y="150">R</text>
     <circle cx="318" cy="146" r="17" fill="#fff"/><circle cx="318" cy="146" r="15" fill="#6E9FCB"/><text x="318" y="150">T</text>
