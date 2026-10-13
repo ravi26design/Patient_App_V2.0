@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 /* ═══ NAV ═══ */
-function goScreen(id){
+function goScreen(id){ if(typeof rhApplyGaugeTitle==='function') rhApplyGaugeTitle();
   if(typeof closeOv==='function') closeOv();   /* switching a main tab dismisses any open overlay (e.g. Community) */
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   var el=document.getElementById('screen-'+id);if(el)el.classList.add('active');
@@ -25,7 +25,7 @@ function goScreen(id){
   if(id==='tools' && typeof applyRecState==='function') applyRecState();   /* Today's Activity done-state */
   if(id==='tools' && typeof applyTodayActState==='function') applyTodayActState();   /* Managing Cravings card: check only once marked done */
 }
-function openOv(id){
+function openOv(id){ if(typeof rhApplyGaugeTitle==='function') rhApplyGaugeTitle();
   if(typeof stopPageAudio==='function')stopPageAudio();
   var el=document.getElementById('ov-'+id);if(!el)return;
   /* desktop: counter the page zoom so the fixed overlay covers the viewport at native scale.
@@ -1117,7 +1117,7 @@ function rhFocusRender(){
 function rhGaugeDone(){ return !!window.__rhCiDone; }
 function rhCheckinDone(){ try{ return localStorage.getItem('rh_reflect_done')===_rhToday(); }catch(e){ return false; } }
 /* rebuild the home gauge from scratch — called after the check-in finishes so it sweeps up to the score */
-function rhGaugeRefresh(){
+function rhGaugeRefresh(){ if(typeof rhApplyGaugeTitle==='function') rhApplyGaugeTitle();
   var el=document.getElementById('healthGauge'); if(!el) return;
   var old=el.querySelector('.speedo'); if(old) old.remove();
   buildHealthGauge();
@@ -4664,3 +4664,11 @@ window.fcRefresh = function(){ showProviderPane(false); renderCoaches(); };
   });
 })();
 
+
+/* Recovery Health card titles → "<First name>'s Recovery Health" (demo user "Alex" until a real profile name exists) */
+function rhApplyGaugeTitle(){
+  var pf=(typeof ciProfile==='function')?ciProfile():{}, nm=String((pf&&pf.name)||'Alex').trim().split(/\s+/)[0]||'Alex';
+  var t=nm+'\u2019s Recovery Health';
+  ['rhGaugeTitle','rhGaugeTitleIns'].forEach(function(id){ var e=document.getElementById(id); if(e && e.textContent!==t) e.textContent=t; });
+}
+window.addEventListener('load', rhApplyGaugeTitle);

@@ -515,7 +515,7 @@
       <!-- Recovery Health -->
       <div class="home-sec gauge-card rh-card" role="button" tabindex="0" onclick="openOv('insights')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openOv('insights');}">
         <div class="rh-inner">
-          <div class="rh-eyebrow" style="display:flex;align-items:center;gap:7px">Recovery Health<button class="help-i" type="button" style="margin-left:auto" aria-label="About Recovery Health" onclick="event.stopPropagation();showHelp('recovery-health')"><i data-lucide="info"></i></button></div>
+          <div class="rh-eyebrow" style="display:flex;align-items:center;gap:7px"><span class="rh-eyebrow-t" id="rhGaugeTitle">Recovery Health</span><button class="help-i" type="button" style="margin-left:auto" aria-label="About Recovery Health" onclick="event.stopPropagation();showHelp('recovery-health')"><i data-lucide="info"></i></button></div>
           <div class="rh-gauge" id="healthGauge"></div>
           <div class="rh-num"><b>74</b></div>
           <div class="rh-outof">out of 100</div>
@@ -3327,7 +3327,7 @@
 
       <!-- Recovery Health gauge — same speedometer as home -->
       <div class="ins-card ins-gauge-card rh-inner">
-        <div class="rh-eyebrow">Recovery Health</div>
+        <div class="rh-eyebrow"><span class="rh-eyebrow-t" id="rhGaugeTitleIns">Recovery Health</span></div>
         <div class="rh-gauge ins-gauge" id="insightsGauge"></div>
         <div class="rh-num"><b id="insightsGaugeNum">74</b></div>
         <div class="rh-outof">out of 100</div>
@@ -3922,6 +3922,6 @@
     <button class="tour-skip" type="button" onclick="tourSkip()">Skip</button>
   </div>
 </div>
-<script src="js/app.js?v=20261014t"></script>
+<script src="js/app.js?v=20261014v"></script>
 </body>
 </html>
