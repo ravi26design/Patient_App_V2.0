@@ -5015,3 +5015,13 @@ body.is-desktop #detailsScreen .phone-inner{max-width:min(808px,calc((100vw - 24
 body.is-desktop #detailsScreen .dt-fields{max-width:100%}
 body.is-desktop #detailsScreen .ph-send{width:100%;max-width:100%}
 body.is-desktop #detailsScreen .ph-row{max-width:100%}
+
+/* All onboarding / registration screens (desktop): one shared content width = Home cards (808px) */
+body.is-desktop #loginScreen .phone-inner{max-width:min(808px,calc((100vw - 24px) * 1.0))}
+body.is-desktop #loginScreen .dt-fields{max-width:100%}
+body.is-desktop #loginScreen .ph-send{width:100%;max-width:100%}
+body.is-desktop .step-screen .onb-inner{max-width:840px}
+body.is-desktop .step-screen .onb-addrow{max-width:100%}
+body.is-desktop .step-screen .onb-top{padding-left:max(16px,calc((100% - 808px) / 2 + 16px));padding-right:max(16px,calc((100% - 808px) / 2 + 16px))}
+body.is-desktop .step-screen .onb-inner > .onb-continue,
+body.is-desktop .step-screen .onb-foot{max-width:808px}
