@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<link rel="stylesheet" href="css/styles.css?v=20261013j">
+<link rel="stylesheet" href="css/styles.css?v=20261013l">
 </head>
 <body>
 
@@ -3042,15 +3042,15 @@
 
     <!-- Sheet scrolls up over the map -->
     <div class="loc-sheet">
-      <div class="loc-grab"></div>
-      <div class="loc-intro" id="loc-intro">Rudra noticed you recently spent time here. A few quick questions about places you've visited more than once in the past 30 days.</div>
-      <div class="loc-steps" id="loc-steps"></div>
-      <div class="loc-q" id="loc-q"></div>
-      <div class="loc-hint" id="loc-hint"></div>
-      <div class="loc-opts" id="loc-opts"></div>
-      <div class="loc-nav">
-        <button class="loc-back" id="loc-back" type="button" onclick="locBack()"><i data-lucide="arrow-left"></i> Back</button>
-        <button class="loc-submit" id="loc-submit" type="button" onclick="locNext()">Next</button>
+      <div class="loc-top onb-top" id="loc-top"></div>
+      <div class="loc-content">
+        <div class="reflect-qsub loc-intro" id="loc-intro">Rudra noticed you recently spent time here. A few quick questions about places you've visited more than once in the past 30 days.</div>
+        <h2 class="reflect-q" id="loc-q"></h2>
+        <div class="reflect-qsub" id="loc-hint"></div>
+        <div class="reflect-opts" id="loc-opts"></div>
+      </div>
+      <div class="loc-foot">
+        <button class="rf-btn rf-primary rf-full loc-submit" id="loc-submit" type="button" onclick="locNext()" disabled>Next &rarr;</button>
       </div>
     </div>
   </div>
@@ -3918,6 +3918,6 @@
     <button class="tour-skip" type="button" onclick="tourSkip()">Skip</button>
   </div>
 </div>
-<script src="js/app.js?v=20261013k"></script>
+<script src="js/app.js?v=20261013l"></script>
 </body>
 </html>
