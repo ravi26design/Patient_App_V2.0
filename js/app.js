@@ -2618,24 +2618,30 @@ function mtSaveAdd(){
 var LOC_Q = [
   { key:'place', type:'single', q:'Which of the following best describes this place?', options:[
       {t:'My home'},
+      {t:'A shelter, group home, or other temporary residence'},
       {t:'Someone else’s home'},
       {t:'A restaurant, business, public place, or other non-residential place'},
-      {t:'A hotel, vacation rental, shelter, group home, or other temporary residence', end:true},
+      {t:'A hotel or vacation rental', end:true},
       {t:'I do not recognize this location or was just passing by', end:true}
   ]},
   { key:'activities', type:'multi', q:'Which of the following best describes what you typically do here?', hint:'Check all that apply.', options:[
       'Work','Take classes','Religious or spiritual activities','Volunteer or community service',
       'Exercise or play sports','Visit family or friend(s) at their home','Socialize','Relax','Eat a meal',
       'Drink a non-alcoholic beverage (e.g., coffee, tea, smoothie)','Drink alcohol',
-      'Shop for food, products, or services','Buy alcohol (for later use; e.g., liquor store)',
-      'Get treatment to manage my recovery (e.g. counseling, therapy, medications)',
+      'Shop for food, products (e.g., clothes, cars, appliances) or services (e.g., haircut)',
+      'Buy alcohol (for later use; e.g., liquor store)',
+      'Get treatment to manage my recovery (e.g. counseling, talk therapy, medications)',
       'Attend an NA/AA or other peer-led group to manage my recovery',
       'Get general (beyond recovery) mental health care','Get physical health care','None of the above'
   ]},
-  { key:'pleasant',   type:'single', q:'How often are visits here pleasant?',   options:[{t:'Never'},{t:'Rarely'},{t:'Sometimes'},{t:'Often'},{t:'Always'}]},
-  { key:'unpleasant', type:'single', q:'How often are visits here unpleasant?', options:[{t:'Never'},{t:'Rarely'},{t:'Sometimes'},{t:'Often'},{t:'Always'}]},
-  { key:'support',    type:'single', q:'Do visits here support your recovery?', options:[{t:'No'},{t:'Low support'},{t:'Moderate support'},{t:'High support'}]},
-  { key:'risk',       type:'single', q:'Do visits here present any risk to your recovery?', options:[{t:'No'},{t:'Low risk'},{t:'Moderate risk'},{t:'High risk'}]}
+  { key:'pleasant', type:'single', q:'Visits to this location are', options:[
+      {t:'Always/Almost Always Pleasant'},{t:'Sometimes Pleasant'},{t:'Neither Pleasant or Unpleasant'},
+      {t:'Sometimes Unpleasant'},{t:'Always/Almost Always Unpleasant'}
+  ]},
+  { key:'support', type:'single', q:'Visits to this location provide', options:[
+      {t:'Strong support to my recovery'},{t:'Some support to my recovery'},{t:'Do not affect my recovery'},
+      {t:'Some risk to my recovery'},{t:'Strong risk to my recovery'}
+  ]}
 ];
 var locStep = 0, locAns = {}, locSkip = false;
 function _locOptText(o){ return (typeof o === 'string') ? o : o.t; }
