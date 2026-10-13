@@ -4881,7 +4881,7 @@ body.is-desktop #ov-homepage2 > .ov-body{padding-left:calc((100% - 664px) / 2 + 
 /* Check-in · unreported use: confidentiality note above the calendar */
 .rf-ucal-note{background:#fff;border-radius:18px;box-shadow:var(--card-shadow);padding:16px 18px;margin-bottom:14px}
 .rf-ucal-note-k{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#B5832B;margin-bottom:5px}
-.rf-ucal-note-t{font-size:12px;color:#5A5450;line-height:1.6}
+.rf-ucal-note-t{font-size:12px;color:#5A5450;line-height:1.6;text-align:center}
 /* note: plain text, no card */
 .rf-ucal-note{background:none;box-shadow:none;padding:0 4px;margin-bottom:12px}
 /* Home · Recovery Health: Past 2 weeks row */

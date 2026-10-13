@@ -720,9 +720,11 @@ function reflectUCalHTML(a){
   if(a.cy==null){ a.cy=LOG_TODAY.y; a.cm=LOG_TODAY.m; }
   a.dates=a.dates||[];
   var atNow=(a.cy===LOG_TODAY.y && a.cm===LOG_TODAY.m);
-  var h='<div class="rf-ucal-note"><div class="rf-ucal-note-t">Select the day and time when you used. You can log past days too - whenever you feel ready. You can add multiple entries.</div></div>'+
+  var tEnd=new Date(LOG_TODAY.y,LOG_TODAY.m,LOG_TODAY.d), tStart=new Date(LOG_TODAY.y,LOG_TODAY.m,LOG_TODAY.d-6);   /* only the last 7 days (incl. today) are loggable */
+  var atStart=(a.cy===tStart.getFullYear() && a.cm===tStart.getMonth());
+  var h='<div class="rf-ucal-note"><div class="rf-ucal-note-t">Select the date when you used. You can log for the last 1 week. You can add multiple entries.</div></div>'+
     '<div class="rf-ucal-card"><div class="rf-ucal-head">'+
-    '<button type="button" class="rf-ucal-nav" onclick="reflectUMonth(-1)" aria-label="Previous month">&#8249;</button>'+
+    '<button type="button" class="rf-ucal-nav" onclick="reflectUMonth(-1)" aria-label="Previous month"'+(atStart?' disabled':'')+'>&#8249;</button>'+
     '<div class="rf-ucal-month">'+LOG_MONTHS[a.cm]+' '+a.cy+'</div>'+
     '<button type="button" class="rf-ucal-nav" onclick="reflectUMonth(1)" aria-label="Next month"'+(atNow?' disabled':'')+'>&#8250;</button></div>'+
     '<div class="log-cal rf-ucal">';
@@ -730,7 +732,7 @@ function reflectUCalHTML(a){
   var first=new Date(a.cy,a.cm,1).getDay(), days=new Date(a.cy,a.cm+1,0).getDate();
   for(var i=0;i<first;i++) h+='<div class="log-day empty"></div>';
   for(var d=1;d<=days;d++){
-    var key=a.cy+'-'+(a.cm+1)+'-'+d, fut=logIsFuture(a.cy,a.cm,d), on=a.dates.indexOf(key)>=0;
+    var key=a.cy+'-'+(a.cm+1)+'-'+d, dt=new Date(a.cy,a.cm,d), fut=(dt>tEnd||dt<tStart), on=a.dates.indexOf(key)>=0;
     h+='<button type="button" class="log-day'+(fut?' future':'')+(on?' sel rf-ucal-on':'')+'"'+(fut?'':' onclick="reflectUDay(\''+key+'\')"')+' aria-pressed="'+on+'">'+d+'</button>';
   }
   h+='</div>'+(a.dates.length?'<div class="rf-ucal-count">'+a.dates.length+' day'+(a.dates.length>1?'s':'')+' selected</div>':'')+'</div>';
