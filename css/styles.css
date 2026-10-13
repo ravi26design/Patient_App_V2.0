@@ -5058,3 +5058,7 @@ body.is-desktop .step-screen .cc-row .cc-or span{padding:0}
 
 /* Past 2 weeks sparkline: one dot per week (end of week 1 at the midpoint, end of week 2 at the right edge) */
 .hp2-spark-dot-mid{right:auto;left:calc((100% - 6px) / 2);top:45.6%;transform:translate(-50%,-50%)}
+
+/* Check-in prompt benefits card: equal white space on all four sides (24px, same as the gap above the heading) */
+.ci-benefits{padding:24px}
+.ci-benefits-h{padding:0 6px 8px}
