@@ -493,7 +493,7 @@
     <button class="dn-checkin" onclick="openOv('location-checkin')" aria-label="Check-in · flagged places to review"><i data-lucide="map-pin"></i><span class="notif-badge" id="locBadgeD">2</span></button>
     <button class="dn-foot" onclick="openProfileFull()">
       <div class="dn-avatar"><i data-lucide="user-round"></i></div>
-      <div class="dn-user"><div>Alex M.</div><small>47-day streak</small></div>
+      <div class="dn-user"><div data-user-name>Alex M.</div><small>47-day streak</small></div>
     </button>
   </div>
 </aside>
@@ -1099,8 +1099,8 @@
       </div>
       <!-- Hero -->
       <div class="scr-card pf-hero">
-        <div class="pf-hero-av">AM</div>
-        <div class="pf-hero-name">Alex M.</div>
+        <div class="pf-hero-av" data-user-initials>AM</div>
+        <div class="pf-hero-name" data-user-name>Alex M.</div>
         <div class="pf-hero-meta">Clean since January 15, 2026</div>
         <div class="pf-tags">
           <span class="pf-tag pf-tag-gold">Level 4 · Bloom</span>
@@ -1553,7 +1553,7 @@
       </div>
       <div class="set-sec">Your info</div>
       <div class="set-card">
-        <button class="set-linkrow" type="button"><div class="set-lbl"><div class="set-t">Name</div><div class="set-d">Alex M.</div></div><span class="set-chev">›</span></button>
+        <button class="set-linkrow" type="button"><div class="set-lbl"><div class="set-t">Name</div><div class="set-d" data-user-name>Alex M.</div></div><span class="set-chev">›</span></button>
         <button class="set-linkrow" type="button"><div class="set-lbl"><div class="set-t">Phone</div><div class="set-d">(310) 555‑0142</div></div><span class="set-chev">›</span></button>
         <button class="set-linkrow" type="button"><div class="set-lbl"><div class="set-t">Email</div><div class="set-d">alex.m@email.com</div></div><span class="set-chev">›</span></button>
       </div>
@@ -3215,7 +3215,7 @@
   <div class="overlay" id="ov-sage-chat" style="background:var(--sage-dk)">
     <div class="ov-header" style="background:var(--sage)"><button class="ov-back" onclick="closeOv()">&larr;</button><div class="ic-xl" style="background:rgba(255,255,255,.15);color:#fff;font-size:10px">AI</div><div><div class="ui" style="font-size:12px;color:#fff;letter-spacing:1px">Sage</div><div class="ui" style="font-size:8px;color:rgba(255,255,255,.6)">OUD Recovery Companion · +15 XP per session</div></div></div>
     <div class="ov-body"><div class="chat-msgs" style="padding-top:10px">
-      <div class="chat-bubble chat-ai">Hey Alex! I noticed you logged your Suboxone on time — great start. How can I support you today?</div>
+      <div class="chat-bubble chat-ai">Hey <span data-user-first>Alex</span>! I noticed you logged your Suboxone on time — great start. How can I support you today?</div>
       <div class="chat-bubble chat-ai">I'm trained for opioid recovery. I can help with cravings, pain management, MOUD questions, or just listen.</div>
       <div class="chat-bubble chat-user">My back pain has been flaring up and it's making cravings worse.</div>
       <div class="chat-bubble chat-ai">That makes total sense — pain and cravings are deeply connected in OUD recovery. The pain activates the same reward pathways opioids used to numb. Let's work on this together.</div>
@@ -3922,6 +3922,6 @@
     <button class="tour-skip" type="button" onclick="tourSkip()">Skip</button>
   </div>
 </div>
-<script src="js/app.js?v=20261014v"></script>
+<script src="js/app.js?v=20261014w"></script>
 </body>
 </html>

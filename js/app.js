@@ -1779,6 +1779,7 @@ function submitDetails(){
   window.__phone=(typeof __cc!=='undefined'&&__cc?__cc.d:'+1')+pd;
   window.__profile={name:nameVal, email:emailVal, phone:window.__phone, dob:(window.__dob||null), age:(window.__dob?window.__dob.age:null), lang:(window.__lang||'en'), contactOptIn:true};
   var rn=document.getElementById('rhName'); if(rn) rn.textContent=nameVal.split(' ')[0];   /* greet by first name */
+  if(typeof rhApplyGaugeTitle==='function') rhApplyGaugeTitle();
   try{ localStorage.setItem('rh_profile', JSON.stringify(window.__profile)); }catch(e){}
   showOtpScreen();   /* verify the number next; onboarding steps continue after OTP */
 }
@@ -2468,7 +2469,7 @@ function pfSet(id,v){ var el=document.getElementById(id); if(el) el.textContent=
 function openProfile(){
   var p=document.getElementById('profileSheet'); if(!p) return;
   var pf=window.__profile; if(!pf){ try{ pf=JSON.parse(localStorage.getItem('rh_profile')||'null'); }catch(e){} } pf=pf||{};
-  var name=pf.name||'There';
+  var name=pf.name||rhUserName().full;
   pfSet('pfName', name);
   var av=document.getElementById('pfAvatar'); if(av) av.textContent=pfInitials(name);
   pfSet('pfPhone', window.__phone || pf.phone || '');
@@ -4665,10 +4666,18 @@ window.fcRefresh = function(){ showProviderPane(false); renderCoaches(); };
 })();
 
 
-/* Recovery Health card titles → "<First name>'s Recovery Health" (demo user "Alex" until a real profile name exists) */
+/* One source of truth for the user's name (registration/login profile; demo user "Alex M." until a real profile exists).
+   Used by the Recovery Health card titles, sidebar, profile hero + avatar initials, Settings → Name and the Sage chat greeting. */
+function rhUserName(){
+  var pf=(typeof ciProfile==='function')?ciProfile():{}, full=String((pf&&pf.name)||'').trim()||'Alex M.';
+  return { full:full, first:full.split(/\s+/)[0]||'Alex' };
+}
 function rhApplyGaugeTitle(){
-  var pf=(typeof ciProfile==='function')?ciProfile():{}, nm=String((pf&&pf.name)||'Alex').trim().split(/\s+/)[0]||'Alex';
-  var t=nm+'\u2019s Recovery Health';
+  var u=rhUserName(), t=u.first+'\u2019s Recovery Health';
   ['rhGaugeTitle','rhGaugeTitleIns'].forEach(function(id){ var e=document.getElementById(id); if(e && e.textContent!==t) e.textContent=t; });
+  document.querySelectorAll('[data-user-name]').forEach(function(e){ if(e.textContent!==u.full) e.textContent=u.full; });
+  document.querySelectorAll('[data-user-first]').forEach(function(e){ if(e.textContent!==u.first) e.textContent=u.first; });
+  var ini=(typeof pfInitials==='function')?pfInitials(u.full):u.first[0].toUpperCase();
+  document.querySelectorAll('[data-user-initials]').forEach(function(e){ if(e.textContent!==ini) e.textContent=ini; });
 }
 window.addEventListener('load', rhApplyGaugeTitle);
