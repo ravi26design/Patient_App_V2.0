@@ -5005,3 +5005,7 @@ body.is-desktop #ov-edit-triggers.active > .ov-header{padding-left:max(16px,calc
 body.is-desktop .wc-inner{max-width:min(808px,calc((100vw - 24px) * 1.0))}
 body.is-desktop .wc-hero-img{width:78%;max-width:640px}
 body.is-desktop .wc-slide .wc-body{max-width:520px}
+/* Welcome CTAs (desktop): same width as the illustration above them */
+body.is-desktop #welcome .wc-begin,
+body.is-desktop #welcome .wc-guest-top{width:78%;max-width:640px}
+body.is-desktop #welcome .wc-guest-top .wc-guest{width:100%;max-width:none}
