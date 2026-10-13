@@ -1086,9 +1086,9 @@ function buildHealthGauge(){
   if(num){ if(reduce||!done){ num.textContent=val; } else { num.textContent='0'; rhCountUp(num, val, 1200); } }
   var pill=card.querySelector('.rh-pill'); if(pill) pill.textContent = !done?'Complete today\u2019s check-in':val>=85?'Excellent':val>=70?'Above Average':val>=55?'Good':'Needs Care';
   if(pill){   /* before the check-in the pill is a button that opens the Daily Check-In flow */
-    pill.onclick = done ? null : function(){ if(typeof openReflect==='function') openReflect(); };
+    pill.onclick = done ? null : function(e){ e.stopPropagation(); if(typeof openReflect==='function') openReflect(); };   /* stop the card's own click (opens Insights) */
     if(done){ pill.removeAttribute('role'); pill.removeAttribute('tabindex'); pill.style.cursor=''; pill.onkeydown=null; }
-    else { pill.setAttribute('role','button'); pill.setAttribute('tabindex','0'); pill.style.cursor='pointer'; pill.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openReflect(); } }; }
+    else { pill.setAttribute('role','button'); pill.setAttribute('tabindex','0'); pill.style.cursor='pointer'; pill.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); openReflect(); } }; }
   }
   var trend=card.querySelector('.rh-trend'); if(trend) trend.style.display=done?'':'none';
   var wv=document.getElementById('rhWeeksVal'), ws=document.getElementById('rhWeeksSpark');   /* Past 2 weeks: dashed + "Not ready yet" until the check-in is done */
