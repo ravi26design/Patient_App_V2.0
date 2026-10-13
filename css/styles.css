@@ -5062,3 +5062,8 @@ body.is-desktop .step-screen .cc-row .cc-or span{padding:0}
 /* Check-in prompt benefits card: equal white space on all four sides (24px, same as the gap above the heading) */
 .ci-benefits{padding:24px}
 .ci-benefits-h{padding:0 6px 8px}
+
+/* Profile: blue theme for the hero avatar, XP tag and medication icon */
+.pf-hero-av{background:linear-gradient(135deg,#7FB0DC 0%,#3F6E99 100%)}
+.pf-tag-sage{background:#E3EEFA;color:#3F6E99}
+.pf-av-blue{background:#5B92CE;color:#fff}
