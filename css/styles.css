@@ -5009,3 +5009,9 @@ body.is-desktop .wc-slide .wc-body{max-width:520px}
 body.is-desktop #welcome .wc-begin,
 body.is-desktop #welcome .wc-guest-top{width:78%;max-width:640px}
 body.is-desktop #welcome .wc-guest-top .wc-guest{width:100%;max-width:none}
+
+/* Registration "A little about you" (desktop): content column = same width as the Home cards */
+body.is-desktop #detailsScreen .phone-inner{max-width:min(808px,calc((100vw - 24px) * 1.0))}
+body.is-desktop #detailsScreen .dt-fields{max-width:100%}
+body.is-desktop #detailsScreen .ph-send{width:100%;max-width:100%}
+body.is-desktop #detailsScreen .ph-row{max-width:100%}
