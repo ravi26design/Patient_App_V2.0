@@ -4984,6 +4984,6 @@ body.is-desktop #ov-location-checkin .loc-sheet{padding-left:16px;padding-right:
 
 /* Home — Today's focus (before the reflection): same content, calmer hierarchy */
 #rhFocusEmpty .hp2-focus-val{font-size:17px}
-#rhFocusEmpty .hp2-focus-d{font-size:13px;line-height:1.5;color:var(--ink-soft);margin:12px 0 14px;padding:10px 12px;border-radius:12px;background:#F5F6F8}
+#rhFocusEmpty .hp2-focus-d{font-size:13px;line-height:1.5;color:var(--ink-soft);margin:12px 0 14px}
 #rhFocusEmpty .hp2-focus-btn{padding:14px;font-size:14.5px}
 #rhFocusEmpty .hp2-focus-time{font-size:12px;margin-top:10px}
