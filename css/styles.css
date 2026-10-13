@@ -4982,14 +4982,8 @@ body.is-desktop #rhFocusCard,body.is-tablet #rhFocusCard{margin-bottom:0 !import
 body.is-desktop #ov-location-checkin .loc-sheet{padding-left:16px;padding-right:16px}
 @media (max-width:600px){ .loc-sheet .loc-top.onb-top{padding:16px} }
 
-/* Home — Today's focus (before the reflection): one compact row instead of a paragraph + full-width button */
-.hp2-focus-row{display:flex;align-items:center;gap:14px}
-.hp2-focus-row .hp2-focus-main{flex:1;min-width:0}
-.hp2-focus-sub{font-family:var(--font-ui);font-size:12.5px;color:var(--ink-soft);margin-top:3px}
-.hp2-focus-go{flex:0 0 auto;padding:13px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,#4E7B5E,#3F6650);color:#fff;font-family:var(--font-ui);font-size:14.5px;font-weight:700;cursor:pointer;box-shadow:0 10px 22px -10px rgba(63,102,80,.6);white-space:nowrap;transition:transform .12s ease,filter .15s ease}
-.hp2-focus-go:hover{filter:brightness(1.05)}
-.hp2-focus-go:active{transform:scale(.97)}
-.hp2-focus-row .hp2-focus-val{white-space:nowrap}
-.hp2-focus-go{padding:13px 18px}
-.hp2-focus-row .hp2-focus-val{font-size:16px;overflow:hidden;text-overflow:ellipsis}
-.hp2-focus-btn-top{margin-top:14px}
+/* Home — Today's focus (before the reflection): same content, calmer hierarchy */
+#rhFocusEmpty .hp2-focus-val{font-size:17px}
+#rhFocusEmpty .hp2-focus-d{font-size:13px;line-height:1.5;color:var(--ink-soft);margin:12px 0 14px;padding:10px 12px;border-radius:12px;background:#F5F6F8}
+#rhFocusEmpty .hp2-focus-btn{padding:14px;font-size:14.5px}
+#rhFocusEmpty .hp2-focus-time{font-size:12px;margin-top:10px}
