@@ -4944,5 +4944,4 @@ body.is-desktop #rhFocusCard,body.is-tablet #rhFocusCard{margin-bottom:0 !import
 #pf-activities .helps-card.hp-scrollcard .helps-card-ic{width:40px;height:40px;border-radius:13px}
 #pf-activities .helps-card.hp-scrollcard .helps-card-ic i,#pf-activities .helps-card.hp-scrollcard .helps-card-ic svg{width:21px;height:21px}
 #pf-activities{align-items:flex-start}
-/* profile: suggested (not yet added) tiles — slightly softer, with a + badge */
-#pf-activities .helps-card.is-suggest{opacity:.82}
+#pf-activities{padding-bottom:14px}   /* room so the tile shadows aren't clipped by the scroll row */

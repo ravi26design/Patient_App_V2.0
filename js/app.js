@@ -2568,9 +2568,6 @@ function renderProfileLists(){
   if(t){ var th=RH_PF.triggers.map(function(x,i){var c=HELPS_COLORS[i%HELPS_COLORS.length];return '<button class="helps-card helps-card-plain hp-scrollcard" style="background:'+c.bg+';color:'+c.ic+'" type="button" onclick="renderProfileEdit();openOv(\'edit-triggers\')"><span class="helps-card-t">'+esc(x)+'</span></button>';}).join(''); if(th) t.innerHTML=th; }
   var a=document.getElementById('pf-activities');
   if(a){ var ah=RH_PF.activities.map(function(x,i){var c=HELPS_COLORS[i%HELPS_COLORS.length];return '<button class="helps-card hp-scrollcard" style="background:'+c.bg+';color:'+c.ic+'" type="button" onclick="renderProfileEdit();openOv(\'edit-activities\')"><span class="helps-card-ic"><i data-lucide="'+actLucide(x)+'"></i></span><span class="helps-card-t">'+esc(x)+'</span></button>';}).join('');
-    /* then the remaining suggestions — tap to add straight to your list */
-    var _n=RH_PF.activities.length;
-    ah+=(window.ACTIVITY_SUGG||[]).filter(function(s){return RH_PF.activities.indexOf(s)<0;}).map(function(x,j){return '<button class="helps-card hp-scrollcard is-suggest" type="button" onclick="pfToggleActivity(\''+jsStr(x)+'\')"><span class="helps-card-ic"><i data-lucide="'+actLucide(x)+'"></i></span><span class="helps-card-t">'+esc(x)+'</span><i data-lucide="plus" class="helps-card-plus"></i></button>';}).join('');
     if(ah) a.innerHTML=ah; }
   var c=document.getElementById('pf-contacts');
   if(c){ var ch=contactsHTML(); if(ch) c.innerHTML=ch; }
