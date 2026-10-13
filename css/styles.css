@@ -5067,3 +5067,26 @@ body.is-desktop .step-screen .cc-row .cc-or span{padding:0}
 .pf-hero-av{background:linear-gradient(135deg,#7FB0DC 0%,#3F6E99 100%)}
 .pf-tag-sage{background:#E3EEFA;color:#3F6E99}
 .pf-av-blue{background:#5B92CE;color:#fff}
+
+/* "Common prizes" → App-Store-style gradient tiles (same as What Helps Me): bold white label bottom-left, glossy icon top-right, tap to add */
+.wish-common{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.wish-chip{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;min-height:104px;padding:12px 14px;border:none;border-radius:20px;overflow:hidden;text-align:left;cursor:pointer;
+  background:linear-gradient(165deg,var(--g1,#C3D0F2),var(--g2,#7E9AE0));color:#fff;font-family:var(--font-ui);font-size:14px;font-weight:700;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,.18);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35);transition:transform .12s ease,box-shadow .2s ease}
+.wish-chip:hover{border:none;transform:translateY(-1px)}
+.wish-chip:active{transform:scale(.97)}
+.wish-chip::before{content:"";position:absolute;right:-14px;top:-18px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+.wish-chip > i,.wish-chip > svg{position:absolute;top:10px;right:10px;width:40px;height:40px;padding:9px;border-radius:13px;box-sizing:border-box;color:var(--g2);
+  background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65));box-shadow:0 6px 12px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff;text-shadow:none}
+.wish-chip > span{position:relative;z-index:1}
+.wish-chip::after{content:"+";position:absolute;top:11px;left:11px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.28);color:#fff;font-size:16px;line-height:22px;text-align:center;font-weight:700;text-shadow:none}
+.wish-chip.added{background:linear-gradient(165deg,var(--g1,#C3D0F2),var(--g2,#7E9AE0));color:#fff;box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45)}
+.wish-chip.added::after{content:"\2713";background:#fff;color:var(--g2);font-size:13px}
+.wish-chip:nth-child(8n+1){--g1:#C3D0F2;--g2:#7E9AE0}
+.wish-chip:nth-child(8n+2){--g1:#F3CBA0;--g2:#E09A5C}
+.wish-chip:nth-child(8n+3){--g1:#BDE3AC;--g2:#7DBE6C}
+.wish-chip:nth-child(8n+4){--g1:#BDB3F4;--g2:#7B6AEA}
+.wish-chip:nth-child(8n+5){--g1:#EFD093;--g2:#E2A95A}
+.wish-chip:nth-child(8n+6){--g1:#BBEAF9;--g2:#7DBDE2}
+.wish-chip:nth-child(8n+7){--g1:#EEB6E3;--g2:#D78ACA}
+.wish-chip:nth-child(8n+8){--g1:#F6C3B0;--g2:#E58C78}
