@@ -5090,3 +5090,4 @@ body.is-desktop .step-screen .cc-row .cc-or span{padding:0}
 .wish-chip:nth-child(8n+6){--g1:#BBEAF9;--g2:#7DBDE2}
 .wish-chip:nth-child(8n+7){--g1:#EEB6E3;--g2:#D78ACA}
 .wish-chip:nth-child(8n+8){--g1:#F6C3B0;--g2:#E58C78}
+.wish-chosen:empty{display:none}

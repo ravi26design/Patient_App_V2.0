@@ -1983,7 +1983,7 @@ function wishRemoveAt(i){ var a=wishGet(); a.splice(i,1); wishSave(a); renderWis
 function renderWish(){
   var box=document.getElementById('wishList'); if(!box) return;
   var a=wishGet();
-  if(!a.length){ box.innerHTML='<div class="wish-empty">No prizes yet — tap a common prize below or add your own.</div>'; }
+  if(!a.length){ box.innerHTML=''; }   /* empty state is covered by the intro line above */
   else { box.innerHTML=a.map(function(x,i){ return '<span class="wish-item"><i data-lucide="gift"></i><span>'+wishEsc(x)+'</span><button class="wish-x" type="button" onclick="wishRemoveAt('+i+')" aria-label="Remove">&times;</button></span>'; }).join(''); }
   var lc=a.map(function(x){return x.toLowerCase();});
   document.querySelectorAll('.wish-chip').forEach(function(c){ c.classList.toggle('added', lc.indexOf((c.textContent||'').trim().toLowerCase())>=0); });
