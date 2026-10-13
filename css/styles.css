@@ -4889,3 +4889,6 @@ body.is-desktop #ov-homepage2 > .ov-body{padding-left:calc((100% - 664px) / 2 + 
 /* Onboarding steps: wider heading + sub-text on desktop (no 3-line wrap) */
 body.is-desktop .onb-inner .ph-title,body.is-desktop .onb-inner .ph-sub{max-width:660px}
 @media (min-width:900px){ .onb-inner .ph-title,.onb-inner .ph-sub{max-width:660px} }
+
+/* Home: Today's focus card — desktop/tablet cards are spaced by the parent's gap, so drop the extra inline margin (was a double gap below the card) */
+body.is-desktop #rhFocusCard,body.is-tablet #rhFocusCard{margin-bottom:0 !important}
