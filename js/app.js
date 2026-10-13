@@ -1745,9 +1745,6 @@ function submitDetails(){
   var name=document.getElementById('dtName'), email=document.getElementById('dtEmail');
   var nameVal=((name&&name.value)||'').trim();
   if(!nameVal){ dtErr('dtNameField'); if(name) name.focus(); return; }
-  var uname=document.getElementById('dtUsername');
-  var unameVal=((uname&&uname.value)||'').trim();
-  if(!unameVal){ dtErr('dtUsernameField'); if(uname) uname.focus(); return; }
   var emailVal=((email&&email.value)||'').trim();
   if(!emailVal){ dtErr('dtEmailField'); if(email) email.focus(); return; }   /* email now required */
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailVal)){ dtErr('dtEmailField'); if(email) email.focus(); return; }
@@ -1764,7 +1761,7 @@ function submitDetails(){
     return;
   }
   window.__phone=(typeof __cc!=='undefined'&&__cc?__cc.d:'+1')+pd;
-  window.__profile={name:nameVal, username:unameVal, email:emailVal, phone:window.__phone, dob:(window.__dob||null), age:(window.__dob?window.__dob.age:null), lang:(window.__lang||'en'), contactOptIn:true};
+  window.__profile={name:nameVal, email:emailVal, phone:window.__phone, dob:(window.__dob||null), age:(window.__dob?window.__dob.age:null), lang:(window.__lang||'en'), contactOptIn:true};
   var rn=document.getElementById('rhName'); if(rn) rn.textContent=nameVal.split(' ')[0];   /* greet by first name */
   try{ localStorage.setItem('rh_profile', JSON.stringify(window.__profile)); }catch(e){}
   showOtpScreen();   /* verify the number next; onboarding steps continue after OTP */
