@@ -5050,3 +5050,8 @@ body.is-desktop .step-screen .cc-row{display:grid;grid-template-columns:1fr auto
 body.is-desktop .step-screen .cc-row .cc-or{display:flex;flex-direction:column;align-items:center;gap:8px;width:auto;margin:0;padding-bottom:20px}
 body.is-desktop .step-screen .cc-row .cc-or::before,body.is-desktop .step-screen .cc-row .cc-or::after{content:"";display:block;width:1px;height:22px;background:rgba(58,51,48,.16)}
 body.is-desktop .step-screen .cc-row .cc-or span{padding:0}
+
+/* Recovery Health pill (incl. "Complete today's check-in"): blue theme */
+.rh-pill{background:#E3EEFA;color:#3F6E99}
+.rh-pill[role="button"]{transition:background .15s ease}
+.rh-pill[role="button"]:hover{background:#D4E5F8}
