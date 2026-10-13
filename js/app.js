@@ -1980,18 +1980,26 @@ function openPrizeSheet(){ var s=document.getElementById('prizeSheet'); if(!s) r
 function closePrizeSheet(){ var s=document.getElementById('prizeSheet'); if(s){ s.classList.remove('show'); s.setAttribute('aria-hidden','true'); } }
 function prizeSheetAdd(){ var i=document.getElementById('prizeInput'); if(!i) return; var v=(i.value||'').trim(); if(!v){ i.focus(); return; } wishAdd(v); i.value=''; closePrizeSheet(); }
 function wishRemoveAt(i){ var a=wishGet(); a.splice(i,1); wishSave(a); renderWish(); }
+var WISH_COMMON=[['Movie night','clapperboard'],['Dinner out','utensils'],['A new book','book-open'],['Concert tickets','ticket'],['New clothes','shirt'],['Video game','gamepad-2'],['Coffee treat','coffee'],['Weekend trip','plane'],['Spa day','flower-2']];
+function wishIcon(n){ var k=String(n).toLowerCase(); for(var i=0;i<WISH_COMMON.length;i++){ if(WISH_COMMON[i][0].toLowerCase()===k) return WISH_COMMON[i][1]; } return 'gift'; }
 function renderWish(){
   var box=document.getElementById('wishList'); if(!box) return;
   var a=wishGet();
-  if(!a.length){ box.innerHTML=''; }   /* empty state is covered by the intro line above */
-  else {
-    var WI={'movie night':'clapperboard','dinner out':'utensils','a new book':'book-open','concert tickets':'ticket','new clothes':'shirt','video game':'gamepad-2','coffee treat':'coffee','weekend trip':'plane','spa day':'flower-2'};
-    box.innerHTML=a.map(function(x,i){ return '<span class="wish-item"><i data-lucide="'+(WI[String(x).toLowerCase()]||'gift')+'"></i><span class="wish-item-t">'+wishEsc(x)+'</span><button class="wish-x" type="button" onclick="wishRemoveAt('+i+')" aria-label="Remove">&times;</button></span>'; }).join('');
-  }
-  var lc=a.map(function(x){return x.toLowerCase();});
-  document.querySelectorAll('.wish-chip').forEach(function(c){ c.classList.toggle('added', lc.indexOf((c.textContent||'').trim().toLowerCase())>=0); });
+  box.innerHTML=a.map(function(x){ return '<button class="wish-item" type="button" onclick="renderPrizeEdit();openOv(\'edit-prizes\')"><i data-lucide="'+wishIcon(x)+'"></i><span class="wish-item-t">'+wishEsc(x)+'</span></button>'; }).join('');
+  renderPrizeEdit();
   if(window.lucide&&lucide.createIcons) lucide.createIcons();
 }
+/* Edit screen: selected prizes first, then the remaining common prizes; tap a tile to select / unselect */
+function renderPrizeEdit(){
+  var box=document.getElementById('ep-sugg'); if(!box) return;
+  var a=wishGet(), lc=a.map(function(x){return x.toLowerCase();});
+  var opts=a.concat(WISH_COMMON.map(function(c){return c[0];}).filter(function(n){return lc.indexOf(n.toLowerCase())<0;}));
+  box.innerHTML='<div class="helps-grid">'+opts.map(function(n){ var on=lc.indexOf(n.toLowerCase())>=0;
+    return '<button class="helps-card'+(on?' is-sel':'')+'" type="button" onclick="wishToggle(\''+jsStr(n)+'\')"><span class="helps-card-ic"><i data-lucide="'+wishIcon(n)+'"></i></span><span class="helps-card-t">'+esc(n)+'</span><i data-lucide="'+(on?'check':'plus')+'" class="helps-card-plus"></i></button>'; }).join('')+'</div>';
+  if(window.lucide&&lucide.createIcons) lucide.createIcons();
+}
+function wishToggle(name){ var a=wishGet(), i=a.map(function(x){return x.toLowerCase();}).indexOf(String(name).toLowerCase()); if(i>=0) a.splice(i,1); else a.push(name); wishSave(a); renderWish(); }
+function wishAddFromEdit(){ var inp=document.getElementById('ep-input'); if(!inp) return; var v=(inp.value||'').trim(); if(!v){ inp.focus(); return; } var a=wishGet(); if(a.map(function(x){return x.toLowerCase();}).indexOf(v.toLowerCase())<0){ a.push(v); wishSave(a); renderWish(); } inp.value=''; inp.focus(); }
 /* Privacy eye: hide/blur a card's data (tap to reveal) */
 function toggleCardPrivacy(btn){
   var card=btn.closest('.scr-card')||btn.closest('.card')||btn.closest('.hub-card'); if(!card) return;
