@@ -1984,7 +1984,10 @@ function renderWish(){
   var box=document.getElementById('wishList'); if(!box) return;
   var a=wishGet();
   if(!a.length){ box.innerHTML=''; }   /* empty state is covered by the intro line above */
-  else { box.innerHTML=a.map(function(x,i){ return '<span class="wish-item"><i data-lucide="gift"></i><span>'+wishEsc(x)+'</span><button class="wish-x" type="button" onclick="wishRemoveAt('+i+')" aria-label="Remove">&times;</button></span>'; }).join(''); }
+  else {
+    var WI={'movie night':'clapperboard','dinner out':'utensils','a new book':'book-open','concert tickets':'ticket','new clothes':'shirt','video game':'gamepad-2','coffee treat':'coffee','weekend trip':'plane','spa day':'flower-2'};
+    box.innerHTML=a.map(function(x,i){ return '<span class="wish-item"><i data-lucide="'+(WI[String(x).toLowerCase()]||'gift')+'"></i><span class="wish-item-t">'+wishEsc(x)+'</span><button class="wish-x" type="button" onclick="wishRemoveAt('+i+')" aria-label="Remove">&times;</button></span>'; }).join('');
+  }
   var lc=a.map(function(x){return x.toLowerCase();});
   document.querySelectorAll('.wish-chip').forEach(function(c){ c.classList.toggle('added', lc.indexOf((c.textContent||'').trim().toLowerCase())>=0); });
   if(window.lucide&&lucide.createIcons) lucide.createIcons();
