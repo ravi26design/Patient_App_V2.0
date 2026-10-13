@@ -33,6 +33,12 @@ function openOv(id){ if(typeof rhApplyGaugeTitle==='function') rhApplyGaugeTitle
   if(document.body.classList.contains('is-desktop') && window.__deskF){ var _vw=window.innerWidth; var _t=Math.min(1.3,(_vw-24)/620); el.style.zoom=_t/window.__deskF; }
   else { el.style.zoom=''; }
   el.classList.add('active');
+  /* desktop: size the content column to exactly the Home card width, whatever zoom this overlay ends up with
+     (e.g. overlays opened from the Profile page, which draws at zoom 1). Measure the overlay's real scale instead of assuming it. */
+  if(document.body.classList.contains('is-desktop') && window.__deskF && el.offsetWidth){
+    var _sc=el.getBoundingClientRect().width/el.offsetWidth;
+    if(_sc>0) el.style.setProperty('--pg-ov',(632*window.__deskF/_sc).toFixed(2)+'px');
+  } else { el.style.removeProperty('--pg-ov'); }
   el.scrollTop=0; var b=el.querySelector('.ov-body'); if(b) b.scrollTop=0;
   if(id==='relief-breath' && typeof startBreath==='function') startBreath();           /* start 4-7-8 cycle */
   if(id==='relief-game'   && typeof gameInit==='function')   gameInit();               /* build distraction grid */
