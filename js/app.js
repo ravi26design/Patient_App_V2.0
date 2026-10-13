@@ -1693,7 +1693,7 @@ function loginContinue(){
   if(!val){ if(typeof dtErr==='function') dtErr('lgIdField'); if(inp) inp.focus(); return; }
   var existing=rhFindUser(val);
   if(existing){
-    /* registered (by mobile / email / username) → verify with OTP on the number on file, then home */
+    /* registered (by mobile / email) → verify with OTP on the number on file, then home */
     window.__phone=existing.phone||window.__phone; window.__profile=existing;
     showOtpScreen();   /* login screen stays behind the dimmed OTP sheet */
   } else {
@@ -1805,13 +1805,13 @@ function onbSave(k,v){ try{ var pf=window.__profile||{}; pf[k]=v; window.__profi
 function rhUsers(){ try{ return JSON.parse(localStorage.getItem('rh_users')||'{}'); }catch(e){ return {}; } }
 function rhRegisterUser(prof){ if(!prof||!prof.phone) return; var u=rhUsers(); u[prof.phone]=prof; try{ localStorage.setItem('rh_users', JSON.stringify(u)); }catch(e){} }
 function rhGetUser(num){ if(!num) return null; var u=rhUsers(); return u[num]||null; }
-/* find a registered user by mobile number, email, or username */
+/* find a registered user by mobile number or email */
 function rhFindUser(idRaw){
   var id=(idRaw||'').trim(); if(!id) return null; var u=rhUsers(), k;
   if(id.indexOf('@')>=0 && /@.+\./.test(id)){ var e=id.toLowerCase(); for(k in u){ if(u[k]&&(u[k].email||'').toLowerCase()===e) return u[k]; } return null; }
   var digits=id.replace(/\D/g,'');
   if(digits.length>=10){ for(k in u){ if((k||'').replace(/\D/g,'').indexOf(digits)>=0) return u[k]; } return null; }
-  var un=id.toLowerCase().replace(/^@/,''); for(k in u){ if(u[k]&&(u[k].username||'').toLowerCase().replace(/^@/,'')===un) return u[k]; } return null;
+  return null;   /* username login skipped for now — mobile or email only */
 }
 /* MOUD */
 function showMoudScreen(){ onbShow('moudScreen'); }
