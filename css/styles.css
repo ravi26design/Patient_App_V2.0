@@ -5055,3 +5055,6 @@ body.is-desktop .step-screen .cc-row .cc-or span{padding:0}
 .rh-pill{background:#E3EEFA;color:#3F6E99}
 .rh-pill[role="button"]{transition:background .15s ease}
 .rh-pill[role="button"]:hover{background:#D4E5F8}
+
+/* Past 2 weeks sparkline: one dot per week (end of week 1 at the midpoint, end of week 2 at the right edge) */
+.hp2-spark-dot-mid{right:auto;left:calc((100% - 6px) / 2);top:45.6%;transform:translate(-50%,-50%)}
