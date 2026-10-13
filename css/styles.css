@@ -4916,3 +4916,31 @@ body.is-desktop #rhFocusCard,body.is-tablet #rhFocusCard{margin-bottom:0 !import
 #ea-sugg .helps-card:nth-child(8n+7){--g1:#EEB6E3;--g2:#D78ACA}
 #ea-sugg .helps-card:nth-child(8n+8){--g1:#F6C3B0;--g2:#E58C78}
 #ea-sugg .helps-card-ic{color:var(--g2)}
+
+/* Profile 'What Helps Me': App-Store-style category tiles — soft top-to-bottom gradient, bold white label bottom-left, big glossy icon top-right */
+#pf-activities .helps-card{min-height:116px;padding:12px 14px;border-radius:20px;justify-content:flex-end;gap:0;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
+#pf-activities .helps-card{background:linear-gradient(165deg,color-mix(in srgb,currentColor 32%,#fff) 0%,color-mix(in srgb,currentColor 72%,#fff) 100%) !important}
+#pf-activities .helps-card::before{right:-14px;bottom:auto;top:-18px;width:96px;height:96px;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+#pf-activities .helps-card-t{font-size:14px;font-weight:700;color:#fff;line-height:1.2;max-width:100%;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+#pf-activities .helps-card-ic{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65));box-shadow:0 6px 12px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff}
+#pf-activities .helps-card-ic i,#pf-activities .helps-card-ic svg{width:21px;height:21px}
+#pf-activities .helps-card-plus{top:11px;left:11px;right:auto;width:22px;height:22px;padding:4px;border-radius:50%;background:rgba(255,255,255,.28);color:#fff;opacity:1}
+#pf-activities .helps-card.is-sel{box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45)}
+#pf-activities .helps-card.is-sel .helps-card-plus{top:11px;right:auto;background:#fff;color:currentColor}
+
+/* Profile 'What Helps Me': saturated App-Store palette (periwinkle · orange · green · purple · gold · sky · pink) */
+#pf-activities .helps-card{background:linear-gradient(165deg,var(--g1,#C3D0F0),var(--g2,#7F9BE0)) !important;color:var(--g2,#7F9BE0)}
+#pf-activities .helps-card:nth-child(8n+1){--g1:#C3D0F2;--g2:#7E9AE0}
+#pf-activities .helps-card:nth-child(8n+2){--g1:#F3CBA0;--g2:#E09A5C}
+#pf-activities .helps-card:nth-child(8n+3){--g1:#BDE3AC;--g2:#7DBE6C}
+#pf-activities .helps-card:nth-child(8n+4){--g1:#BDB3F4;--g2:#7B6AEA}
+#pf-activities .helps-card:nth-child(8n+5){--g1:#EFD093;--g2:#E2A95A}
+#pf-activities .helps-card:nth-child(8n+6){--g1:#BBEAF9;--g2:#7DBDE2}
+#pf-activities .helps-card:nth-child(8n+7){--g1:#EEB6E3;--g2:#D78ACA}
+#pf-activities .helps-card:nth-child(8n+8){--g1:#F6C3B0;--g2:#E58C78}
+#pf-activities .helps-card-ic{color:var(--g2)}
+#pf-activities .helps-card.hp-scrollcard{flex:0 0 auto;flex-direction:column;align-items:flex-start;width:150px;min-height:116px;padding:12px 14px;gap:0;border-radius:20px}
+#pf-activities .helps-card.hp-scrollcard .helps-card-t{white-space:normal}
+#pf-activities .helps-card.hp-scrollcard .helps-card-ic{width:40px;height:40px;border-radius:13px}
+#pf-activities .helps-card.hp-scrollcard .helps-card-ic i,#pf-activities .helps-card.hp-scrollcard .helps-card-ic svg{width:21px;height:21px}
+#pf-activities{align-items:flex-start}
