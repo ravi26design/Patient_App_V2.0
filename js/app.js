@@ -1116,7 +1116,13 @@ function rhFocusRender(){
   var ci=!!window.__rhCiDone, act=ci && !!window.__rhCraveDone;
   var m={rhFocusEmpty:!ci, rhFocusReady:ci&&!act, rhFocusDone:act};
   Object.keys(m).forEach(function(id){ var e=document.getElementById(id); if(e) e.style.display=m[id]?'':'none'; });
+  var cv=document.getElementById('rhFocusChipVal'); if(cv) cv.textContent=ci?'Craving':'Not ready yet';   /* Today's focus chip in the Recovery Health card */
   if(window.lucide&&lucide.createIcons) lucide.createIcons();
+}
+/* tap the Today's focus chip: no check-in yet → start it; otherwise open today's recovery activity */
+function rhFocusChipTap(){
+  if(!window.__rhCiDone){ if(typeof openReflect==='function') openReflect(); }
+  else if(typeof openActivity==='function'){ openActivity('crave', false, true); }
 }
 /* has today's daily check-in been completed? (flag set in reflectDone, resets each calendar day) */
 /* home gauge / focus fill in only after the check-in is completed in THIS app session (Maybe later → empty gauge) */
