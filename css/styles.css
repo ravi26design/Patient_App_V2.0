@@ -5167,3 +5167,4 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 .hp2-focus-btn > span{animation:hp2ArrowNudge 1.3s ease-in-out infinite}
 .hp2-focus-btn:hover > span{animation-play-state:paused;transform:translateX(6px)}
 @media (prefers-reduced-motion:reduce){ .hp2-focus-btn > span{animation:none} }
+.hp2-focus-btn > span > i,.hp2-focus-btn > span > svg{width:22px;height:22px;stroke-width:2.6;display:block}   /* » double chevron */
