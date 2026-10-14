@@ -1092,7 +1092,9 @@ function buildHealthGauge(){
   el.insertAdjacentHTML('afterbegin', s);
   var card=el.closest('.gauge-card')||document;
   var num=card.querySelector('.rh-num b');
-  if(num){ if(reduce||!done){ num.textContent=val; } else { num.textContent='0'; rhCountUp(num, val, 1200); } }
+  if(card.classList) card.classList.toggle('rh-pending', !done);   /* before the first check-in: soft "check in to see your score" state instead of a 0 gauge */
+  var _of=card.querySelector('.rh-outof'); if(_of) _of.textContent=done?'out of 100':'Check in to see your score';
+  if(num){ if(!done){ num.textContent='\u2013'; } else if(reduce){ num.textContent=val; } else { num.textContent='0'; rhCountUp(num, val, 1200); } }
   var pill=card.querySelector('.rh-pill'); if(pill) pill.textContent = !done?'Complete today\u2019s check-in':val>=85?'Excellent':val>=70?'Above Average':val>=55?'Good':'Needs Care';
   if(pill){   /* before the check-in the pill is a button that opens the Daily Check-In flow */
     pill.onclick = done ? null : function(e){ e.stopPropagation(); if(typeof openReflect==='function') openReflect(); };   /* stop the card's own click (opens Insights) */
@@ -1100,6 +1102,7 @@ function buildHealthGauge(){
     else { pill.setAttribute('role','button'); pill.setAttribute('tabindex','0'); pill.style.cursor='pointer'; pill.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); openReflect(); } }; }
   }
   var trend=card.querySelector('.rh-trend'); if(trend) trend.style.display=done?'':'none';
+  var _wk=document.getElementById('rhWeeks'); if(_wk) _wk.style.display=done?'':'none';   /* "Past 2 weeks" only appears once there is data */
   var wv=document.getElementById('rhWeeksVal'), ws=document.getElementById('rhWeeksSpark');   /* Past 2 weeks: dashed + "Not ready yet" until the check-in is done */
   if(wv&&ws){
     wv.textContent=done?'Steady':'Not ready yet'; wv.classList.toggle('hp2-muted',!done);
@@ -4747,6 +4750,9 @@ function rhUserName(){
 }
 function rhApplyGaugeTitle(){
   var u=rhUserName(), t=u.first+'\u2019s Recovery Health';
+  var _h=new Date().getHours(), _g=_h<12?'Good morning':_h<17?'Good afternoon':'Good evening';
+  var _ge=document.getElementById('rhGreet'); if(_ge){ var _t=_g+', '+u.first; if(_ge.textContent!==_t) _ge.textContent=_t; }
+  var _gd=document.getElementById('rhGreetDate'); if(_gd){ var _d=new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}); if(_gd.textContent!==_d) _gd.textContent=_d; }
   ['rhGaugeTitle','rhGaugeTitleIns'].forEach(function(id){ var e=document.getElementById(id); if(e && e.textContent!==t) e.textContent=t; });
   document.querySelectorAll('[data-user-name]').forEach(function(e){ if(e.textContent!==u.full) e.textContent=u.full; });
   document.querySelectorAll('[data-user-first]').forEach(function(e){ if(e.textContent!==u.first) e.textContent=u.first; });
