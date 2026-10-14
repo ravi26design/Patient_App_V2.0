@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<link rel="stylesheet" href="css/styles.css?v=20261015n">
+<link rel="stylesheet" href="css/styles.css?v=20261015m">
 </head>
 <body>
 
@@ -512,8 +512,39 @@
 
     <!-- ═══ HOME ═══ -->
     <div class="screen active" id="screen-home">
-      <!-- Greeting -->
-      <div class="hp2-greet"><div class="hp2-greet-h" id="rhGreet">Good morning, Alex</div><div class="hp2-greet-d" id="rhGreetDate"></div></div>
+      <!-- Recovery Health -->
+      <div class="home-sec gauge-card rh-card" role="button" tabindex="0" onclick="openOv('insights')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openOv('insights');}">
+        <div class="rh-inner">
+          <div class="rh-eyebrow" style="display:flex;align-items:center;gap:7px"><span class="rh-eyebrow-t" id="rhGaugeTitle">Recovery Health</span><button class="help-i" type="button" style="margin-left:auto" aria-label="About Recovery Health" onclick="event.stopPropagation();showHelp('recovery-health')"><i data-lucide="info"></i></button></div>
+          <div class="rh-gauge" id="healthGauge"></div>
+          <div class="rh-num"><b>74</b></div>
+          <div class="rh-outof">out of 100</div>
+          <div class="rh-badges">
+            <div class="rh-pill">Above Average</div>
+            <div class="rh-trend" data-delta="2"><span class="rh-trend-arrow"></span><span class="rh-trend-delta">2</span><span class="rh-trend-lbl">Stable</span></div>
+          </div>
+          <div class="rh-risk">
+            <button class="rh-insights rh-chip" type="button" onclick="event.stopPropagation();openOv('insights')">
+              <span class="rh-chip-ic rh-insights-ic"><i data-lucide="lightbulb"></i></span>
+              <span class="rh-chip-main">
+                <span class="rh-chip-eyebrow">Earn XP</span>
+                <span class="rh-chip-val">Insights</span>
+              </span>
+              <span class="rh-insights-xp">+20 XP</span>
+            </button>
+          </div>
+          <!-- Past 2 weeks trend — empty until today's check-in is completed -->
+          <div class="hp2-trend rh-weeks" id="rhWeeks">
+            <div class="hp2-trend-l">
+              <div class="hp2-trend-lbl">Past 2 weeks</div>
+              <div class="hp2-trend-val hp2-muted" id="rhWeeksVal">Not ready yet</div>
+            </div>
+            <div class="hp2-spark hp2-spark-empty" id="rhWeeksSpark">
+              <svg viewBox="0 0 180 46" preserveAspectRatio="none" aria-hidden="true"><line x1="2" y1="23" x2="178" y2="23" stroke="#D7D1C7" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Today's focus — shown until today's daily reflection is done -->
       <div class="hp2-focus hp2-focus-empty" id="rhFocusCard" style="margin-bottom:16px">
@@ -586,40 +617,6 @@
       
 
       
-
-      <!-- Recovery Health -->
-      <div class="home-sec gauge-card rh-card" role="button" tabindex="0" onclick="openOv('insights')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openOv('insights');}">
-        <div class="rh-inner">
-          <div class="rh-eyebrow" style="display:flex;align-items:center;gap:7px"><span class="rh-eyebrow-t" id="rhGaugeTitle">Recovery Health</span><button class="help-i" type="button" style="margin-left:auto" aria-label="About Recovery Health" onclick="event.stopPropagation();showHelp('recovery-health')"><i data-lucide="info"></i></button></div>
-          <div class="rh-gauge" id="healthGauge"></div>
-          <div class="rh-num"><b>74</b></div>
-          <div class="rh-outof">out of 100</div>
-          <div class="rh-badges">
-            <div class="rh-pill">Above Average</div>
-            <div class="rh-trend" data-delta="2"><span class="rh-trend-arrow"></span><span class="rh-trend-delta">2</span><span class="rh-trend-lbl">Stable</span></div>
-          </div>
-          <div class="rh-risk">
-            <button class="rh-insights rh-chip" type="button" onclick="event.stopPropagation();openOv('insights')">
-              <span class="rh-chip-ic rh-insights-ic"><i data-lucide="lightbulb"></i></span>
-              <span class="rh-chip-main">
-                <span class="rh-chip-eyebrow">Earn XP</span>
-                <span class="rh-chip-val">Insights</span>
-              </span>
-              <span class="rh-insights-xp">+20 XP</span>
-            </button>
-          </div>
-          <!-- Past 2 weeks trend — empty until today's check-in is completed -->
-          <div class="hp2-trend rh-weeks" id="rhWeeks">
-            <div class="hp2-trend-l">
-              <div class="hp2-trend-lbl">Past 2 weeks</div>
-              <div class="hp2-trend-val hp2-muted" id="rhWeeksVal">Not ready yet</div>
-            </div>
-            <div class="hp2-spark hp2-spark-empty" id="rhWeeksSpark">
-              <svg viewBox="0 0 180 46" preserveAspectRatio="none" aria-hidden="true"><line x1="2" y1="23" x2="178" y2="23" stroke="#D7D1C7" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round"/></svg>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Streaks -->
       <div class="home-sec sf-card">
@@ -3932,6 +3929,6 @@
     <button class="tour-skip" type="button" onclick="tourSkip()">Skip</button>
   </div>
 </div>
-<script src="js/app.js?v=20261015n"></script>
+<script src="js/app.js?v=20261015i"></script>
 </body>
 </html>
