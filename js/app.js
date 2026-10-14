@@ -1718,6 +1718,7 @@ function loginContinue(){
   var existing=rhFindUser(val);
   if(existing){
     /* registered (by mobile / email) → verify with OTP on the number on file, then home */
+    window.__regInProgress=false;
     window.__phone=existing.phone||window.__phone; window.__profile=existing;
     showOtpScreen();   /* login screen stays behind the dimmed OTP sheet */
   } else {
@@ -1774,6 +1775,11 @@ function submitDetails(){
   var pinp=document.getElementById('phoneInput');
   var pd=((pinp&&pinp.value)||'').replace(/\D/g,'');
   if(pd.length<10){ dtErr('dtPhoneField'); var prow=document.getElementById('phRow'); if(prow){ prow.classList.add('err'); setTimeout(function(){ prow.classList.remove('err'); }, 1200); } if(pinp) pinp.focus(); return; }
+  /* already registered? (same mobile number or email) → don't register again, send them to Log in */
+  var _dupPhone=rhFindUser(pd), _dupMail=rhFindUser(emailVal);
+  var _dup=_dupPhone||_dupMail;
+  var _mine=(_dup && window.__profile && _dup.phone && _dup.phone===window.__profile.phone && _dup.onbDone===false);   /* their own half-finished registration (they pressed Back from the steps) → let them continue */
+  if(_dup && !_mine){ rhDuplicateRegistration(_dupPhone?'mobile number':'email', _dupPhone?(pinp&&pinp.value):emailVal); return; }
   /* both consents must be agreed (moved here from the old privacy step) */
   var c1=document.getElementById('pvCheck1'), c2=document.getElementById('pvCheck2');
   if(!(c1&&c1.classList.contains('on') && c2&&c2.classList.contains('on'))){
@@ -1782,6 +1788,7 @@ function submitDetails(){
     var cf=document.getElementById('dtConsentField'); if(cf) cf.scrollIntoView({block:'center',behavior:'smooth'});
     return;
   }
+  window.__regInProgress=true;   /* this OTP belongs to a registration, not a login */
   window.__phone=(typeof __cc!=='undefined'&&__cc?__cc.d:'+1')+pd;
   window.__profile={name:nameVal, email:emailVal, phone:window.__phone, dob:(window.__dob||null), age:(window.__dob?window.__dob.age:null), lang:(window.__lang||'en'), contactOptIn:true};
   var rn=document.getElementById('rhName'); if(rn) rn.textContent=nameVal.split(' ')[0];   /* greet by first name */
@@ -1793,7 +1800,7 @@ function submitDetails(){
 function onbShow(id){ var e=document.getElementById(id); if(e){ e.style.display=''; e.classList.remove('hide'); e.classList.add('show'); e.scrollTop=0; } }
 function onbHide(id){ var e=document.getElementById(id); if(!e) return; e.classList.add('hide');
   setTimeout(function(){ e.style.display='none'; e.classList.remove('show','hide'); }, 420); }
-function onbStep(from,to){ onbShow(to); onbHide(from); }
+function onbStep(from,to){ onbShow(to); onbHide(from); if(!window.__ciMode && ONB_ORDER.indexOf(to)>=0) rhOnbSetStep(to); }
 var ONB_ORDER=['medsScreen','reliefScreen','connectCareScreen'];   /* onboarding: Medications → Relief → clinic (consent moved to the details step) */
 function onbBack(curId){
   if(window.__ciMode){   /* check-in intro: relief -> triggers -> cancel to home */
@@ -1835,6 +1842,41 @@ function rhFindUser(idRaw){
   if(digits.length>=10){ for(k in u){ if((k||'').replace(/\D/g,'').indexOf(digits)>=0) return u[k]; } return null; }
   return null;   /* username login skipped for now — mobile or email only */
 }
+/* Registration blocked: this mobile number / email already has an account → explain, then send them to the Log in page with it prefilled */
+function rhDuplicateRegistration(kind, value){
+  var d=document.getElementById('detailsScreen'), btn=d&&d.querySelector('.ph-send');
+  var note=document.getElementById('dtDupNote');
+  if(!note && btn){ note=document.createElement('div'); note.id='dtDupNote'; note.className='dt-dup'; btn.parentNode.insertBefore(note, btn); }
+  if(note){ note.innerHTML='This '+kind+' is already registered. Taking you to Log in\u2026 <button type="button" class="dt-dup-go">Log in now</button>'; note.style.display='block';
+    var g=note.querySelector('.dt-dup-go'); if(g) g.onclick=function(){ rhGoLoginFrom(value); }; }
+  if(typeof toast==='function') toast('This '+kind+' is already registered — please log in.');
+  if(window.__dupTimer) clearTimeout(window.__dupTimer);
+  window.__dupTimer=setTimeout(function(){ rhGoLoginFrom(value); }, 2200);
+}
+function rhGoLoginFrom(value){
+  if(window.__dupTimer){ clearTimeout(window.__dupTimer); window.__dupTimer=null; }
+  var note=document.getElementById('dtDupNote'); if(note) note.style.display='none';
+  hideDetailsScreen(); showLoginScreen();
+  setTimeout(function(){ var i=document.getElementById('loginIdInput'); if(i){ i.value=value||''; i.focus(); } }, 320);
+}
+/* Onboarding progress: the Medications → Relief → Care-team steps are mandatory for new registrations.
+   The user only counts as "onboarded" once the last step is done; until then a refresh / re-open resumes at the step they were on. */
+function rhOnbSetStep(id){ try{ localStorage.setItem('rh_onb_step', id); }catch(e){} }
+function rhOnbFinish(pf){
+  pf=pf||window.__profile||{}; pf.onbDone=true; window.__profile=pf;
+  try{ localStorage.setItem('rh_profile', JSON.stringify(pf)); localStorage.setItem('rh_onboarded','1'); localStorage.removeItem('rh_onb_step'); }catch(e){}
+  rhRegisterUser(pf);
+}
+function rhOnbResume(step, pf){
+  if(ONB_ORDER.indexOf(step)<0) step=ONB_ORDER[0];
+  window.__profile=pf||window.__profile; if(pf&&pf.phone) window.__phone=pf.phone;
+  var w=document.getElementById('welcome'); if(w){ w.style.display='none'; w.classList.remove('show'); }
+  if(window.__wc && __wc.stop) __wc.stop();
+  hideLoginScreen(); hideDetailsScreen(); hideOtpScreen();
+  ONB_ORDER.forEach(function(id){ if(id!==step){ var e=document.getElementById(id); if(e){ e.style.display='none'; e.classList.remove('show','hide'); } } });
+  onbShow(step); rhOnbSetStep(step);
+  if(window.lucide&&lucide.createIcons) lucide.createIcons();
+}
 /* MOUD */
 function showMoudScreen(){ onbShow('moudScreen'); }
 function hideMoudScreen(){ onbHide('moudScreen'); }
@@ -1866,7 +1908,7 @@ function onbNext(step){
     if(nm) onbSave('clinicName', nm); if(cd) onbSave('clinicCode', cd);
     /* clinic is the final onboarding step now — finish up (consent already agreed on the details step) */
     var pf=window.__profile||{}; var first=(pf.name||'there').split(' ')[0];
-    rhRegisterUser(pf);                 /* remember this number so it skips onboarding next time */
+    rhOnbFinish(pf);                    /* onboarding complete → remember this user (a later log-in skips these steps) */
     var dn=document.getElementById('doneName'); if(dn) dn.textContent=first;
     onbHide('connectCareScreen');       /* reveal home behind */
     showDoneModal();                    /* confirmation first */
@@ -2265,6 +2307,12 @@ function finishOnbFlow(){ setTimeout(function(){ showDoneModal(); if(window.__do
 (function(){
   var sp=document.getElementById('splash'); if(!sp) return;
   var onboarded=false; try{ onboarded=localStorage.getItem('rh_onboarded')==='1'; }catch(e){}
+  /* registered + verified but never finished Medications → Relief → Care team: pick up where they left off (never skip these steps) */
+  var _pend=null; try{ _pend=localStorage.getItem('rh_onb_step'); }catch(e){}
+  if(!onboarded && _pend && ONB_ORDER.indexOf(_pend)>=0){
+    var _pf=null; try{ _pf=JSON.parse(localStorage.getItem('rh_profile')||'null'); }catch(e){}
+    if(_pf){ sp.classList.add('hide'); sp.style.display='none'; window.addEventListener('load', function(){ rhOnbResume(_pend, _pf); }); return; }
+  }
   if(onboarded){
     /* already logged in — refresh restores the page; no splash/onboarding (only logout restarts it) */
     sp.classList.add('hide'); sp.style.display='none';
@@ -2397,7 +2445,13 @@ function verifyOtp(){
   if(window.__otpCode && code!==window.__otpCode){ otpError(); return; }   /* wrong code */
   window.__otp=code;                /* correct -> auto-verify */
   var existing=rhGetUser(window.__phone);
-  if(existing){                     /* returning number -> straight to home, skip onboarding */
+  if(existing && existing.onbDone===false && !window.__regInProgress){   /* registered earlier but never finished the onboarding steps → finish them now */
+    var _st=null; try{ _st=localStorage.getItem('rh_onb_step'); }catch(e){}
+    try{ localStorage.setItem('rh_profile', JSON.stringify(existing)); }catch(e){}
+    rhOnbResume(_st||ONB_ORDER[0], existing);
+    return;
+  }
+  if(existing && !window.__regInProgress){                     /* returning number (log-in flow) -> straight to home, skip onboarding */
     window.__profile=existing;
     try{ localStorage.setItem('rh_profile', JSON.stringify(existing)); localStorage.setItem('rh_onboarded','1'); }catch(e){}
     var rn=document.getElementById('rhName'); if(rn && existing.name) rn.textContent=String(existing.name).split(' ')[0];
@@ -2408,9 +2462,11 @@ function verifyOtp(){
     loginShowCheckin();            /* land on the daily check-in intro right after login, home behind it */
     return;
   }
-  /* new user: details were already collected before OTP → go straight to the onboarding steps */
-  try{ localStorage.setItem('rh_onboarded','1'); if(window.__profile) localStorage.setItem('rh_profile', JSON.stringify(window.__profile)); }catch(e){}
-  if(window.__profile) rhRegisterUser(window.__profile);   /* remember the verified number now so a later log-in goes straight to OTP */
+  /* new user (registration flow): details were already collected before OTP → ALWAYS show the onboarding steps.
+     Not "onboarded" yet — that only happens when the last step is completed (so a refresh mid-way resumes instead of skipping them). */
+  if(window.__profile){ window.__profile.onbDone=false; try{ localStorage.setItem('rh_profile', JSON.stringify(window.__profile)); }catch(e){} rhRegisterUser(window.__profile); }   /* the number now counts as registered (blocks a second sign-up) */
+  window.__regInProgress=false;
+  rhOnbSetStep('medsScreen');
   onbShow('medsScreen');
   hideOtpScreen();
   hideDetailsScreen();
@@ -2513,7 +2569,7 @@ function openSOS(){
 }
 function sosBack(){ goScreen(window.__sosBackTo||'home'); }
 function logout(){
-  try{ localStorage.removeItem('rh_onboarded'); localStorage.removeItem('rh_profile');
+  try{ localStorage.removeItem('rh_onboarded'); localStorage.removeItem('rh_onb_step'); localStorage.removeItem('rh_profile');
        localStorage.removeItem('rh_screen'); localStorage.removeItem('rh_ov');
        localStorage.removeItem('rh_checkin_prompt'); localStorage.removeItem('rh_reflect_done'); }catch(e){}   /* next login = a fresh day: daily check-in screen shows first */
   location.reload();   /* restart onboarding */
