@@ -3627,7 +3627,7 @@ function openRoomDD(open){
       '<div class="ar-group">'+g.group+'</div>'+
       g.items.map(o=>{
         const n=roomCount(o.val);
-        return '<button type="button" class="ar-opt'+(o.val===cur?' sel':'')+'" data-room="'+o.val+'">'+
+        return '<button type="button" class="ar-opt'+(o.val===cur?' sel':'')+'" data-room="'+o.val+'" style="--c:'+(o.color||'#6E7C8E')+'">'+
           '<span class="ar-emoji" style="background:color-mix(in srgb, '+(o.color||'#8A7D75')+' 15%, #fff);color:'+(o.color||'#8A7D75')+'">'+commIcon(o.emoji)+'</span>'+
           '<span class="ar-main"><span class="ar-name">'+o.name+(o.member?'<span class="ar-member">yours</span>':'')+'</span>'+
           '<span class="ar-meta">'+o.meta+'</span></span>'+

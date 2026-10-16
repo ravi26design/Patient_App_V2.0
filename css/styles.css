@@ -5186,3 +5186,25 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 /* "Begin Daily Reflection" CTA: gold/yellow (dark text keeps contrast on the yellow) */
 #rhFocusEmpty .hp2-focus-btn{background:linear-gradient(135deg,#F6CF6B,#E2A53C);color:#3B2A08;box-shadow:0 10px 22px -10px rgba(214,158,46,.7)}
 #rhFocusEmpty .hp2-focus-btn:hover{filter:brightness(1.04)}
+
+/* Community → All Rooms sheet: App-Store-style gradient tiles (colour = the room's own colour) */
+.rc-scope .ar-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.rc-scope .ar-group{grid-column:1 / -1;padding:14px 4px 0}
+.rc-scope .ar-opt{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:0;min-height:108px;padding:12px 14px;border:none;border-radius:20px;overflow:hidden;
+  background:linear-gradient(165deg,color-mix(in srgb,var(--c,#6E7C8E) 58%,#fff),var(--c,#6E7C8E));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
+.rc-scope .ar-opt[data-room="all"]{grid-column:1 / -1;min-height:92px}
+.rc-scope .ar-opt:hover{border:none;transform:translateY(-1px)}
+.rc-scope .ar-opt::before{content:"";position:absolute;right:-14px;top:-18px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+.rc-scope .ar-emoji{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:13px;font-size:20px;
+  background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65)) !important;color:var(--c) !important;box-shadow:0 6px 12px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff}
+.rc-scope .ar-main{position:relative;z-index:1;flex:0 0 auto}
+.rc-scope .ar-name{color:#fff;font-size:14px;font-weight:700;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+.rc-scope .ar-meta{color:rgba(255,255,255,.88);font-size:11.5px;font-weight:600;margin-top:2px;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.rc-scope .ar-count{position:absolute;top:11px;left:11px;z-index:1;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.28);color:#fff;font-size:10.5px;font-weight:700}
+.rc-scope .ar-count:empty{display:none}
+.rc-scope .ar-member{background:rgba(255,255,255,.28);color:#fff}
+.rc-scope .ar-opt.sel{background:linear-gradient(165deg,color-mix(in srgb,var(--c,#6E7C8E) 58%,#fff),var(--c,#6E7C8E));box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45)}
+.rc-scope .ar-opt.sel .ar-name{color:#fff}
+.rc-scope .ar-opt.sel .ar-emoji{background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65)) !important}
+.rc-scope .ar-opt.sel::after{content:"\2713";position:absolute;right:12px;bottom:12px;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--c);font-size:13px;font-weight:800;line-height:22px;text-align:center}
