@@ -5346,3 +5346,28 @@ body.is-desktop .na-scope #naFormat .na-chip.on,body.is-desktop .na-scope #naTim
 .na-scope .na-sortwrap{background:#fff;box-shadow:inset 0 0 0 1px rgba(46,50,56,.08)}
 .na-scope .na-sort{color:var(--muted,#6A6F76)}
 .na-scope .na-sort.on{background:linear-gradient(135deg,#6DA0CC,#3F6E99);color:#fff;box-shadow:0 4px 12px -4px rgba(63,110,153,.5)}
+
+/* ═══ Find a Meeting → Filters card (same pattern as 1:1 Support) + Time of day back to a white segmented control ═══ */
+.na-scope .na-fcard{background:#fff;border-radius:20px;padding:2px 18px 4px;margin:0 0 16px;border:1px solid rgba(91,146,206,.12);box-shadow:0 8px 20px -14px rgba(63,110,153,.35)}
+.na-scope .na-fcard-top{display:flex;align-items:center;gap:8px;padding:14px 0 12px}
+.na-scope .na-fcard-toggle{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit}
+.na-scope .na-fico{flex:none;width:30px;height:30px;border-radius:10px;background:#E6EFFB;display:grid;place-items:center;color:#3F6E99}
+.na-scope .na-fico i,.na-scope .na-fico svg{width:16px;height:16px;stroke-width:2.2}
+.na-scope .na-fcard-t{font:800 11px var(--font-ui,Manrope);letter-spacing:.14em;text-transform:uppercase;color:var(--ink,#2E3238)}
+.na-scope .na-fpill{margin-left:auto;font:800 10px var(--font-ui,Manrope);letter-spacing:.02em;color:var(--muted,#6A6F76);background:#F1EFEA;border-radius:99px;padding:5px 11px;white-space:nowrap}
+.na-scope .na-fpill.on{color:#fff;background:#3F6E99}
+.na-scope .na-fchev{flex:none;width:17px;height:17px;color:var(--muted,#6A6F76);stroke-width:2.4;transition:transform .22s ease}
+.na-scope .na-fcard-toggle[aria-expanded="true"] .na-fchev{transform:rotate(180deg)}
+.na-scope .na-fclear{border:0;background:none;color:#B5483E;font:800 11px var(--font-ui,Manrope);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:6px 2px}
+.na-scope .na-fbody{border-top:1px solid #ECE6DF;animation:fade .22s ease}
+.na-scope .na-fbody[hidden]{display:none}
+.na-scope .na-frow{padding:14px 0;border-bottom:1px solid #ECE6DF}
+.na-scope .na-frow.last{border-bottom:0}
+.na-scope .na-flab{display:flex;align-items:center;gap:8px;margin-bottom:10px;font:800 11px var(--font-ui,Manrope);letter-spacing:.12em;text-transform:uppercase;color:#8A7D75}
+.na-scope .na-flab i,.na-scope .na-flab svg{width:15px;height:15px;stroke-width:2.1}
+/* Time of day: white segmented control with blue active (like 1:1 Support "Meet") */
+body.is-desktop .na-scope #naTime.na-chiprow,body:not(.is-desktop) .na-scope #naTime.na-chiprow{display:flex;grid-template-columns:none;gap:3px;background:#fff;box-shadow:inset 0 0 0 1px rgba(46,50,56,.08);border-radius:14px;padding:4px;overflow-x:auto}
+body.is-desktop .na-scope #naTime .na-chip,body:not(.is-desktop) .na-scope #naTime .na-chip{position:static;overflow:visible;flex:1 0 auto;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;min-height:0;padding:9px 12px;border:0;border-radius:11px;background:transparent;color:var(--muted,#6A6F76);text-shadow:none;box-shadow:none;font:700 12px var(--font-ui,Manrope);white-space:nowrap}
+body.is-desktop .na-scope #naTime .na-chip::before,body.is-desktop .na-scope #naTime .na-chip::after,body:not(.is-desktop) .na-scope #naTime .na-chip::before,body:not(.is-desktop) .na-scope #naTime .na-chip::after{display:none}
+body.is-desktop .na-scope #naTime .na-chip > svg,body:not(.is-desktop) .na-scope #naTime .na-chip > svg{position:static;width:15px;height:15px;padding:0;border-radius:0;background:none;box-shadow:none;color:currentColor;stroke:currentColor}
+body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #naTime .na-chip.on{background:linear-gradient(135deg,#6DA0CC,#3F6E99);color:#fff;box-shadow:0 4px 12px -4px rgba(63,110,153,.5)}

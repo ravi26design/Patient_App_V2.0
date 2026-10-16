@@ -4709,10 +4709,18 @@ window.fcRefresh = function(){ showProviderPane(false); renderCoaches(); };
 
   function fmtIcon(format){ var n = format==="in-person" ? "map-pin" : format==="virtual" ? "monitor" : "shuffle"; return '<i data-lucide="'+n+'"></i>'; }
 
+  /* Filters card badge: "Showing everything" / "N filters on" (Day, Time of day and Meeting type) */
+  function fBadge(){
+    var el = document.getElementById("naFActive"); if(!el) return;
+    var n = (state.days.length?1:0) + ((state.time[0]!=="all")?1:0) + state.types.length;
+    el.textContent = n ? (n+" filter"+(n>1?"s":"")+" on") : "Showing everything";
+    el.classList.toggle("on", n>0);
+  }
   function renderList(){
     var listEl = document.getElementById("naList");
     var countEl = document.getElementById("naCount");
     if(!listEl) return;
+    fBadge();
     var filtered = sortList(MOCK_MEETINGS.filter(matches));
     lastRendered = filtered;
     countEl.textContent = filtered.length + (filtered.length===1 ? " meeting found" : " meetings found");
@@ -4792,6 +4800,15 @@ window.fcRefresh = function(){ showProviderPane(false); renderCoaches(); };
       renderList();
     });
 
+    var fT = document.getElementById("naFToggle"), fB = document.getElementById("naFBody"), fC = document.getElementById("naFClear");
+    if(fT && fB) fT.addEventListener("click", function(){
+      var open = fB.hidden; fB.hidden = !open; fT.setAttribute("aria-expanded", open ? "true":"false");
+    });
+    if(fC) fC.addEventListener("click", function(){   /* reset Day, Time of day and Meeting type */
+      document.querySelectorAll("#naDays .na-day, #naType button").forEach(function(x){ x.classList.remove("on"); });
+      document.querySelectorAll("#naTime button").forEach(function(x){ x.classList.toggle("on", x.dataset.val==="all"); });
+      state.days = []; state.types = []; state.time = ["all"]; renderList();
+    });
     var moreBtn = document.getElementById("naMoreBtn"), moreBody = document.getElementById("naMoreBody");
     if(moreBtn) moreBtn.addEventListener("click", function(){
       var open = moreBody.hidden;

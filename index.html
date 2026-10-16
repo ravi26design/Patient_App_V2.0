@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<link rel="stylesheet" href="css/styles.css?v=20261016t">
+<link rel="stylesheet" href="css/styles.css?v=20261016u">
 </head>
 <body>
 
@@ -1795,25 +1795,35 @@
       <div class="na-scope" id="naScope">
 
         <div class="na-panel">
-        <!-- location search -->
-        <div class="na-search">
-          <i data-lucide="map-pin" class="na-search-ic"></i>
-          <input id="naLoc" type="text" placeholder="City, state, or ZIP" autocomplete="off">
-          <button class="na-locbtn" id="naUseLoc" type="button" title="Use my location"><i data-lucide="crosshair"></i></button>
-        </div>
-
-        <!-- format -->
-        <div class="na-row-lbl"><span class="na-lbl-t"><i data-lucide="video"></i>Format</span></div>
-        <div class="na-chiprow" id="naFormat">
+          <div class="na-chiprow" id="naFormat">
           <button class="na-chip on" data-val="all"><i data-lucide="layout-grid"></i>All</button>
           <button class="na-chip" data-val="in-person"><i data-lucide="map-pin"></i>In-person</button>
           <button class="na-chip" data-val="virtual"><i data-lucide="monitor"></i>Virtual</button>
           <button class="na-chip" data-val="hybrid"><i data-lucide="shuffle"></i>Hybrid</button>
         </div>
+          <div class="na-search">
+          <i data-lucide="map-pin" class="na-search-ic"></i>
+          <input id="naLoc" type="text" placeholder="City, state, or ZIP" autocomplete="off">
+          <button class="na-locbtn" id="naUseLoc" type="button" title="Use my location"><i data-lucide="crosshair"></i></button>
+        </div>
+          <div class="na-row-lbl" id="naDistLbl"><span class="na-lbl-t"><i data-lucide="navigation"></i>Distance</span> <span id="naDistVal">25 mi</span></div>
+        <input type="range" id="naDist" class="na-slider" min="5" max="100" step="5" value="25">
+        </div>
 
-        <!-- day of week -->
-        <div class="na-row-lbl"><span class="na-lbl-t"><i data-lucide="calendar-days"></i>Day</span></div>
-        <div class="na-daysrow" id="naDays">
+        <!-- FILTERS card (same pattern as 1:1 Support): Day · Time of day · Meeting type -->
+        <div class="na-fcard">
+          <div class="na-fcard-top">
+            <button class="na-fcard-toggle" id="naFToggle" type="button" aria-expanded="false" aria-controls="naFBody">
+              <span class="na-fico" aria-hidden="true"><i data-lucide="sliders-horizontal"></i></span>
+              <span class="na-fcard-t">Filters</span>
+              <span class="na-fpill" id="naFActive">Showing everything</span>
+              <i data-lucide="chevron-down" class="na-fchev"></i>
+            </button>
+            <button class="na-fclear" id="naFClear" type="button">Clear</button>
+          </div>
+          <div class="na-fbody" id="naFBody" hidden>
+            <div class="na-frow"><span class="na-flab"><i data-lucide="calendar-days"></i>Day</span>
+              <div class="na-daysrow" id="naDays">
           <button class="na-day" data-val="0">S</button>
           <button class="na-day" data-val="1">M</button>
           <button class="na-day" data-val="2">T</button>
@@ -1822,27 +1832,18 @@
           <button class="na-day" data-val="5">F</button>
           <button class="na-day" data-val="6">S</button>
         </div>
-
-        <!-- time of day -->
-        <div class="na-row-lbl"><span class="na-lbl-t"><i data-lucide="clock"></i>Time of day</span></div>
-        <div class="na-chiprow" id="naTime">
+            </div>
+            <div class="na-frow"><span class="na-flab"><i data-lucide="clock"></i>Time of day</span>
+              <div class="na-chiprow" id="naTime">
           <button class="na-chip on" data-val="all"><i data-lucide="clock"></i>Any</button>
           <button class="na-chip" data-val="morning"><i data-lucide="sunrise"></i>Morning</button>
           <button class="na-chip" data-val="afternoon"><i data-lucide="sun"></i>Afternoon</button>
           <button class="na-chip" data-val="evening"><i data-lucide="sunset"></i>Evening</button>
           <button class="na-chip" data-val="late"><i data-lucide="moon"></i>Late night</button>
         </div>
-
-        <!-- distance (in-person/hybrid) -->
-        <div class="na-row-lbl" id="naDistLbl"><span class="na-lbl-t"><i data-lucide="navigation"></i>Distance</span> <span id="naDistVal">25 mi</span></div>
-        <input type="range" id="naDist" class="na-slider" min="5" max="100" step="5" value="25">
-
-        </div><!-- /na-panel -->
-
-        <!-- more filters (meeting type) -->
-        <button class="na-more" id="naMoreBtn" type="button" aria-expanded="false">More filters <i data-lucide="chevron-down"></i></button>
-        <div class="na-more-body" id="naMoreBody" hidden>
-          <div class="na-chiprow wrap" id="naType">
+            </div>
+            <div class="na-frow last"><span class="na-flab"><i data-lucide="tags"></i>Meeting type</span>
+              <div class="na-chiprow wrap" id="naType">
             <button class="na-chip" data-val="Open"><i data-lucide="unlock"></i>Open</button>
             <button class="na-chip" data-val="Closed"><i data-lucide="lock"></i>Closed</button>
             <button class="na-chip" data-val="Discussion"><i data-lucide="messages-square"></i>Discussion</button>
@@ -1855,6 +1856,8 @@
             <button class="na-chip" data-val="LGBTQ+"><i data-lucide="rainbow"></i>LGBTQ+</button>
             <button class="na-chip" data-val="Young People"><i data-lucide="sprout"></i>Young people</button>
             <button class="na-chip" data-val="Wheelchair"><i data-lucide="accessibility"></i>Wheelchair access</button>
+          </div>
+            </div>
           </div>
         </div>
 
@@ -3937,6 +3940,6 @@
     <button class="tour-skip" type="button" onclick="tourSkip()">Skip</button>
   </div>
 </div>
-<script src="js/app.js?v=20261016g"></script>
+<script src="js/app.js?v=20261016u"></script>
 </body>
 </html>
