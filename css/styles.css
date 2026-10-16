@@ -5175,3 +5175,7 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 .ci-begin:hover > span{animation-play-state:paused;transform:translateX(6px)}
 .ci-begin > span > i,.ci-begin > span > svg{width:22px;height:22px;stroke-width:2.6;display:block}
 @media (prefers-reduced-motion:reduce){ .ci-begin > span{animation:none} }
+
+/* Check-in prompt benefits: icon aligns to the top of the (possibly 2-line) text; chevron and XP badge stay centred */
+.ci-benefit{align-items:flex-start}
+.ci-benefit .ci-benefit-chev,.ci-benefit .ci-xp-badge{align-self:center}
