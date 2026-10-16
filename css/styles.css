@@ -5244,3 +5244,7 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 .fc-scope .ct-btn.ct-text{background:#fff;border:1.5px solid #9DB4D6;color:#456695}
 .fc-scope .ct-btn.ct-text:hover{background:#EEF4FB;color:#456695}
 .fc-scope .result.peerkind .ct-btn.ct-text{border-color:#9DB4D6;color:#456695}
+/* 1:1 Support segmented controls: white track (as before) */
+.fc-scope .seg,.fc-scope .rpills{background:#fff;box-shadow:inset 0 0 0 1px rgba(46,50,56,.08)}
+.fc-scope .seg button,.fc-scope .rpill{color:var(--muted,#6A6F76)}
+.fc-scope .seg button.on,.fc-scope .rpill.on{color:#fff}
