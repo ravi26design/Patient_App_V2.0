@@ -3623,7 +3623,7 @@ function openRoomDD(open){
   function buildList(){
     if(!list) return;
     const cur=currentRoom();
-    list.innerHTML = ROOM_OPTIONS.map(g=>
+    list.innerHTML = ROOM_OPTIONS.filter(g=>g.group!=="Browse").map(g=>   /* the "Browse → All Rooms" tile is not shown in this sheet */
       '<div class="ar-group">'+g.group+'</div>'+
       g.items.map(o=>{
         const n=roomCount(o.val);
