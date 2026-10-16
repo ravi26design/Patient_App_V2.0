@@ -5182,3 +5182,7 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 
 /* Check-in prompt: the "+30 XP bonus" row uses the same plain row style as the first one (no highlighted box) */
 .ci-benefit.ci-benefit-hl{background:none;box-shadow:none;border:none;padding:12px 6px;border-radius:14px}
+
+/* "Begin Daily Reflection" CTA: gold/yellow (dark text keeps contrast on the yellow) */
+#rhFocusEmpty .hp2-focus-btn{background:linear-gradient(135deg,#F6CF6B,#E2A53C);color:#3B2A08;box-shadow:0 10px 22px -10px rgba(214,158,46,.7)}
+#rhFocusEmpty .hp2-focus-btn:hover{filter:brightness(1.04)}
