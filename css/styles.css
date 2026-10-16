@@ -5341,3 +5341,8 @@ body .na-scope #naTime.na-chiprow{grid-template-columns:repeat(5,minmax(0,1fr))}
 body.is-desktop .na-scope #naFormat .na-chip,body.is-desktop .na-scope #naTime .na-chip{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0;min-height:88px;padding:10px 12px;border:none;border-radius:18px;text-align:left;white-space:nowrap;font:700 13.5px var(--font-ui,Manrope);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.18);flex:none;
   background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
 body.is-desktop .na-scope #naFormat .na-chip.on,body.is-desktop .na-scope #naTime .na-chip.on{background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));color:#fff;box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45)}
+
+/* Find a Meeting sort (Soonest / Nearest): white track, active = blue gradient */
+.na-scope .na-sortwrap{background:#fff;box-shadow:inset 0 0 0 1px rgba(46,50,56,.08)}
+.na-scope .na-sort{color:var(--muted,#6A6F76)}
+.na-scope .na-sort.on{background:linear-gradient(135deg,#6DA0CC,#3F6E99);color:#fff;box-shadow:0 4px 12px -4px rgba(63,110,153,.5)}
