@@ -5404,3 +5404,8 @@ body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #n
 
 /* "When you finish, you get" → main-title style, 20px */
 .ci-benefits-h{font-family:var(--font-display);font-size:20px;font-weight:700;line-height:1.2;letter-spacing:-.01em;text-transform:none;color:var(--ink);text-align:center;padding:0 0 6px}
+
+/* Check-in reward tiles: icon on the LEFT (the +30 pill moves to the right, the glow follows the icon) */
+.ci-benefit .ci-benefit-ic{right:auto;left:12px}
+.ci-benefit .ci-xp-badge{left:auto;right:14px}
+.ci-benefit::before{right:auto;left:-16px}
