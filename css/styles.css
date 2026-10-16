@@ -5298,3 +5298,7 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 
 /* 1:1 Support: hide the Coach / Peer explainer box */
 .fc-scope #fTypeExplain,.fc-scope .typeinfo,.fc-scope .typeinfo.on{display:none !important}
+
+/* radio indicator: thin outline (1.5px); selected = same outline + a small solid dot */
+.fc-scope #fType button::after,.fc-scope #fRadius .rpill::after{background:transparent;border:1.5px solid rgba(255,255,255,.95)}
+.fc-scope #fType button.on::after,.fc-scope #fRadius .rpill.on::after{border:1.5px solid #fff;background:radial-gradient(circle,#fff 0 34%,transparent 38% 100%);box-shadow:none}
