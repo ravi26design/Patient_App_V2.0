@@ -5259,3 +5259,18 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 .fc-scope #fSort{margin:0 0 18px !important}
 .fc-scope .result{background:linear-gradient(180deg,#F1F7FE 0,#fff 96px)}
 .fc-scope .result .rbody{border-top-color:rgba(91,146,206,.16)}
+
+/* 1:1 Support → Coach / Peer: gradient selection tiles (same pattern as What Helps Me: + to pick, ✓ + white ring when selected) */
+.fc-scope #fType{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:none !important;box-shadow:none !important;border:none !important;padding:0;border-radius:0}
+.fc-scope #fType button{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0;min-height:96px;padding:12px 15px;border-radius:20px;border:none;
+  background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));color:#fff;font:700 15px var(--font-ui,Manrope);text-shadow:0 1px 2px rgba(0,0,0,.18);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
+.fc-scope #fType button[data-val="coach"]{--c:#5B7FD6}
+.fc-scope #fType button[data-val="peer"]{--c:#4F9A8A}
+.fc-scope #fType button::before{content:"";position:absolute;right:-14px;top:-18px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+.fc-scope #fType button > svg,.fc-scope #fType button > i{position:absolute;top:10px;right:10px;width:40px;height:40px;padding:9px;border-radius:13px;box-sizing:border-box;color:var(--c);stroke:var(--c);
+  background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65));box-shadow:0 6px 12px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff;text-shadow:none}
+.fc-scope #fType button.on svg{color:var(--c);stroke:var(--c)}
+.fc-scope #fType button::after{content:"+";position:absolute;top:11px;left:11px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.28);color:#fff;font-size:16px;line-height:22px;text-align:center;font-weight:700;text-shadow:none}
+.fc-scope #fType button.on{box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45);background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));color:#fff}
+.fc-scope #fType button.on::after{content:"\2713";background:#fff;color:var(--c);font-size:13px;font-weight:800}
