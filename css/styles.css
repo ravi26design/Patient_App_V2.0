@@ -5179,3 +5179,6 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 /* Check-in prompt benefits: icon aligns to the top of the (possibly 2-line) text; chevron and XP badge stay centred */
 .ci-benefit{align-items:flex-start}
 .ci-benefit .ci-benefit-chev,.ci-benefit .ci-xp-badge{align-self:center}
+
+/* Check-in prompt: the "+30 XP bonus" row uses the same plain row style as the first one (no highlighted box) */
+.ci-benefit.ci-benefit-hl{background:none;box-shadow:none;border:none;padding:12px 6px;border-radius:14px}
