@@ -5391,3 +5391,13 @@ body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #n
 .ci-benefit .ci-xp-badge{position:absolute;top:14px;left:14px;align-self:auto;background:rgba(255,255,255,.28);color:#fff;box-shadow:none;font-size:13px;padding:4px 11px}
 @media (max-width:520px){ .ci-benefits{grid-template-columns:1fr} .ci-benefit{min-height:112px} }
 .ci-benefit .ci-benefit-main{flex:0 0 auto;width:100%;margin-top:auto}
+
+/* Check-in reward tiles — polish: icon colour fix, more contrast, text sits clear of the icon */
+.ci-benefit:not(.ci-benefit-hl){--c:#4F74D0}
+.ci-benefit.ci-benefit-hl{--c:#D58A1F}
+.ci-benefit,.ci-benefit.ci-benefit-hl{min-height:158px;background:linear-gradient(165deg,color-mix(in srgb,var(--c) 70%,#fff),var(--c))}
+.ci-benefit .ci-benefit-ic i,.ci-benefit .ci-benefit-ic svg{color:var(--c);stroke:var(--c)}
+.ci-benefit .ci-benefit-t{font-size:15px;max-width:100%}
+.ci-benefit .ci-benefit-d{color:rgba(255,255,255,.95)}
+.ci-benefit.ci-benefit-hl .ci-xp-badge{background:rgba(255,255,255,.3);color:#fff}
+@media (max-width:520px){ .ci-benefit,.ci-benefit.ci-benefit-hl{min-height:128px} }
