@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<link rel="stylesheet" href="css/styles.css?v=20261016p">
+<link rel="stylesheet" href="css/styles.css?v=20261016s">
 </head>
 <body>
 
@@ -1794,6 +1794,7 @@
     <div class="ov-body" style="padding-top:12px">
       <div class="na-scope" id="naScope">
 
+        <div class="na-panel">
         <!-- location search -->
         <div class="na-search">
           <i data-lucide="map-pin" class="na-search-ic"></i>
@@ -1804,7 +1805,7 @@
         <!-- format -->
         <div class="na-row-lbl"><span class="na-lbl-t"><i data-lucide="video"></i>Format</span></div>
         <div class="na-chiprow" id="naFormat">
-          <button class="na-chip on" data-val="all">All</button>
+          <button class="na-chip on" data-val="all"><i data-lucide="layout-grid"></i>All</button>
           <button class="na-chip" data-val="in-person"><i data-lucide="map-pin"></i>In-person</button>
           <button class="na-chip" data-val="virtual"><i data-lucide="monitor"></i>Virtual</button>
           <button class="na-chip" data-val="hybrid"><i data-lucide="shuffle"></i>Hybrid</button>
@@ -1825,7 +1826,7 @@
         <!-- time of day -->
         <div class="na-row-lbl"><span class="na-lbl-t"><i data-lucide="clock"></i>Time of day</span></div>
         <div class="na-chiprow" id="naTime">
-          <button class="na-chip on" data-val="all">Any</button>
+          <button class="na-chip on" data-val="all"><i data-lucide="clock"></i>Any</button>
           <button class="na-chip" data-val="morning"><i data-lucide="sunrise"></i>Morning</button>
           <button class="na-chip" data-val="afternoon"><i data-lucide="sun"></i>Afternoon</button>
           <button class="na-chip" data-val="evening"><i data-lucide="sunset"></i>Evening</button>
@@ -1835,6 +1836,8 @@
         <!-- distance (in-person/hybrid) -->
         <div class="na-row-lbl" id="naDistLbl"><span class="na-lbl-t"><i data-lucide="navigation"></i>Distance</span> <span id="naDistVal">25 mi</span></div>
         <input type="range" id="naDist" class="na-slider" min="5" max="100" step="5" value="25">
+
+        </div><!-- /na-panel -->
 
         <!-- more filters (meeting type) -->
         <button class="na-more" id="naMoreBtn" type="button" aria-expanded="false">More filters <i data-lucide="chevron-down"></i></button>

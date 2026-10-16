@@ -5302,3 +5302,42 @@ body.is-desktop .ach-scroll{margin-right:0;-webkit-mask-image:linear-gradient(90
 /* radio indicator: thin outline (1.5px); selected = same outline + a small solid dot */
 .fc-scope #fType button::after,.fc-scope #fRadius .rpill::after{background:transparent;border:1.5px solid rgba(255,255,255,.95)}
 .fc-scope #fType button.on::after,.fc-scope #fRadius .rpill.on::after{border:1.5px solid #fff;background:radial-gradient(circle,#fff 0 34%,transparent 38% 100%);box-shadow:none}
+
+/* ═══ Find a Meeting: one cohesive filter panel + gradient selection tiles (radio style), polished day dots and cards ═══ */
+.na-scope .na-panel{display:flex;flex-direction:column;gap:12px;padding:16px;margin:4px 0 14px;border-radius:26px;
+  background:linear-gradient(165deg,#E6EFFB 0%,#F2F6FC 100%);border:1px solid rgba(91,146,206,.18);box-shadow:0 14px 30px -20px rgba(63,110,153,.5)}
+.na-scope .na-panel > *{margin:0 !important}
+.na-scope .na-panel .na-search{border-radius:16px;border:1px solid rgba(255,255,255,.9);box-shadow:0 4px 12px -8px rgba(63,110,153,.35)}
+.na-scope .na-panel .na-row-lbl{margin-top:4px !important}
+body .na-scope #naFormat.na-chiprow,body .na-scope #naTime.na-chiprow{display:grid;gap:10px;overflow:visible;background:none;box-shadow:none;border:none;padding:0;border-radius:0}
+body .na-scope #naFormat.na-chiprow{grid-template-columns:repeat(4,minmax(0,1fr))}
+body .na-scope #naTime.na-chiprow{grid-template-columns:repeat(5,minmax(0,1fr))}
+.na-scope #naFormat .na-chip,.na-scope #naTime .na-chip{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0;min-height:88px;padding:10px 12px;
+  border:none;border-radius:18px;text-align:left;white-space:nowrap;font:700 13.5px var(--font-ui,Manrope);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.18);
+  background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
+.na-scope #naFormat .na-chip:nth-child(1),.na-scope #naTime .na-chip:nth-child(1){--c:#5B7FD6}
+.na-scope #naFormat .na-chip:nth-child(2),.na-scope #naTime .na-chip:nth-child(2){--c:#4F9A8A}
+.na-scope #naFormat .na-chip:nth-child(3),.na-scope #naTime .na-chip:nth-child(3){--c:#E09A5C}
+.na-scope #naFormat .na-chip:nth-child(4),.na-scope #naTime .na-chip:nth-child(4){--c:#7B6AEA}
+.na-scope #naTime .na-chip:nth-child(5){--c:#5E86B8}
+.na-scope #naFormat .na-chip::before,.na-scope #naTime .na-chip::before{content:"";position:absolute;right:-12px;top:-16px;width:76px;height:76px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+.na-scope #naFormat .na-chip > svg,.na-scope #naTime .na-chip > svg{position:absolute;top:9px;right:9px;width:32px;height:32px;padding:7px;border-radius:11px;box-sizing:border-box;color:var(--c);stroke:var(--c);
+  background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65));box-shadow:0 5px 10px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff;text-shadow:none}
+.na-scope #naFormat .na-chip::after,.na-scope #naTime .na-chip::after{content:"";position:absolute;top:10px;left:10px;width:19px;height:19px;border-radius:50%;box-sizing:border-box;border:1.5px solid rgba(255,255,255,.95);background:transparent}
+.na-scope #naFormat .na-chip.on,.na-scope #naTime .na-chip.on{background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));color:#fff;border:none;box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45)}
+.na-scope #naFormat .na-chip.on::after,.na-scope #naTime .na-chip.on::after{background:radial-gradient(circle,#fff 0 34%,transparent 38% 100%)}
+@media (max-width:620px){ body .na-scope #naTime.na-chiprow{grid-template-columns:repeat(3,minmax(0,1fr))} body .na-scope #naFormat.na-chiprow{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* weekday dots: selected = blue gradient */
+.na-scope .na-day{background:#fff;box-shadow:0 4px 10px -8px rgba(63,110,153,.5);border-color:rgba(91,146,206,.18)}
+.na-scope .na-day.on{background:linear-gradient(135deg,#6DA0CC,#3F6E99);border-color:transparent}
+/* distance + more filters */
+.na-scope .na-more{border-radius:16px;color:#456695;border:1.5px solid #9DB4D6;background:#fff}
+.na-scope .na-more:hover{background:#EEF4FB}
+/* meeting cards */
+.na-scope .na-card{border-radius:22px;border:1px solid rgba(91,146,206,.14);background:linear-gradient(180deg,#F1F7FE 0,#fff 90px);box-shadow:0 12px 28px -18px rgba(63,110,153,.45);transition:transform .15s ease,box-shadow .2s ease}
+.na-scope .na-card:hover{transform:translateY(-2px);box-shadow:0 16px 32px -18px rgba(63,110,153,.5)}
+
+/* Find a Meeting tiles — desktop specificity (beats the older #naFormat / #naTime segmented-control rules) */
+body.is-desktop .na-scope #naFormat .na-chip,body.is-desktop .na-scope #naTime .na-chip{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0;min-height:88px;padding:10px 12px;border:none;border-radius:18px;text-align:left;white-space:nowrap;font:700 13.5px var(--font-ui,Manrope);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.18);flex:none;
+  background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 6px 16px -8px rgba(40,50,60,.35)}
+body.is-desktop .na-scope #naFormat .na-chip.on,body.is-desktop .na-scope #naTime .na-chip.on{background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));color:#fff;box-shadow:inset 0 0 0 2.5px #fff,0 8px 18px -8px rgba(40,50,60,.45)}
