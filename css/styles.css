@@ -5444,3 +5444,12 @@ body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #n
 
 /* "Begin Daily Reflection" CTA back to the primary blue */
 #rhFocusEmpty .hp2-focus-btn{background:linear-gradient(135deg,#6DA0CC,#3F6E99);color:#fff;box-shadow:0 10px 22px -10px rgba(63,110,153,.6)}
+
+/* Earn XP / Insights chip: toned down — soft white chip with a light gold icon tile and pill (not a strong highlight) */
+.rh-risk .rh-insights.rh-chip{background:#fff;border:1px solid rgba(58,51,48,.08);box-shadow:0 2px 8px rgba(60,50,45,.05)}
+.rh-risk .rh-insights.rh-chip::before{display:none}
+.rh-risk .rh-insights .rh-insights-ic{background:#FBF0D3;color:#B08A2E;box-shadow:none;width:40px;height:40px;border-radius:12px}
+.rh-risk .rh-insights .rh-insights-ic i,.rh-risk .rh-insights .rh-insights-ic svg{width:20px;height:20px}
+.rh-risk .rh-insights .rh-chip-eyebrow{color:var(--ink-soft)}
+.rh-risk .rh-insights .rh-chip-val{color:var(--ink);font-size:15px;text-shadow:none}
+.rh-risk .rh-insights .rh-insights-xp{background:#FBF0D3;color:#9A7420;font-size:12px;padding:4px 11px}
