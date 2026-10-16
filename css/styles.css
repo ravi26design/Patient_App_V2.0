@@ -5410,3 +5410,23 @@ body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #n
 .ci-benefit .ci-xp-badge{left:auto;right:14px}
 .ci-benefit::before{right:auto;left:-16px}
 .ci-benefits-h{font-size:17px}
+
+/* ═══ Home polish (structure & wording unchanged): Earn XP chip, Past 2 weeks strip, Today's focus card ═══ */
+/* Earn XP / Insights → gold gradient chip (same tile language as the rest of the app) */
+.rh-risk .rh-insights.rh-chip{position:relative;overflow:hidden;border:none;border-radius:20px;padding:12px 16px 12px 12px;
+  background:linear-gradient(135deg,#F2C45E 0%,#DC9A2E 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 10px 22px -12px rgba(201,143,34,.65)}
+.rh-risk .rh-insights.rh-chip::before{content:"";position:absolute;left:-18px;top:-26px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+.rh-risk .rh-insights .rh-insights-ic{position:relative;width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,255,255,.68));color:#C98A1E;box-shadow:0 6px 12px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff}
+.rh-risk .rh-insights .rh-insights-ic i,.rh-risk .rh-insights .rh-insights-ic svg{width:22px;height:22px}
+.rh-risk .rh-insights .rh-chip-eyebrow{color:rgba(255,255,255,.92)}
+.rh-risk .rh-insights .rh-chip-val{color:#fff;font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+.rh-risk .rh-insights .rh-insights-xp{background:rgba(255,255,255,.3);color:#fff;font-size:12.5px;padding:5px 12px}
+/* Past 2 weeks → soft tinted strip with a dotted placeholder line */
+.rh-weeks{margin-top:14px;padding:14px 16px;border-radius:18px;background:#F4F7FC;border:1px solid rgba(91,146,206,.12)}
+.rh-weeks .hp2-spark-empty line{stroke:#B9C9E0;stroke-dasharray:2 7}
+.rh-weeks .hp2-muted{color:#7A8CA6 !important}
+/* Today's focus (before / after the reflection) → soft blue wash card, glossy icon tile */
+.hp2-focus,.hp2-focus-empty{background:linear-gradient(165deg,#EEF4FD 0%,#FFFFFF 68%) !important;border:1px solid rgba(91,146,206,.16);box-shadow:0 14px 32px -18px rgba(63,110,153,.45)}
+.hp2-focus-ic{background:linear-gradient(145deg,#FBDDD6,#F4C2B8);box-shadow:0 6px 12px -6px rgba(197,84,69,.45),inset 0 1px 0 rgba(255,255,255,.7)}
+.hp2-focus-ic-done{background:linear-gradient(140deg,#6DA0CC,#3F6E99) !important}
+#rhFocusEmpty .hp2-focus-d{background:rgba(255,255,255,.7);border-radius:14px;padding:12px 14px;margin:14px 0}
