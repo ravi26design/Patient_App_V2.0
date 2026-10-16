@@ -5401,3 +5401,6 @@ body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #n
 .ci-benefit .ci-benefit-d{color:rgba(255,255,255,.95)}
 .ci-benefit.ci-benefit-hl .ci-xp-badge{background:rgba(255,255,255,.3);color:#fff}
 @media (max-width:520px){ .ci-benefit,.ci-benefit.ci-benefit-hl{min-height:128px} }
+
+/* "When you finish, you get" → main-title style, 20px */
+.ci-benefits-h{font-family:var(--font-display);font-size:20px;font-weight:700;line-height:1.2;letter-spacing:-.01em;text-transform:none;color:var(--ink);text-align:center;padding:0 0 6px}
