@@ -5453,3 +5453,7 @@ body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #n
 .rh-risk .rh-insights .rh-chip-eyebrow{color:var(--ink-soft)}
 .rh-risk .rh-insights .rh-chip-val{color:var(--ink);font-size:15px;text-shadow:none}
 .rh-risk .rh-insights .rh-insights-xp{background:#FBF0D3;color:#9A7420;font-size:12px;padding:4px 11px}
+
+/* Daily check-in prompt (desktop): content column = Home card width (like every other screen) */
+body.is-desktop .ci-screen{max-width:calc(min(var(--pg-real,808px),100vw - 24px) + 44px)}
+body.is-desktop .ci-screen{width:100%;box-sizing:border-box}
