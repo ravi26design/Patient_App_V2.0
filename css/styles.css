@@ -5371,3 +5371,23 @@ body.is-desktop .na-scope #naTime .na-chip,body:not(.is-desktop) .na-scope #naTi
 body.is-desktop .na-scope #naTime .na-chip::before,body.is-desktop .na-scope #naTime .na-chip::after,body:not(.is-desktop) .na-scope #naTime .na-chip::before,body:not(.is-desktop) .na-scope #naTime .na-chip::after{display:none}
 body.is-desktop .na-scope #naTime .na-chip > svg,body:not(.is-desktop) .na-scope #naTime .na-chip > svg{position:static;width:15px;height:15px;padding:0;border-radius:0;background:none;box-shadow:none;color:currentColor;stroke:currentColor}
 body.is-desktop .na-scope #naTime .na-chip.on,body:not(.is-desktop) .na-scope #naTime .na-chip.on{background:linear-gradient(135deg,#6DA0CC,#3F6E99);color:#fff;box-shadow:0 4px 12px -4px rgba(63,110,153,.5)}
+
+/* ═══ Daily check-in prompt: the two rewards become gradient tiles (blue score/activity · gold XP bonus) ═══ */
+.ci-benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:none;box-shadow:none;padding:0;border-radius:0;text-align:left}
+.ci-benefits-h{grid-column:1 / -1;text-align:center;padding:0 0 2px;letter-spacing:.1em}
+.ci-benefit{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0;min-height:132px;padding:14px 15px;border-radius:22px;
+  background:linear-gradient(165deg,color-mix(in srgb,var(--c,#5B92CE) 55%,#fff),var(--c,#5B92CE));box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 10px 22px -12px rgba(40,50,60,.45)}
+.ci-benefit::before{content:"";position:absolute;right:-16px;top:-20px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45),rgba(255,255,255,0) 70%)}
+.ci-benefit:nth-of-type(1){--c:#5B7FD6}
+.ci-benefit.ci-benefit-hl{--c:#E2A53C;background:linear-gradient(165deg,color-mix(in srgb,var(--c) 55%,#fff),var(--c));box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 10px 22px -12px rgba(40,50,60,.45)}
+.ci-benefit .ci-benefit-ic{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:14px;
+  background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65)) !important;color:var(--c) !important;box-shadow:0 6px 12px -4px rgba(0,0,0,.25),inset 0 1px 0 #fff}
+.ci-benefit .ci-benefit-ic i,.ci-benefit .ci-benefit-ic svg{width:22px;height:22px}
+.ci-benefit-main{position:relative;z-index:1;gap:3px}
+.ci-benefit .ci-benefit-t{color:#fff;font-size:14.5px;font-weight:700;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+.ci-benefit .ci-benefit-t b{color:#fff;font-weight:800}
+.ci-benefit .ci-benefit-d{color:rgba(255,255,255,.92);font-size:12px;font-weight:600;line-height:1.3;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.ci-benefit .ci-benefit-chev{display:none}
+.ci-benefit .ci-xp-badge{position:absolute;top:14px;left:14px;align-self:auto;background:rgba(255,255,255,.28);color:#fff;box-shadow:none;font-size:13px;padding:4px 11px}
+@media (max-width:520px){ .ci-benefits{grid-template-columns:1fr} .ci-benefit{min-height:112px} }
+.ci-benefit .ci-benefit-main{flex:0 0 auto;width:100%;margin-top:auto}
