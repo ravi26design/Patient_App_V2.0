@@ -5496,3 +5496,6 @@ body.is-desktop .ci-screen{width:100%;box-sizing:border-box}
 .ci-benefit,.ci-benefit.ci-benefit-hl{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 22%,#fff) !important}
 .ci-benefit .ci-benefit-ic{box-shadow:none !important}
 .ci-benefit .ci-xp-badge{box-shadow:none !important}
+
+/* "+30" pill: solid gold (same colour as the sparkle icon) with white text */
+.ci-benefit .ci-xp-badge,.ci-benefit.ci-benefit-hl .ci-xp-badge{background:#D58A1F;color:#fff;box-shadow:none}
