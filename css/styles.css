@@ -5491,3 +5491,8 @@ body.is-desktop .ci-screen{width:100%;box-sizing:border-box}
 .ci-benefit.ci-benefit-hl .ci-benefit-t,.ci-benefit.ci-benefit-hl .ci-benefit-t b{color:#4A3207;text-shadow:none}
 .ci-benefit.ci-benefit-hl .ci-benefit-d{color:#7A5A1E;text-shadow:none}
 .ci-benefit .ci-xp-badge{background:#fff;color:#B97612;box-shadow:0 6px 12px -8px rgba(185,118,18,.6)}
+
+/* Check-in reward tiles: no drop shadows (flat, with just a hairline edge) */
+.ci-benefit,.ci-benefit.ci-benefit-hl{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 22%,#fff) !important}
+.ci-benefit .ci-benefit-ic{box-shadow:none !important}
+.ci-benefit .ci-xp-badge{box-shadow:none !important}
