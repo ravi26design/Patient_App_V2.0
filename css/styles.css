@@ -5547,3 +5547,13 @@ html.ci-v3 .ci-begin{background:#fff !important;color:#2F5C8A !important;box-sha
 html.ci-v3 .ci-begin svg{stroke:#2F5C8A}
 html.ci-v3 .ci-time{color:rgba(255,255,255,.7)}
 html.ci-v3 .ci-later{color:rgba(255,255,255,.85)}
+
+/* Option B hero → light blue */
+html.ci-v2 .ci-head{background:linear-gradient(150deg,#EAF2FC 0%,#D6E6F8 55%,#C3DAF3 100%);box-shadow:0 20px 38px -26px rgba(63,110,153,.55);border:1px solid rgba(91,146,206,.18)}
+html.ci-v2 .ci-head::before{background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.7),rgba(255,255,255,0) 70%)}
+html.ci-v2 .ci-hero-ic{background:linear-gradient(145deg,#6DA0CC,#4F7FB5);color:#fff;box-shadow:0 12px 22px -10px rgba(63,110,153,.55)}
+html.ci-v2 .ci-hero-ic svg{color:#fff;stroke:#fff}
+html.ci-v2 .ci-title{color:#1F3A57}
+html.ci-v2 .cw-dot.done{background:#5B92CE;color:#fff}
+html.ci-v2 .cw-dot.today{background:rgba(255,255,255,.7);border-color:#D9A93A}
+html.ci-v2 .cw-txt{color:#4A6785}
