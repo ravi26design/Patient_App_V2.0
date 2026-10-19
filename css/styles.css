@@ -5499,3 +5499,28 @@ body.is-desktop .ci-screen{width:100%;box-sizing:border-box}
 
 /* "+30" pill: solid gold (same colour as the sparkle icon) with white text */
 .ci-benefit .ci-xp-badge,.ci-benefit.ci-benefit-hl .ci-xp-badge{background:#D58A1F;color:#fff;box-shadow:none}
+
+/* ═══ Daily check-in prompt — OPTION B (html.ci-v2): blue hero card on top, clean white reward cards below ═══ */
+html.ci-v2 .ci-head{position:relative;overflow:hidden;background:linear-gradient(150deg,#6DA0CC 0%,#4F7FB5 55%,#3F6E99 100%);border-radius:30px;padding:30px 22px 26px;box-shadow:0 22px 40px -24px rgba(63,110,153,.75)}
+html.ci-v2 .ci-head::before{content:"";position:absolute;right:-60px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.22),rgba(255,255,255,0) 70%);pointer-events:none}
+html.ci-v2 .ci-head > *{position:relative}
+html.ci-v2 .ci-hero-ic{background:linear-gradient(145deg,#fff,#E3EDFA);color:#3F6E99;box-shadow:0 12px 22px -10px rgba(0,0,0,.35)}
+html.ci-v2 .ci-hero-ic::before{display:none}
+html.ci-v2 .ci-title{color:#fff}
+html.ci-v2 .cw-dot.done{background:#fff;color:#3F6E99;box-shadow:none}
+html.ci-v2 .cw-dot.today{background:rgba(255,255,255,.12);border-color:#F6CF6B}
+html.ci-v2 .cw-txt{color:rgba(255,255,255,.9)}
+html.ci-v2 .ci-benefits{grid-template-columns:1fr;gap:10px}
+html.ci-v2 .ci-benefits-h{text-align:left;font-size:15px;padding:4px 4px 2px}
+html.ci-v2 .ci-benefit,html.ci-v2 .ci-benefit.ci-benefit-hl{flex-direction:row;align-items:center;justify-content:flex-start;gap:14px;min-height:0;padding:14px 16px;border-radius:20px;
+  background:#fff !important;border:1px solid rgba(91,146,206,.14);box-shadow:0 12px 26px -20px rgba(63,110,153,.55) !important}
+html.ci-v2 .ci-benefit::before{display:none}
+html.ci-v2 .ci-benefit .ci-benefit-ic{position:static;flex:0 0 auto;width:48px;height:48px;border-radius:15px;box-shadow:none !important;background:#E7EFFB !important;color:var(--c) !important}
+html.ci-v2 .ci-benefit.ci-benefit-hl .ci-benefit-ic{background:#FBEFCF !important}
+html.ci-v2 .ci-benefit .ci-benefit-main{flex:1 1 auto;min-width:0;width:auto;margin-top:0;padding-right:0}
+html.ci-v2 .ci-benefit .ci-benefit-t,html.ci-v2 .ci-benefit.ci-benefit-hl .ci-benefit-t,html.ci-v2 .ci-benefit:not(.ci-benefit-hl) .ci-benefit-t{color:var(--ink);text-shadow:none;font-size:15px}
+html.ci-v2 .ci-benefit .ci-benefit-t b,html.ci-v2 .ci-benefit.ci-benefit-hl .ci-benefit-t b{color:#B97612}
+html.ci-v2 .ci-benefit .ci-benefit-d,html.ci-v2 .ci-benefit.ci-benefit-hl .ci-benefit-d,html.ci-v2 .ci-benefit:not(.ci-benefit-hl) .ci-benefit-d{color:var(--ink-soft);text-shadow:none;font-size:12.5px}
+html.ci-v2 .ci-benefit .ci-xp-badge,html.ci-v2 .ci-benefit.ci-benefit-hl .ci-xp-badge{position:static;margin-left:auto;align-self:center;background:#D58A1F;color:#fff;box-shadow:none}
+@media (min-width:521px){ html.ci-v2 .ci-benefits{grid-template-columns:1fr 1fr} html.ci-v2 .ci-benefits-h{grid-column:1 / -1} html.ci-v2 .ci-benefit .ci-xp-badge{display:none} }
+html.ci-v2 .ci-begin{border-radius:18px}

@@ -1,3 +1,20 @@
+/* ── Daily check-in prompt: design option switch (for reviewing two versions) ──
+   ?ci=1 → current design · ?ci=2 → option B (saved in this browser)
+   ?demo=checkin → skips onboarding on this browser and lands on the check-in prompt (add &ci=1 / &ci=2) */
+(function(){
+  try{
+    var q=/[?&]ci=(\d)/.exec(location.search);
+    if(q){ if(q[1]==='2') localStorage.setItem('rh_ci_v','2'); else localStorage.removeItem('rh_ci_v'); }
+    if(/[?&]demo=checkin\b/.test(location.search)){
+      localStorage.setItem('rh_onboarded','1'); localStorage.setItem('rh_tour_seen_v2','1');
+      localStorage.setItem('rh_profile', JSON.stringify({name:'Alex M.', phone:'+15555550100', onbDone:true}));
+      localStorage.removeItem('rh_reflect_done'); localStorage.removeItem('rh_checkin_prompt'); localStorage.removeItem('rh_onb_step');
+      location.replace(location.pathname);   // reload clean; the chosen option stays saved
+      return;
+    }
+    if(localStorage.getItem('rh_ci_v')==='2') document.documentElement.classList.add('ci-v2');
+  }catch(e){}
+})();
 /* ═══════════════════════════════════════════════════════════
    RudraHealth AI — OUD Recovery Companion (Patient App)
    Mobile-first web app. Same data & flows as prototype v1.3.
