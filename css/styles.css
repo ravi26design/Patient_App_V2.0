@@ -5480,3 +5480,14 @@ body.is-desktop .ci-screen{width:100%;box-sizing:border-box}
   .ci-benefit .ci-xp-badge{position:static;margin-left:auto;align-self:center;flex:0 0 auto;background:#fff;color:#B97612;font-size:13px;font-weight:800;padding:6px 12px;box-shadow:0 6px 12px -6px rgba(0,0,0,.3)}
   .ci-benefit.ci-benefit-hl .ci-benefit-main{padding-right:0}
 }
+
+/* Check-in reward tiles: lighter pastel backgrounds with dark text (easier on the eye, still readable) */
+.ci-benefit,.ci-benefit.ci-benefit-hl{background:radial-gradient(120% 120% at 0% 0%,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 60%),linear-gradient(165deg,color-mix(in srgb,var(--c) 22%,#fff),color-mix(in srgb,var(--c) 38%,#fff));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 22%,#fff),0 12px 24px -16px rgba(40,50,60,.35)}
+.ci-benefit::before{background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.7),rgba(255,255,255,0) 70%)}
+.ci-benefit .ci-benefit-ic{background:#fff !important;box-shadow:0 8px 16px -8px color-mix(in srgb,var(--c) 70%,#000),inset 0 1px 0 #fff}
+.ci-benefit:not(.ci-benefit-hl) .ci-benefit-t{color:#1F2E55;text-shadow:none}
+.ci-benefit:not(.ci-benefit-hl) .ci-benefit-d{color:#3E517E;text-shadow:none}
+.ci-benefit.ci-benefit-hl .ci-benefit-t,.ci-benefit.ci-benefit-hl .ci-benefit-t b{color:#4A3207;text-shadow:none}
+.ci-benefit.ci-benefit-hl .ci-benefit-d{color:#7A5A1E;text-shadow:none}
+.ci-benefit .ci-xp-badge{background:#fff;color:#B97612;box-shadow:0 6px 12px -8px rgba(185,118,18,.6)}
