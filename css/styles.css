@@ -5557,3 +5557,7 @@ html.ci-v2 .ci-title{color:#1F3A57}
 html.ci-v2 .cw-dot.done{background:#5B92CE;color:#fff}
 html.ci-v2 .cw-dot.today{background:rgba(255,255,255,.7);border-color:#D9A93A}
 html.ci-v2 .cw-txt{color:#4A6785}
+
+/* Check-in reward tiles (option A): flat pastel, no gradient */
+html:not(.ci-v2):not(.ci-v3) .ci-benefit,html:not(.ci-v2):not(.ci-v3) .ci-benefit.ci-benefit-hl{background:color-mix(in srgb,var(--c) 26%,#fff) !important;background-image:none !important}
+html:not(.ci-v2):not(.ci-v3) .ci-benefit::before,html:not(.ci-v2):not(.ci-v3) .ci-benefit::after{display:none !important}
