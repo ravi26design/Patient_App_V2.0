@@ -5524,3 +5524,26 @@ html.ci-v2 .ci-benefit .ci-benefit-d,html.ci-v2 .ci-benefit.ci-benefit-hl .ci-be
 html.ci-v2 .ci-benefit .ci-xp-badge,html.ci-v2 .ci-benefit.ci-benefit-hl .ci-xp-badge{position:static;margin-left:auto;align-self:center;background:#D58A1F;color:#fff;box-shadow:none}
 @media (min-width:521px){ html.ci-v2 .ci-benefits{grid-template-columns:1fr 1fr} html.ci-v2 .ci-benefits-h{grid-column:1 / -1} html.ci-v2 .ci-benefit .ci-xp-badge{display:none} }
 html.ci-v2 .ci-begin{border-radius:18px}
+
+/* ═══ Daily check-in prompt — OPTION C (html.ci-v3): immersive deep-blue screen, glass reward cards, white CTA ═══ */
+html.ci-v3 #checkinModal{background:radial-gradient(120% 70% at 50% 0%,#5B92CE 0%,#3F6E99 38%,#23405F 100%) !important}
+html.ci-v3 #checkinModal .ci-screen{background:transparent !important;position:relative}
+html.ci-v3 .ci-hero-ic{width:92px;height:92px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.35);box-shadow:0 0 0 12px rgba(255,255,255,.07),0 0 0 26px rgba(255,255,255,.04),0 18px 40px -12px rgba(0,0,0,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html.ci-v3 .ci-hero-ic svg{color:#fff;stroke:#fff}
+html.ci-v3 .ci-title{color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.18)}
+html.ci-v3 .cw-dot.done{background:rgba(255,255,255,.95);color:#3F6E99;box-shadow:none}
+html.ci-v3 .cw-dot.today{background:rgba(255,255,255,.08);border:2px dashed #F2C45A}
+html.ci-v3 .cw-txt{color:rgba(255,255,255,.8)}
+html.ci-v3 .ci-benefits-h{color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.12em;font-size:11.5px}
+html.ci-v3 .ci-benefit,html.ci-v3 .ci-benefit.ci-benefit-hl{background:rgba(255,255,255,.12) !important;border:1px solid rgba(255,255,255,.22) !important;box-shadow:none !important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+html.ci-v3 .ci-benefit .ci-benefit-t{color:#fff}
+html.ci-v3 .ci-benefit .ci-benefit-t b{color:#F2C45A}
+html.ci-v3 .ci-benefit .ci-benefit-d{color:rgba(255,255,255,.72)}
+html.ci-v3 .ci-benefit .ci-benefit-ic{background:#fff !important;box-shadow:0 8px 18px -8px rgba(0,0,0,.35)}
+html.ci-v3 .ci-benefit .ci-benefit-ic svg{color:#3F6E99;stroke:#3F6E99}
+html.ci-v3 .ci-benefit.ci-benefit-hl .ci-benefit-ic svg{color:#D58A1F;stroke:#D58A1F}
+html.ci-v3 .ci-benefit-chev{color:rgba(255,255,255,.6)}
+html.ci-v3 .ci-begin{background:#fff !important;color:#2F5C8A !important;box-shadow:0 18px 34px -14px rgba(0,0,0,.45) !important}
+html.ci-v3 .ci-begin svg{stroke:#2F5C8A}
+html.ci-v3 .ci-time{color:rgba(255,255,255,.7)}
+html.ci-v3 .ci-later{color:rgba(255,255,255,.85)}

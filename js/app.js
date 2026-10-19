@@ -4,7 +4,7 @@
 (function(){
   try{
     var q=/[?&]ci=(\d)/.exec(location.search);
-    if(q){ if(q[1]==='2') localStorage.setItem('rh_ci_v','2'); else localStorage.removeItem('rh_ci_v'); }
+    if(q){ if(q[1]==='2'||q[1]==='3') localStorage.setItem('rh_ci_v',q[1]); else localStorage.removeItem('rh_ci_v'); }
     if(/[?&]demo=checkin\b/.test(location.search)){
       localStorage.setItem('rh_onboarded','1'); localStorage.setItem('rh_tour_seen_v2','1');
       localStorage.setItem('rh_profile', JSON.stringify({name:'Alex M.', phone:'+15555550100', onbDone:true}));
@@ -12,7 +12,7 @@
       location.replace(location.pathname);   // reload clean; the chosen option stays saved
       return;
     }
-    if(localStorage.getItem('rh_ci_v')==='2') document.documentElement.classList.add('ci-v2');
+    var _v=localStorage.getItem('rh_ci_v'); if(_v==='2'||_v==='3') document.documentElement.classList.add('ci-v'+_v);
   }catch(e){}
 })();
 /* ═══════════════════════════════════════════════════════════
